@@ -1,0 +1,75 @@
+# items
+
+item.tuxweapons:fireChargeCannon.name=Fire Charge Cannon
+item.tuxweapons:crossBow.name=Crossbow
+item.tuxweapons:bolt.name=Bolt
+item.tuxweapons:dynamite.name=Dynamite
+item.tuxweapons:empGrenade.name=EMP Grenade
+item.tuxweapons:technical.name=WHY DO YOU HAVE THIS IN YOUR INVENTORY!
+item.tuxweapons:magmaCore.name=Magma Core
+
+
+# blocks
+
+tile.tuxweapons:redstoneTmpBlock.name=EMP Grenade Block
+
+
+# tools
+
+tool.hammer=Hammer
+tool.battleaxe=Battleaxe
+tool.mace=Mace
+tool.spear=Spear
+tool.knife=Knife
+tool.grappHook=Grappling Hook
+tool.shield=Shield
+tool.whock=Whock
+tool.whockCrafter=Whock Crafter
+
+
+# entities
+
+entity.tuxweapons:spear.name=Spear
+entity.tuxweapons:knife.name=Knife
+entity.tuxweapons:grappHook.name=Grappling Hook
+
+
+# enchants
+
+enchantment.tuxweapons:drawback=Drawback
+enchantment.tuxweapons:expIncrease=XP Stealer
+enchantment.tuxweapons:hardened=Hardened
+enchantment.tuxweapons:equalize=Equalize
+enchantment.tuxweapons:swift=Swift
+enchantment.tuxweapons:strike=Strike
+enchantment.tuxweapons:aoe=Range
+enchantment.tuxweapons:venom=Venom
+
+
+# potions
+
+## effects 
+potion.tuxweapons:cure=Cure
+potion.tuxweapons:fireAura=Fire Aura
+potion.tuxweapons:quickStep=Quick Step
+potion.tuxweapons:confusion=Confusion
+potion.tuxweapons:flight=Flight
+potion.tuxweapons:paralysis=Paralysis
+
+## names
+potion.tuxweapons:cure.postfix=Potion of the Cure
+potion.tuxweapons:fireAura.postfix=Potion of Heat
+potion.tuxweapons:quickStep.postfix=Potion of Convenience
+potion.tuxweapons:confusion.postfix=Potion of Confusion
+potion.tuxweapons:flight.postfix=Potion of the Skies
+potion.tuxweapons:paralysis.postfix=Potion of Paralyzation
+
+
+# deaths
+
+death.attack.tuxweapons:hammerSmash=%1$s was smashed by %2$s
+death.attack.tuxweapons:hammerSmash.item=%1$s was smashed by %2$s using %3$s
+death.attack.tuxweapons:throwable=%1$s was impaled by %2$s
+death.attack.tuxweapons:throwable.item=%1$s was impaled by %2$s using %3$s
+death.attack.tuxweapons:bolt=%1$s was shot by %2$s
+death.attack.tuxweapons:bolt.item=%1$s was shot by %2$s using %3$s

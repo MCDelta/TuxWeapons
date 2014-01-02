@@ -1,0 +1,40 @@
+// Tux Weapons
+buildscript {
+    repositories { mavenCentral() }
+    dependencies { classpath 'com.github.abrarsyed.gmcp:GMCP:latest.integration' }
+}
+
+apply plugin: "gmcp"
+
+group = 'mcdelta.tuxweapons'
+version = '1.0a'
+archivesBaseName = 'TuxWeapons'
+
+sourceSets {
+    main {
+        java { srcDir 'common' }
+        resources { srcDir 'resources' }
+    }
+}
+
+minecraft {
+    minecraftVersion = '1.6.4'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+        expand version: version, mcversion: minecraft.minecraftVersion
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+    }
+}
+
+jar {
+    manifest {
+        attributes 'MCVersion' : project.minecraft.minecraftVersion
+        attributes 'Version' : project.version
+    }
+}
