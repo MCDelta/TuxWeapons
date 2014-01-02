@@ -1,13 +1,21 @@
-// Tux Weapons
+// MC Delta, TuxWeapons
 buildscript {
-    repositories { mavenCentral() }
-    dependencies { classpath 'com.github.abrarsyed.gmcp:GMCP:latest.integration' }
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT' 
+    }
 }
 
-apply plugin: "gmcp"
+apply plugin: "forge"
 
 group = 'mcdelta.tuxweapons'
-version = '1.0a'
+version = '0.1a'
 archivesBaseName = 'TuxWeapons'
 
 sourceSets {
@@ -18,13 +26,14 @@ sourceSets {
 }
 
 minecraft {
-    minecraftVersion = '1.6.4'
+    version = "1.6.4-9.11.1.964"
+    assetDir = "run/assets"
 }
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
-        expand version: version, mcversion: minecraft.minecraftVersion
+        expand version: version, mcversion: minecraft.version
     }
 
     from(sourceSets.main.resources.srcDirs) {
@@ -34,7 +43,16 @@ processResources {
 
 jar {
     manifest {
-        attributes 'MCVersion' : project.minecraft.minecraftVersion
+        attributes 'MCVersion' : project.minecraft.version
         attributes 'Version' : project.version
     }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allSource
+    appendix = 'src'
+}
+
+artifacts {
+    archives sourceJar
 }
