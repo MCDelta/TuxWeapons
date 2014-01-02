@@ -1,0 +1,512 @@
+<body>
+
+    [img]http://i.imgur.com/Dw19c1B.png[/img]
+
+    <h1>
+        TuxWeapons
+    </h1>
+
+    </br>
+
+    TuxWeapons, created by [url="http://www.minecraftforum.net/user/1990048-tuxcraft/"]TuxCraft[/url], adds many new and awesome weapons, enchantments, potions, and other tools to the game Minecraft. Each weapon supports a different and unique fighting style and with a new weakness / resistance system that affords a unique experience whenever you play. Not only that, but TuxWeapons is the first and only weapons mod to come with complete support for some of your other favorite mods that add their own tool types to the game. Now for the first time you can get a unique and amazing fighting experience no matter what mods you have installed. Now, enough blabbing. Let's show you what I mean...
+
+    </br>
+    </br>
+    </br>
+
+    [img]http://i.imgur.com/aYrOyaL.png[/img]
+
+    </br>
+    </br>
+    </br>
+
+    <h2>
+        Info & Images
+    </h2>
+
+    <spoiler>
+
+        <h3>
+            Items
+        </h3>
+
+        <spoiler>
+
+            </br>
+            </br>
+            </br>
+
+            [img]http://i.imgur.com/BNmHXKG.png[/img]
+
+            </br>
+            </br>
+
+            All of the following weapons can be crafted with any vanilla ore including some mod metals in the place of diamonds.
+
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/battleaxe.png?w=AABVWptX2h-p-f3_kmVCc13T6meBlHo8rq_Bhltiok1h3g[/img]
+
+            <h3>
+                Battleaxe
+            </h3>
+
+            The battleaxe can cleave whatever it is you want to with it's broad head. One stroke with a diamond battleaxe can kill many small mobs that are weaknessed to it (see weaknesses and resistances). The battleaxe does 6 - 10 damage depending on the material. It may have a lower durability, but in the end this weapon does so much damage that your resources will be well spent.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/mace.png?w=AABpHDmqYv0EKgsZT6pj-Wl8yWAzzsEUX85PAA_dDxYSQA[/img]
+
+            <h3>
+                Mace
+            </h3>
+
+            The mace adds a bit of RNG to your battles. With a whopping 1 - 8 to 5 - 12 (depending on material) the mace has the chance to do more damage then the battleaxe yet it also has the chance to do less damage then the sword of the same material. The mace could be your best chance at survival or it could weigh you down, are you willing to take the chances? I know I am [img]http://static.minecraftforum.net//public/style_emoticons/default/biggrin.png[/img]
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/spear.png?w=AACMrqpbz7c9smF2Ub_97NI-_Vb3bhSzoQP8fTqOFVwsaA[/img]
+
+            <h3>
+                Spear
+            </h3>
+
+            This weapon is unique in that while it has a relatively low damage it can be thrown for huge amounts of damage! The spear is well balanced doing only one less damage then the sword, but in a pinch you can throw a hail mary to finish off that last mob before daylight comes to save you. A great weapon to always have in your inventory.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/hammer.png?w=AAB57evTm0batLaSqfM4XpkHzPVcxImfxNGsyYhkKKaQBw[/img]
+
+            <h3>
+                Hammer
+            </h3>
+
+            Bash in your enemies brains with the hammer! It does a good bit of damage, but on top of that it can also be charged for a powerful smash attack! That is right, all enemies within a 6 block radius will be sent flying. Along with any other entities such as minecarts, and items. A great crowd control weapon that can destroy any group of oponents with ease.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/knife.png?w=AAD2JWwkwKq7XBrQbhtwBYhPQ9wNVh2huuVeyXVJd3F3HA[/img]
+
+            <h3>
+                Knife
+            </h3>
+
+            Easy to get a lot of, the knife can be thrown great distances for a low amount of damage. However when you have a lot that damage really adds up! Carrying a stack around with you at all times is a great way to ensure you are never caught unprepared.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/grapplingHook.png?w=AADgGCohISyd7wwc9vu3Q0WF38SOSPwkEHYkT9scWFw8Tg[/img]
+
+            <h3>
+                Grappling Hook
+            </h3>
+
+            Need to get somewhere high up fast? Grab a grappling hook. While these may not be the most durable items in the world they can gt you where you want fast. Beats nerd poling, by a lot.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/shield.png?w=AABcKM8ls6l95cL35XOAII3BXJw0NtHDUS-W1sS-SU0Q1A[/img]
+
+            <h3>
+                Shield
+            </h3>
+
+            Dang it! Mobs everywhere! I need to get to my house quick before I'm overwhelmed! Ran out of food and used up my last knife how can I protect myself! Oh yeah, I have my shield that protects ALL mob damage dealt [img]http://static.minecraftforum.net//public/style_emoticons/default/tongue.png[/img]
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/whock.png?w=AABdoqgEU9ajdiEcnsdmdcux3-0yohv6zX6krNPujU8wMg[/img]
+
+            <h3>
+                Whock
+            </h3>
+
+            Need a room cleared fast? Low on resources? Get the Whock! An advanced form of the pickaxe the Whock can "Whack" ( :D ) out blocks in a 3x3 area! Nothing can get the job done faster then a Whock. To craft you need to craft the Whock Head which is 6 of any material and a piece of Obsidian, next put it in an anvil with a pickaxe of the same type to forge the Whock! When you take it out of the anvil it will be slightly damaged, just throw more of your crafter at it and it should repair nicely.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/crossbow.png?w=AABtdSyh-3jAyvzxiDnjNMrb1-32kCFuVq9jT7QEmR4hKQ[/img]
+
+            <h3>
+                Crossbow
+            </h3>
+
+            The crossbow is the sniper rifle of minecraft, see a target, load it up and fire. Headshot, nice. To load the Crossbow pick your bolt of choice and right click it. This should load the bolt onto your crossbow and you are ready to fire!
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/bolt.png?w=AACHDgDy1c6KAzCj0OPxBVVZkfvw2uJMT1i78bNxI8I76g[/img]
+
+            <h3>
+                Bolts
+            </h3>
+
+            The bolts for the Crossbow can also be combined with potions and when fired the target will be affected by those potions. Coat your bolts with poison for an enemy or regeneration for a freind.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/dynamite.png?w=AABknFWWUJ3FYii6_B3TVNZuma_doWflVqkpnsDCypggfA[/img]
+
+            <h3>
+                Dynamite
+            </h3>
+
+            TNT in a throwable item. What more do I need to say?
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/fireChargeCannon.png?w=AADVOwuB866v6Y-XPQzGm8WK5bmvggpVT7aoQdwPg_cbbA[/img]
+
+            <h3>
+                Fire Charge Cannon
+            </h3>
+
+            I know you are jealous of Ghast and Blazes being able to shoot fire balls everywhere and when you try it functions just like flint and steel. Well no longer! Lock and load baby we are going to blow stuff up. Craft this puppy with a new rare drop from magma cubes and get firing.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/redstoneEMP.png?w=AAAy4bIBjZ8hqmJIE7NCuZBovrO-KU9BBOVoniLkb1fbKQ[/img]
+
+            <h3>
+                Redstone EMP Grenade
+            </h3>
+
+            This throwable item will pulse out a brief redstone signal wherever it hits. Great for messing with your friends systems, and making awesome gadgets of your own! I dare you, try it out, see what you can build.
+
+            </br>
+            </br>
+            </br>
+
+        </spoiler>
+        
+        <body>
+
+        <h3>
+            Weaknesses / Resistances 
+        </h3>
+
+        <spoiler>
+
+            </br>
+            </br>
+            </br>
+
+            TuxWeapons adds weaknesses and resistances to vanilla hostile mobs to add another level of difficulty to the game. This can of course be turned off in the config. There are three main weapon categories each affecting mobs differently; Slasher, Basher, and Golden. The Slasher weapons are the [b]Battleaxe and Spear[/b] The Basher weapons are the [b]Hammer and Mace[/b]. All weapons made of gold are part of the third Golden category.
+
+            </br>
+            </br>
+            </br>
+
+            Each mob is weaknessed to one type and resistant to the other. Mobs weaknessed to the Basher weapons and resistant to the Slasher weapons are the [b]Ghasts, Blazes, Creepers, Skeletons, Silverfish, and Magmacubs[/b]. Weakness to the Slasher weapons and Resistant to the Basher weapons are the [b]Spiders, Cavespiders, Zombies, Pigzombies, Slimes, and Witches[/b]. Weaknessed to the gold weapons are [b]Endermen[/b].
+
+            </br>
+            </br>
+            </br>
+
+            If a mob is weaknessed to a weapon it will add 4 more damage (2 hearts). However, if a mob is resistant to a weapon it will subtract 4 damage (2 hearts).
+
+            </br>
+            </br>
+            </br>
+
+            [img]http://i.imgur.com/IDxEgM9.png[/img]
+            [img]http://i.imgur.com/wAa1nyw.png[/img]
+
+            [i]
+                (Top) Mobs weaknessed to Basher weapons minus Ghast : (Bottom) Mobs weaknessed to Slasher weapons
+            [/i]
+
+            </br>
+            </br>
+
+        </spoiler>
+
+        </body>
+
+        <body>
+
+        <h3>
+            Potions
+        </h3>
+
+        <spoiler>
+
+            </br>
+            </br>
+            </br>
+
+            Brewing, some people love it, others hate it, but something we can all agree on is that the PotionEffects that are the result are awesome! TuxWeapons adds a few new potions to the game and a couple of new brewing recipes to try out! First let us talk about how TuxWeapons changes the Vanilla brewing system.
+
+            </br>
+            </br>
+            </br>
+
+            In this mod the brewing mechanics are extended in a couple ways. First, you can now combine potions together for some really sweet effects! For example you could take a Night Vision Potion and a Potion of Regeneration and get them both in one bottle. Also, by combining two of the same potion together you can get a potion that will last longer (maximum length is 20 minutes). If 20 minutes is still too short for you, just throw in a nether star for an [b]INFINITE[/b] potion effect (note: this does not work on potions with negative effects).
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/Images/multiplePotionEffects.png?w=AABtrCsWf74en4fxyt8FySPgJmQWwXSoql7wyBj9n4kY9Q[/img]
+
+            </br>
+            </br>
+            </br>
+
+            TuxWeapons also adds some cool Potion types of its own...
+            
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/potions/cure.png?w=AAAOzyMMv3F3LLOHNRVQFjk_2o2OaG28kimyQ7YIy0xkDA[/img]
+
+            <h3>
+                Potion of the Cure
+            </h3>
+
+            A potion to cure all of your potion effects. It works just like milk! As a matter of fact, it even requires milk to brew. Just brew together a bucket of milk and an Awkward Potion to create The Cure. Ruin your freinds strategies by removing his buffs with The Cure.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/potions/fireAura.png?w=AABmkQqXe-40f6Q9rOiVfBv6EkTZ_eYiImhvpyeGcM9RVQ[/img]
+
+            <h3>
+                Potion of Heat
+            </h3>
+
+            Ooh your on fire! Without actually being on fire... The Potion of Heat gives you a fiery aura so that any hostile mobs that wander too close are set aflame! Yowza! Throw a firework charge together with an awkward potion to brew.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/potions/quickStep.png?w=AADhLMOZcPU9vQs54MU5Pz4juIdt74Bh8c5xBvU1yesQ_Q[/img]
+
+            <h3>
+                Potion of Convenience
+            </h3>
+
+            Don't you just hate having to jump up blocks whenever you want to climb a hill. Tired of coating the ground around you with half slabs just so you don't waste hunger? Well your in luck! With just a feather and an awkward potion you can make a Potion of Convenience. This allows you to walk up single blocks like they were half slabs. So nice, much convenience, very quick.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/potions/confusion.png?w=AABbEBZ-rzdUx9kjV3WosVQF6Ov-lrQI2Q_AYKyyPFxDfg[/img]
+
+            <h3>
+                Potion of Confusion
+            </h3>
+
+            What happens when the effects of the Potion of Convenience go bad? Well now you know! The Potion of Confusion is brewed with a fermented spider eye and a Potion of Convenience. After being effected with this every thing feels wierd. When you try to walk forward instead you walk backwards. When you try moving right you really move left. When you try jumping you are really crouching and vice versa. Ruin someone's day by throwing one of these on em.
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/potions/flight.png?w=AAB5YHI0i3dPyvHIetraYIlPTwGBpODyWsVy5sh9i9z3yg[/img]
+
+            <h3>
+                Potion of the Skies
+            </h3>
+
+            [i]"I beleive I can fly, I beleive I can touch the sky. Think about it every night and day, chug my Potion of the Skies and fly away."[/i] With the Potion of the Skies (only needs an Eye of Ender and an Awkward Potion), you can fly! Just hold down the spacebar andwatch yourself raise to the heavens. However players are the only ones smart enough to control it. Try giving it to any other Creatures and they will just float up forever. Be careful though, this potion does not remove all fall damage!
+
+            </br>
+            </br>
+            </br>
+
+            [img]https://dl-web.dropbox.com/get/mcdelta%20mods/mods/tuxweapons/info/images/recipes/potions/paralysis.png?w=AAAq51iBHqWxOewEqzUegB1LNjUE3LU4f4e82OAJ_WcI2g[/img]
+
+            <h3>
+                Potion of the Paralyzation
+            </h3>
+
+            The polar opposite of the Potion of the Skies, when effected by this you can't even move! Hope you brought your Cure along with you. Simply a fermented spider eye and a Potion of the Skies to brew.
+
+            </br>
+            </br>
+            </br>
+
+        </spoiler>
+
+        </body>
+
+        <body>
+
+        <h3>
+            Enchantments
+        </h3>
+
+        <spoiler>
+
+            </br>
+            </br>
+            </br>
+
+            TuxWeapons also adds a few unique Enchantments...
+
+            </br>
+            </br>
+
+            - Swift (Weapon): Makes you able to swing your weapon faster
+            - Strike (Weapon): Makes any weapon like a mace, dealing a random extra amount of damage each hit
+            - Venom (Weapon): Coats your weapon in poison, making you able to poison your oponents on hit
+            - EXP Stealer (Weapon): The fortune for EXP
+            - Drawback (Bow): Causes you to draw your bow/crossbow/fire charge cannon back faster
+            - Hardened (Chestplate): Makes you it impossible for you to be knocked back
+
+            </br>
+            </br>
+            </br>
+
+        </spoiler>
+
+        </body>
+
+        </br>
+        </br>
+        </br>
+
+    </spoiler>
+
+</body>
+
+<body>
+
+    <h2>
+        Changelog & Downloads
+    </h2>
+
+    <spoiler>
+
+        </br>
+        </br>
+        </br>
+
+        <body>
+        [left]
+
+            Changelogs & downloads from 1.0 and down removed, sorry for any inconvienience this may have caused.
+
+            If you really want one of those versions, sign a petition! Start a rally! If you yell enough I'll hear you and give you the download
+
+            [url="http://adf.ly/bWdsd"]Previous DeltaCore Downloads[/url]
+            [url="http://adf.ly/bWdk8"]Previous TuxWeapons Downloads[/url]
+            [url="http://adf.ly/bWdye"]Previous OOH Downloads[/url]
+
+            </br>
+            </br>
+            </br>
+
+            <h3>
+                TuxWeapons 1.1b
+            </h3>
+
+            - fixed bug that allowed for instant potion brews
+
+            </br>
+
+            <h3>
+                TuxWeapons 1.1a
+            </h3>
+
+            - Removed Ukulele's
+            - Added Whocks
+            - Added Potion Bolts
+            - Removed Poison Boltes
+            - Rewrote all the things, such as...
+                > configs
+                > grappling hooks
+                > mod support (not funcitoning in this version)
+                > weapon rendering
+                > entities
+                > particles
+            - Added network code
+
+        [/left]
+        </body>
+
+        </br>
+        </br>
+        </br>
+
+    </spoiler>
+
+</body>
+
+<body>
+
+    <h2>
+        Permissions
+    </h2>
+
+    <spoiler>
+
+    <body>
+
+        </br>
+        </br>
+        </br>
+
+        This mod is completely open source, the code is on github [url="https://github.com/TuxCraft/TuxWeapons"]here[/url]. As an open source mod I expect you to keep the honor system when dealing with the source, I spent a lot of time working on it and if I find people are taking advantage of my generosity I will make my mods closed source. If you want to use this mod in a modpack, feel free. The mod itself was designed with modpacks in mind. If you want to make videos with this mod feel free, I'm excited to see what you make. You may NOT redistribute this mod without the adfly link I use. This is my one small source of income please respect that. If you want to redistribute the mod on a dropbox or google docs account I can understand. And in general please just use common sense, if something your doing with the mod feels wrong don't do it. If I find any shenanigans with my mods I always hold the right to tighten up my security. Please don't make me do that, I would rather, and I'm sure you would to, for me to spend my time coding and making new content, not dealing with scumbags.
+
+        </br>
+        </br>
+        </br>
+
+        Summary: YES you can use this mod in your modpack :D
+
+        </br>
+        </br>
+        </br>
+
+    </body>
+
+    </spoiler>
+
+</body>
+
+<body>
+
+    [url="http://adf.ly/bVBqI"]DOWNLOAD DeltaCore[/url] (REQUIRED)
+    [url="http://adf.ly/bVBGf"]DOWNLOAD TuxWeapons[/url]
+    
+    </br>
+
+    also try my ModJam Dual Wielding mod
+    [url="http://adf.ly/bVBKA"]DOWNLOAD OOH[/url]
+
+</body>
