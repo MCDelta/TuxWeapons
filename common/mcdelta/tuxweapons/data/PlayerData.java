@@ -1,4 +1,4 @@
-package mcdelta.tuxweapons;
+package mcdelta.tuxweapons.data;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

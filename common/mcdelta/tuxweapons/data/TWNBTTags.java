@@ -1,4 +1,4 @@
-package mcdelta.tuxweapons;
+package mcdelta.tuxweapons.data;
 
 public class TWNBTTags
 {

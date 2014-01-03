@@ -26,6 +26,7 @@ import mcdelta.tuxweapons.item.ItemTW;
 import mcdelta.tuxweapons.network.PacketSpawnParticle;
 import mcdelta.tuxweapons.network.PacketThrowablePickup;
 import mcdelta.tuxweapons.proxy.TWCommonProxy;
+import mcdelta.tuxweapons.recipe.Recipes;
 import mcdelta.tuxweapons.specials.enchant.EnchantmentTW;
 import mcdelta.tuxweapons.specials.potions.Potions;
 import net.minecraft.item.Item;

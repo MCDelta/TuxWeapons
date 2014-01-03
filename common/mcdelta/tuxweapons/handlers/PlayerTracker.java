@@ -1,7 +1,7 @@
 package mcdelta.tuxweapons.handlers;
 
-import mcdelta.tuxweapons.PlayerData;
-import mcdelta.tuxweapons.TWNBTTags;
+import mcdelta.tuxweapons.data.PlayerData;
+import mcdelta.tuxweapons.data.TWNBTTags;
 import mcdelta.tuxweapons.entity.EntityGrappHook;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.IPlayerTracker;

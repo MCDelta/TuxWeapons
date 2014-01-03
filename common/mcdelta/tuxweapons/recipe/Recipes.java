@@ -1,4 +1,4 @@
-package mcdelta.tuxweapons;
+package mcdelta.tuxweapons.recipe;
 
 import mcdelta.core.material.ToolMaterial;
 import mcdelta.tuxweapons.item.ItemTW;

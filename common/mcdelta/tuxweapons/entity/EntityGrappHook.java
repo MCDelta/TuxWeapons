@@ -1,7 +1,7 @@
 package mcdelta.tuxweapons.entity;
 
-import mcdelta.tuxweapons.PlayerData;
-import mcdelta.tuxweapons.TWNBTTags;
+import mcdelta.tuxweapons.data.PlayerData;
+import mcdelta.tuxweapons.data.TWNBTTags;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

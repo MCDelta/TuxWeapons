@@ -1,4 +1,4 @@
-package mcdelta.tuxweapons;
+package mcdelta.tuxweapons.recipe;
 
 import java.util.ArrayList;
 import java.util.List;

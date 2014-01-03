@@ -3,7 +3,7 @@ package mcdelta.tuxweapons.block.tileentity;
 import java.util.ArrayList;
 import java.util.List;
 
-import mcdelta.tuxweapons.TWNBTTags;
+import mcdelta.tuxweapons.data.TWNBTTags;
 import mcdelta.tuxweapons.specials.potions.Potions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
