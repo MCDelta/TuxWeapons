@@ -30,7 +30,7 @@ public class ItemWhock extends ItemDeltaTool
 {
      public ItemWhock (ToolMaterial mat)
      {
-          super(TuxWeapons.instance, "whock", mat, ItemPickaxe.blocksEffectiveAgainst, 2.0F);
+          super(TuxWeapons.instance, "whock", mat, ItemPickaxe.blocksEffectiveAgainst, 2.0F, false);
      }
      
      
