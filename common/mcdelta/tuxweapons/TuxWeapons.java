@@ -62,8 +62,6 @@ public class TuxWeapons extends ModDelta
      @EventHandler
      public void preInit (FMLPreInitializationEvent event)
      {
-          init(event);
-          
           PacketHandler.packets[2] = PacketSpawnParticle.class;
           PacketHandler.packets[3] = PacketThrowablePickup.class;
           

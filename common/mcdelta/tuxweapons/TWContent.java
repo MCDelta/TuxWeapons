@@ -51,23 +51,23 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class TWContent implements IContent
 {
-     public static Map<ItemMaterial, ItemBattleaxe>    battleaxes       = new HashMap<ItemMaterial, ItemBattleaxe>();
-     public static Map<ItemMaterial, ItemHammer>       hammers          = new HashMap<ItemMaterial, ItemHammer>();
-     public static Map<ItemMaterial, ItemSpear>        spears           = new HashMap<ItemMaterial, ItemSpear>();
-     public static Map<ItemMaterial, ItemMace>         maces            = new HashMap<ItemMaterial, ItemMace>();
-     public static Map<ItemMaterial, ItemKnife>        knives           = new HashMap<ItemMaterial, ItemKnife>();
-     public static Map<ItemMaterial, ItemGrappHook>    grappHooks       = new HashMap<ItemMaterial, ItemGrappHook>();
-     public static Map<ItemMaterial, ItemShield>       shields          = new HashMap<ItemMaterial, ItemShield>();
-     public static Map<ItemMaterial, ItemWhock>        whocks           = new HashMap<ItemMaterial, ItemWhock>();
-     public static Map<ItemMaterial, ItemWhockCrafter> whockCrafters    = new HashMap<ItemMaterial, ItemWhockCrafter>();
+     public static Map<ItemMaterial, ItemBattleaxe>    battleaxes    = new HashMap<ItemMaterial, ItemBattleaxe>();
+     public static Map<ItemMaterial, ItemHammer>       hammers       = new HashMap<ItemMaterial, ItemHammer>();
+     public static Map<ItemMaterial, ItemSpear>        spears        = new HashMap<ItemMaterial, ItemSpear>();
+     public static Map<ItemMaterial, ItemMace>         maces         = new HashMap<ItemMaterial, ItemMace>();
+     public static Map<ItemMaterial, ItemKnife>        knives        = new HashMap<ItemMaterial, ItemKnife>();
+     public static Map<ItemMaterial, ItemGrappHook>    grappHooks    = new HashMap<ItemMaterial, ItemGrappHook>();
+     public static Map<ItemMaterial, ItemShield>       shields       = new HashMap<ItemMaterial, ItemShield>();
+     public static Map<ItemMaterial, ItemWhock>        whocks        = new HashMap<ItemMaterial, ItemWhock>();
+     public static Map<ItemMaterial, ItemWhockCrafter> whockCrafters = new HashMap<ItemMaterial, ItemWhockCrafter>();
      
-     public static ItemFireChargeCannon                fireChargeCannon = new ItemFireChargeCannon();
-     public static ItemCrossbow                        crossBow         = new ItemCrossbow();
-     public static ItemBolt                            bolt             = new ItemBolt();
-     public static ItemDynamite                        dynamite         = new ItemDynamite();
-     public static ItemEMPGrenade                      empGrenade       = new ItemEMPGrenade();
-     public static ItemTechnical                       technical        = new ItemTechnical();
-     public static ItemTW                              magmaCore        = (ItemTW) new ItemTW("magmaCore").setCreativeTab(CreativeTabs.tabMaterials);
+     public static ItemFireChargeCannon                fireChargeCannon;
+     public static ItemCrossbow                        crossBow;
+     public static ItemBolt                            bolt;
+     public static ItemDynamite                        dynamite;
+     public static ItemEMPGrenade                      empGrenade;
+     public static ItemTechnical                       technical;
+     public static ItemTW                              magmaCore;
      
      public static BlockRedstoneTempBlock              redstoneTmpBlock;
      public static BlockBrewStand                      brewStandMCD;
@@ -93,11 +93,11 @@ public class TWContent implements IContent
           technical = new ItemTechnical();
           magmaCore = (ItemTW) new ItemTW("magmaCore").setCreativeTab(CreativeTabs.tabMaterials);
           
-          redstoneTmpBlock = new BlockRedstoneTempBlock();
           Block.blocksList[117] = null;
           brewStandMCD = (BlockBrewStand) new BlockBrewStand(117).setHardness(0.5F).setLightValue(0.125F).setUnlocalizedName("brewingStand").setTextureName("brewing_stand");
           GameRegistry.registerBlock(brewStandMCD, "brewStandMCD");
           GameRegistry.registerTileEntity(TileBrewStand.class, "tileBrewStandMCD");
+          redstoneTmpBlock = new BlockRedstoneTempBlock();
           
           swift = new EnchSwift("swift", 2, EnumEnchantmentType.weapon);
           strike = new EnchStrike("strike", 3, EnumEnchantmentType.weapon);
@@ -153,10 +153,10 @@ public class TWContent implements IContent
                whockCrafters.put(mat, whockCrafter);
           }
      }
-
-
-
-
+     
+     
+     
+     
      @Override
      public void addRecipes ()
      {
