@@ -11,7 +11,7 @@ public class EntityKnife extends EntityTWThrowable
      
      
      
-     public EntityKnife (World world)
+     public EntityKnife (final World world)
      {
           super(world);
      }
@@ -19,7 +19,7 @@ public class EntityKnife extends EntityTWThrowable
      
      
      
-     public EntityKnife (World world, EntityLivingBase living, float charge, ItemStack item)
+     public EntityKnife (final World world, final EntityLivingBase living, final float charge, final ItemStack item)
      {
           super(world, living, charge, item);
      }
@@ -31,6 +31,6 @@ public class EntityKnife extends EntityTWThrowable
      public void onUpdate ()
      {
           super.onUpdate();
-          spin += 10;
+          this.spin += 10;
      }
 }

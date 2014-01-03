@@ -30,13 +30,13 @@ import com.google.common.collect.Multimap;
 public class EventEnchants
 {
      @ForgeSubscribe
-     public void entityKilled (LivingDeathEvent event)
+     public void entityKilled (final LivingDeathEvent event)
      {
           if (event.source.getDamageType().equals("player"))
           {
                if (event.entityLiving instanceof EntityMagmaCube)
                {
-                    double rng = DeltaCore.rand.nextDouble();
+                    final double rng = DeltaCore.rand.nextDouble();
                     
                     if (rng < 0.2)
                     {
@@ -50,30 +50,30 @@ public class EventEnchants
      
      
      @ForgeSubscribe
-     public void livingKilled (LivingDeathEvent event)
+     public void livingKilled (final LivingDeathEvent event)
      {
-          EntityLivingBase living = (EntityLivingBase) event.entityLiving;
-          World world = living.worldObj;
-          double x = living.posX;
-          double y = living.posY;
-          double z = living.posZ;
+          final EntityLivingBase living = event.entityLiving;
+          final World world = living.worldObj;
+          final double x = living.posX;
+          final double y = living.posY;
+          final double z = living.posZ;
           
           if (event.source.getEntity() instanceof EntityPlayer)
           {
-               EntityPlayer attacker = (EntityPlayer) event.source.getEntity();
-               ItemStack stack = attacker.inventory.getCurrentItem();
+               final EntityPlayer attacker = (EntityPlayer) event.source.getEntity();
+               final ItemStack stack = attacker.inventory.getCurrentItem();
                
-               int expLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.expIncrease.effectId, stack);
+               final int expLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.expIncrease.effectId, stack);
                
                if (expLvl > 0 && world.getGameRules().getGameRuleBooleanValue("doMobLoot") && living instanceof EntityLiving)
                {
-                    int i = (((EntityLiving) living).experienceValue) * expLvl;
+                    int i = ((EntityLiving) living).experienceValue * expLvl;
                     
                     while (i > 0)
                     {
-                         int j = EntityXPOrb.getXPSplit(i);
+                         final int j = EntityXPOrb.getXPSplit(i);
                          i -= j;
-                         EntityXPOrb xpOrb = new EntityXPOrb(world, x, y, z, j);
+                         final EntityXPOrb xpOrb = new EntityXPOrb(world, x, y, z, j);
                          world.spawnEntityInWorld(xpOrb);
                     }
                }
@@ -84,11 +84,11 @@ public class EventEnchants
      
      
      @ForgeSubscribe
-     public void livingUpdate (LivingUpdateEvent event)
+     public void livingUpdate (final LivingUpdateEvent event)
      {
           if (event.entityLiving instanceof EntityPlayer && event.entityLiving.ticksExisted % 10 == 0)
           {
-               int swiftLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.swift.effectId, ((EntityPlayer) event.entityLiving).getCurrentEquippedItem());
+               final int swiftLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.swift.effectId, ((EntityPlayer) event.entityLiving).getCurrentEquippedItem());
                
                if (swiftLvl > 0)
                {
@@ -101,13 +101,13 @@ public class EventEnchants
      
      
      @ForgeSubscribe
-     public void livingHurt (LivingHurtEvent event)
+     public void livingHurt (final LivingHurtEvent event)
      {
-          EntityLivingBase living = (EntityLivingBase) event.entityLiving;
+          final EntityLivingBase living = event.entityLiving;
           
           if (EnchantmentHelper.getEnchantmentLevel(TWContent.hardened.effectId, living.getCurrentItemOrArmor(3)) > 0)
           {
-               Multimap<String, AttributeModifier> map = HashMultimap.create();
+               final Multimap<String, AttributeModifier> map = HashMultimap.create();
                map.put(SharedMonsterAttributes.knockbackResistance.getAttributeUnlocalizedName(), new AttributeModifier(living.getPersistentID(), "Enchanted Armor Modifier", 100.0F, 0));
                
                living.getAttributeMap().applyAttributeModifiers(map);
@@ -115,7 +115,7 @@ public class EventEnchants
           
           else
           {
-               Multimap<String, AttributeModifier> map = HashMultimap.create();
+               final Multimap<String, AttributeModifier> map = HashMultimap.create();
                map.put(SharedMonsterAttributes.knockbackResistance.getAttributeUnlocalizedName(), new AttributeModifier(living.getPersistentID(), "Enchanted Armor Modifier", 100.0F, 0));
                
                living.getAttributeMap().removeAttributeModifiers(map);
@@ -123,10 +123,10 @@ public class EventEnchants
           
           if (event.source.getEntity() instanceof EntityPlayer)
           {
-               EntityPlayer attacker = (EntityPlayer) event.source.getEntity();
-               ItemStack stack = attacker.inventory.getCurrentItem();
+               final EntityPlayer attacker = (EntityPlayer) event.source.getEntity();
+               final ItemStack stack = attacker.inventory.getCurrentItem();
                
-               int venomLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.venom.effectId, stack);
+               final int venomLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.venom.effectId, stack);
                
                if (venomLvl > 0)
                {
@@ -134,11 +134,11 @@ public class EventEnchants
                     living.addPotionEffect(new PotionEffect(Potion.hunger.id, 200 * venomLvl));
                }
                
-               int strikeLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.strike.effectId, stack);
+               final int strikeLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.strike.effectId, stack);
                
                if (strikeLvl > 0)
                {
-                    float f = DeltaCore.rand.nextInt(TWSettings.DAMAGE_MODIFIER_STRIKE + strikeLvl + 1);
+                    final float f = DeltaCore.rand.nextInt(TWSettings.DAMAGE_MODIFIER_STRIKE + strikeLvl + 1);
                     event.ammount += f;
                     
                     if (f >= TWSettings.DAMAGE_MODIFIER_STRIKE + strikeLvl - 1)
@@ -153,14 +153,14 @@ public class EventEnchants
      
      
      @ForgeSubscribe
-     public void arrowNock (ArrowNockEvent event)
+     public void arrowNock (final ArrowNockEvent event)
      {
           if (event.entityPlayer instanceof EntityPlayer)
           {
-               EntityPlayer player = event.entityPlayer;
-               Item item = player.getCurrentEquippedItem().getItem();
-               ItemStack stack = player.getCurrentEquippedItem();
-               int drawbackLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.drawback.effectId, player.getCurrentEquippedItem());
+               final EntityPlayer player = event.entityPlayer;
+               final Item item = player.getCurrentEquippedItem().getItem();
+               final ItemStack stack = player.getCurrentEquippedItem();
+               final int drawbackLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.drawback.effectId, player.getCurrentEquippedItem());
                
                if (drawbackLvl > 0)
                {
@@ -184,7 +184,7 @@ public class EventEnchants
                               stack.stackTagCompound.setBoolean("Loaded", false);
                          }
                          
-                         NBTTagCompound tagCompound = stack.getTagCompound();
+                         final NBTTagCompound tagCompound = stack.getTagCompound();
                          
                          if (tagCompound.getBoolean("Loaded") == true || player.capabilities.isCreativeMode)
                          {
@@ -198,7 +198,7 @@ public class EventEnchants
                          
                          boolean flag = player.capabilities.isCreativeMode;
                          
-                         for (Item item2 : TWContent.fireChargeCannon.ammo)
+                         for (final Item item2 : TWContent.fireChargeCannon.ammo)
                          {
                               if (player.inventory.hasItem(item2.itemID))
                               {

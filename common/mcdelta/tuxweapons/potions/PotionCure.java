@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 public class PotionCure extends PotionTW
 {
-     public PotionCure (String s, int color, int x, int y)
+     public PotionCure (final String s, final int color, final int x, final int y)
      {
           super(s, color, x, y);
      }
@@ -16,17 +16,18 @@ public class PotionCure extends PotionTW
      
      
      @Override
-     public void removeAttributesModifiersFromEntity (EntityLivingBase living, BaseAttributeMap map, int i)
+     public void removeAttributesModifiersFromEntity (final EntityLivingBase living, final BaseAttributeMap map, final int i)
      {
           super.removeAttributesModifiersFromEntity(living, map, i);
           
-          performEffect(living, i);
+          this.performEffect(living, i);
      }
      
      
      
      
-     public void performEffect (EntityLivingBase living, int i)
+     @Override
+     public void performEffect (final EntityLivingBase living, final int i)
      {
           living.curePotionEffects(new ItemStack(Item.bucketMilk));
      }
@@ -35,9 +36,9 @@ public class PotionCure extends PotionTW
      
      
      @Override
-     public void affectEntity (EntityLivingBase entity, EntityLivingBase target, int i, double ii)
+     public void affectEntity (final EntityLivingBase entity, final EntityLivingBase target, final int i, final double ii)
      {
-          performEffect(target, i);
+          this.performEffect(target, i);
      }
      
      

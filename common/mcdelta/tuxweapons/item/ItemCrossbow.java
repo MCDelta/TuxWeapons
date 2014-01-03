@@ -51,9 +51,9 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      @Override
-     public void registerIcons (IconRegister iconRegister)
+     public void registerIcons (final IconRegister iconRegister)
      {
-          this.itemIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + name);
+          this.itemIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + this.name);
           this.bowPull_0 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_0");
           this.bowPull_1 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_1");
           this.bowPull_2 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_2");
@@ -65,7 +65,7 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      @Override
-     public Icon getIcon (ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
+     public Icon getIcon (final ItemStack stack, final int renderPass, final EntityPlayer player, final ItemStack usingItem, final int useRemaining)
      {
           if (stack.stackTagCompound == null)
           {
@@ -73,43 +73,43 @@ public class ItemCrossbow extends ItemDeltaBow
                stack.stackTagCompound.setBoolean("Loaded", false);
           }
           
-          NBTTagCompound tagCompound = stack.getTagCompound();
+          final NBTTagCompound tagCompound = stack.getTagCompound();
           
           if (player.getItemInUse() == null && tagCompound.getBoolean("Loaded") == false)
           {
-               return itemIcon;
+               return this.itemIcon;
           }
           
           if (player.getItemInUse() == null && tagCompound.getBoolean("Loaded") == true)
           {
-               return bowPull_1;
+               return this.bowPull_1;
           }
           
-          int pulling = stack.getMaxItemUseDuration() - useRemaining;
+          final int pulling = stack.getMaxItemUseDuration() - useRemaining;
           
           if (pulling >= 24)
           {
-               return bowPull_4;
+               return this.bowPull_4;
           }
           
           else if (pulling > 19)
           {
-               return bowPull_3;
+               return this.bowPull_3;
           }
           
           else if (pulling > 6)
           {
-               return bowPull_2;
+               return this.bowPull_2;
           }
           
           if (tagCompound.getBoolean("Loaded") == true)
           {
-               return bowPull_1;
+               return this.bowPull_1;
           }
           
           else
           {
-               return bowPull_0;
+               return this.bowPull_0;
           }
      }
      
@@ -117,11 +117,11 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      @Override
-     public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int par4)
+     public void onPlayerStoppedUsing (final ItemStack stack, final World world, final EntityPlayer player, final int par4)
      {
-          int charge = this.getMaxItemUseDuration(stack) - par4;
+          final int charge = this.getMaxItemUseDuration(stack) - par4;
           
-          boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
+          final boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
           
           if (infinity || player.inventory.hasItem(this.itemID))
           {
@@ -137,12 +137,12 @@ public class ItemCrossbow extends ItemDeltaBow
                     speed = 0.5F;
                }
                
-               NBTTagCompound tagCompound = stack.getTagCompound();
+               final NBTTagCompound tagCompound = stack.getTagCompound();
                
-               EntityBolt bolt = new EntityBolt(world, player, speed, tagCompound.getTagList("BoltEffects"));
+               final EntityBolt bolt = new EntityBolt(world, player, speed, tagCompound.getTagList("BoltEffects"));
                tagCompound.removeTag("BoltEffects");
                
-               int punchLvl = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, stack);
+               final int punchLvl = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, stack);
                
                if (punchLvl > 0)
                {
@@ -172,7 +172,7 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      @Override
-     public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onEaten (final ItemStack stack, final World world, final EntityPlayer player)
      {
           return stack;
      }
@@ -181,7 +181,7 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      @Override
-     public int getMaxItemUseDuration (ItemStack stack)
+     public int getMaxItemUseDuration (final ItemStack stack)
      {
           return 72000;
      }
@@ -190,7 +190,7 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      @Override
-     public EnumAction getItemUseAction (ItemStack stack)
+     public EnumAction getItemUseAction (final ItemStack stack)
      {
           return EnumAction.bow;
      }
@@ -199,7 +199,7 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onItemRightClick (final ItemStack stack, final World world, final EntityPlayer player)
      {
           if (stack.stackTagCompound == null)
           {
@@ -207,11 +207,11 @@ public class ItemCrossbow extends ItemDeltaBow
                stack.stackTagCompound.setBoolean("Loaded", false);
           }
           
-          NBTTagCompound tagCompound = stack.getTagCompound();
+          final NBTTagCompound tagCompound = stack.getTagCompound();
           
           if (tagCompound.getBoolean("Loaded") == true || player.capabilities.isCreativeMode)
           {
-               ArrowNockEvent event = new ArrowNockEvent(player, stack);
+               final ArrowNockEvent event = new ArrowNockEvent(player, stack);
                MinecraftForge.EVENT_BUS.post(event);
                if (event.isCanceled())
                {
@@ -236,9 +236,9 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      
-     public static void load (ItemStack stack, NBTTagList tagList)
+     public static void load (final ItemStack stack, final NBTTagList tagList)
      {
-          NBTTagCompound tagCompound = stack.getTagCompound();
+          final NBTTagCompound tagCompound = stack.getTagCompound();
           
           if (tagCompound.getBoolean("Loaded") == false)
           {
@@ -251,7 +251,7 @@ public class ItemCrossbow extends ItemDeltaBow
      
      
      
-     public static void setNBT (Boolean b, ItemStack stack)
+     public static void setNBT (final Boolean b, final ItemStack stack)
      {
           stack.setTagCompound(new NBTTagCompound());
           stack.stackTagCompound.setBoolean("Loaded", false);

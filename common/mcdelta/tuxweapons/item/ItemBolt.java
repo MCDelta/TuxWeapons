@@ -51,7 +51,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onItemRightClick (final ItemStack stack, final World world, final EntityPlayer player)
      {
           player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
           return stack;
@@ -61,7 +61,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      @Override
-     public EnumAction getItemUseAction (ItemStack stack)
+     public EnumAction getItemUseAction (final ItemStack stack)
      {
           return EnumAction.block;
      }
@@ -70,20 +70,20 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      @Override
-     public void registerIcons (IconRegister register)
+     public void registerIcons (final IconRegister register)
      {
-          String s = this.name.replace(".", "_");
+          final String s = this.name.replace(".", "_");
           
-          this.itemIcon = doRegister(s, register);
-          this.potionIcon = doRegister(s + "_potion_1", register);
-          this.potionIconOverlay = doRegister(s + "_potion_2", register);
+          this.itemIcon = this.doRegister(s, register);
+          this.potionIcon = this.doRegister(s + "_potion_1", register);
+          this.potionIconOverlay = this.doRegister(s + "_potion_2", register);
      }
      
      
      
      
      @Override
-     public int getMaxItemUseDuration (ItemStack stack)
+     public int getMaxItemUseDuration (final ItemStack stack)
      {
           return 72000;
      }
@@ -92,7 +92,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      @Override
-     public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onEaten (final ItemStack stack, final World world, final EntityPlayer player)
      {
           return stack;
      }
@@ -101,7 +101,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      @Override
-     public void onPlayerStoppedUsing (ItemStack itemStack, World world, EntityPlayer player, int extraInfo)
+     public void onPlayerStoppedUsing (ItemStack itemStack, final World world, final EntityPlayer player, final int extraInfo)
      {
           InventoryPlayer.getHotbarSize();
           Item item;
@@ -123,7 +123,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
                     {
                          stack = player.inventory.getStackInSlot(i);
                          
-                         NBTTagCompound nbt = stack.getTagCompound();
+                         final NBTTagCompound nbt = stack.getTagCompound();
                          
                          if (nbt == null)
                          {
@@ -171,11 +171,12 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      
+     @Override
      @SideOnly (Side.CLIENT)
-     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean extraInfo)
+     public void addInformation (final ItemStack stack, final EntityPlayer player, final List list, final boolean extraInfo)
      {
-          List<PotionEffect> list1 = Item.potion.getEffects(stack);
-          HashMultimap<Object, Object> hashmultimap = HashMultimap.create();
+          final List<PotionEffect> list1 = Item.potion.getEffects(stack);
+          final HashMultimap<Object, Object> hashmultimap = HashMultimap.create();
           Iterator<PotionEffect> iterator;
           
           if (list1 != null && !list1.isEmpty())
@@ -184,21 +185,21 @@ public class ItemBolt extends ItemTW implements IExtraPasses
                
                while (iterator.hasNext())
                {
-                    PotionEffect potioneffect = (PotionEffect) iterator.next();
+                    final PotionEffect potioneffect = iterator.next();
                     String s = StatCollector.translateToLocal(potioneffect.getEffectName()).trim();
-                    Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
-                    Map<Attribute, AttributeModifier> map = potion.func_111186_k();
+                    final Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
+                    final Map<Attribute, AttributeModifier> map = potion.func_111186_k();
                     
                     if (map != null && map.size() > 0)
                     {
-                         Iterator<Entry<Attribute, AttributeModifier>> iterator1 = map.entrySet().iterator();
+                         final Iterator<Entry<Attribute, AttributeModifier>> iterator1 = map.entrySet().iterator();
                          
                          while (iterator1.hasNext())
                          {
-                              Entry<Attribute, AttributeModifier> entry = (Entry<Attribute, AttributeModifier>) iterator1.next();
-                              AttributeModifier attributemodifier = (AttributeModifier) entry.getValue();
-                              AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), potion.func_111183_a(potioneffect.getAmplifier(), attributemodifier), attributemodifier.getOperation());
-                              hashmultimap.put(((Attribute) entry.getKey()).getAttributeUnlocalizedName(), attributemodifier1);
+                              final Entry<Attribute, AttributeModifier> entry = iterator1.next();
+                              final AttributeModifier attributemodifier = entry.getValue();
+                              final AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), potion.func_111183_a(potioneffect.getAmplifier(), attributemodifier), attributemodifier.getOperation());
+                              hashmultimap.put(entry.getKey().getAttributeUnlocalizedName(), attributemodifier1);
                          }
                     }
                     
@@ -224,7 +225,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
           }
           else
           {
-               String s1 = StatCollector.translateToLocal("potion.empty").trim();
+               final String s1 = StatCollector.translateToLocal("potion.empty").trim();
                list.add(EnumChatFormatting.GRAY + s1);
           }
           
@@ -232,13 +233,13 @@ public class ItemBolt extends ItemTW implements IExtraPasses
           {
                list.add("");
                list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("potion.effects.whenDrank"));
-               Iterator<Entry<Object, Object>> iterator2 = hashmultimap.entries().iterator();
+               final Iterator<Entry<Object, Object>> iterator2 = hashmultimap.entries().iterator();
                
                while (iterator2.hasNext())
                {
-                    Entry<Object, Object> entry1 = (Entry<Object, Object>) iterator2.next();
-                    AttributeModifier attributemodifier2 = (AttributeModifier) entry1.getValue();
-                    double d0 = attributemodifier2.getAmount();
+                    final Entry<Object, Object> entry1 = iterator2.next();
+                    final AttributeModifier attributemodifier2 = (AttributeModifier) entry1.getValue();
+                    final double d0 = attributemodifier2.getAmount();
                     double d1;
                     
                     if (attributemodifier2.getOperation() != 1 && attributemodifier2.getOperation() != 2)
@@ -268,7 +269,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      
-     private boolean isPotionArrow (ItemStack stack)
+     private boolean isPotionArrow (final ItemStack stack)
      {
           if (stack.stackTagCompound == null)
           {
@@ -282,9 +283,9 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      @Override
-     public int getPasses (ItemStack stack)
+     public int getPasses (final ItemStack stack)
      {
-          if (isPotionArrow(stack))
+          if (this.isPotionArrow(stack))
           {
                return 2;
           }
@@ -296,54 +297,54 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      @Override
-     public Icon getIconFromPass (ItemStack stack, int pass)
+     public Icon getIconFromPass (final ItemStack stack, final int pass)
      {
-          if (isPotionArrow(stack))
+          if (this.isPotionArrow(stack))
           {
                if (pass == 1)
                {
-                    return potionIconOverlay;
+                    return this.potionIconOverlay;
                }
                
-               return potionIcon;
+               return this.potionIcon;
           }
           
-          return itemIcon;
+          return this.itemIcon;
      }
      
      
      
      
      @Override
-     public int getColorFromPass (ItemStack stack, int pass)
+     public int getColorFromPass (final ItemStack stack, final int pass)
      {
-          if (isPotionArrow(stack))
+          if (this.isPotionArrow(stack))
           {
                if (pass == 1)
                {
-                    List<PotionEffect> effects = Item.potion.getEffects(stack);
+                    final List<PotionEffect> effects = Item.potion.getEffects(stack);
                     
                     if (effects != null)
                     {
-                         float[] r = new float[effects.size()];
-                         float[] g = new float[effects.size()];
-                         float[] b = new float[effects.size()];
+                         final float[] r = new float[effects.size()];
+                         final float[] g = new float[effects.size()];
+                         final float[] b = new float[effects.size()];
                          
                          for (int i = 0; i < effects.size(); i++)
                          {
-                              PotionEffect effect = effects.get(i);
-                              float[] rgb = Assets.hexToRGB(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
+                              final PotionEffect effect = effects.get(i);
+                              final float[] rgb = Assets.hexToRGB(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
                               
                               r[i] = rgb[0];
                               g[i] = rgb[1];
                               b[i] = rgb[2];
                          }
                          
-                         float finalR = Assets.average(r);
-                         float finalG = Assets.average(g);
-                         float finalB = Assets.average(b);
+                         final float finalR = Assets.average(r);
+                         final float finalG = Assets.average(g);
+                         final float finalB = Assets.average(b);
                          
-                         Color color = new Color(finalR, finalG, finalB);
+                         final Color color = new Color(finalR, finalG, finalB);
                          
                          return color.getRGB();
                     }
@@ -359,9 +360,9 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      
      
      @Override
-     public boolean getShinyFromPass (ItemStack stack, int pass)
+     public boolean getShinyFromPass (final ItemStack stack, final int pass)
      {
-          if (isPotionArrow(stack))
+          if (this.isPotionArrow(stack))
           {
                return pass == 1;
           }

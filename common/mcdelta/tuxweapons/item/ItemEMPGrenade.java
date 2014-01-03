@@ -17,12 +17,14 @@ public class ItemEMPGrenade extends ItemTW
      
      
      @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onItemRightClick (final ItemStack stack, final World world, final EntityPlayer player)
      {
-          EntityEMPGrenade grenade = new EntityEMPGrenade(world, player);
+          final EntityEMPGrenade grenade = new EntityEMPGrenade(world, player);
           
           if (Assets.isServer())
+          {
                world.spawnEntityInWorld(grenade);
+          }
           
           player.inventory.consumeInventoryItem(this.itemID);
           

@@ -82,7 +82,7 @@ public class Potions
           badPotions.add(PotionTW.confusion);
           badPotions.add(PotionTW.paralysis);
           
-          for (Potion potion : badPotions)
+          for (final Potion potion : badPotions)
           {
                nonInifinite.add(potion);
           }
@@ -94,7 +94,7 @@ public class Potions
      
      
      
-     private static void addPotion (Potion potion, Item item, int corruptedID, boolean b2)
+     private static void addPotion (final Potion potion, final Item item, final int corruptedID, final boolean b2)
      {
           addPotion(potion, item, corruptedID);
           
@@ -117,7 +117,7 @@ public class Potions
      
      
      
-     private static void addPotion (Potion potion, Item item, int corruptedID)
+     private static void addPotion (final Potion potion, final Item item, final int corruptedID)
      {
           item.setPotionEffect("");
           itemToPotion.put(item, potion);

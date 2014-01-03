@@ -19,7 +19,7 @@ public class PotionTW extends Potion
      
      
      
-     public PotionTW (String s, int color, int x, int y)
+     public PotionTW (final String s, final int color, final int x, final int y)
      {
           this(s, false, color, x, y);
      }
@@ -27,7 +27,7 @@ public class PotionTW extends Potion
      
      
      
-     protected PotionTW (String s, boolean bad, int color, int x, int y)
+     protected PotionTW (final String s, final boolean bad, final int color, final int x, final int y)
      {
           super(TuxWeapons.instance.config().getPotionID(s), bad, color);
           this.setPotionName("potion." + TuxWeapons.instance.id().toLowerCase() + ":" + s);
@@ -38,7 +38,7 @@ public class PotionTW extends Potion
      
      
      @Override
-     public Potion setEffectiveness (double i)
+     public Potion setEffectiveness (final double i)
      {
           return super.setEffectiveness(i);
      }

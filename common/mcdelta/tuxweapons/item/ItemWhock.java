@@ -28,7 +28,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemWhock extends ItemDeltaTool
 {
-     public ItemWhock (ItemMaterial mat)
+     public ItemWhock (final ItemMaterial mat)
      {
           super(TuxWeapons.instance, "whock", mat, ItemPickaxe.blocksEffectiveAgainst, 2.0F, false);
      }
@@ -36,7 +36,8 @@ public class ItemWhock extends ItemDeltaTool
      
      
      
-     public boolean onEntitySwing (EntityLivingBase living, ItemStack stack)
+     @Override
+     public boolean onEntitySwing (final EntityLivingBase living, final ItemStack stack)
      {
           return false;
      }
@@ -44,18 +45,19 @@ public class ItemWhock extends ItemDeltaTool
      
      
      
-     public boolean onBlockDestroyed (ItemStack stack, World world, int id, int x, int y, int z, EntityLivingBase living)
+     @Override
+     public boolean onBlockDestroyed (final ItemStack stack, final World world, final int id, final int x, final int y, final int z, final EntityLivingBase living)
      {
           if (living instanceof EntityPlayer)
           {
-               MovingObjectPosition moving = getMovingObjectPositionFromPlayer(world, (EntityPlayer) living, false);
-               Position hitBlock = new Position(world, x, y, z);
+               final MovingObjectPosition moving = this.getMovingObjectPositionFromPlayer(world, (EntityPlayer) living, false);
+               final Position hitBlock = new Position(world, x, y, z);
                
                if (hitBlock != null && moving != null && moving.typeOfHit == EnumMovingObjectType.TILE)
                {
-                    List<Position> positions = getPositionsFromSide(hitBlock, moving.sideHit);
+                    final List<Position> positions = this.getPositionsFromSide(hitBlock, moving.sideHit);
                     
-                    for (Position pos : positions)
+                    for (final Position pos : positions)
                     {
                          if (!Assets.isAirBlock(pos))
                          {
@@ -63,7 +65,7 @@ public class ItemWhock extends ItemDeltaTool
                               {
                                    if (Block.blocksList[living.worldObj.getBlockId(pos.x, pos.y, pos.z)] != null)
                                    {
-                                        tryHarvestBlock(world, (EntityPlayerMP) living, pos.x, pos.y, pos.z);
+                                        this.tryHarvestBlock(world, (EntityPlayerMP) living, pos.x, pos.y, pos.z);
                                    }
                               }
                          }
@@ -77,30 +79,30 @@ public class ItemWhock extends ItemDeltaTool
      
      
      
-     private boolean tryHarvestBlock (World world, EntityPlayerMP player, int x, int y, int z)
+     private boolean tryHarvestBlock (final World world, final EntityPlayerMP player, final int x, final int y, final int z)
      {
-          BlockEvent.BreakEvent event = ForgeHooks.onBlockBreakEvent(world, player.theItemInWorldManager.getGameType(), player, x, y, z);
+          final BlockEvent.BreakEvent event = ForgeHooks.onBlockBreakEvent(world, player.theItemInWorldManager.getGameType(), player, x, y, z);
           if (event.isCanceled())
           {
                return false;
           }
           else
           {
-               int l = world.getBlockId(x, y, z);
-               int i1 = world.getBlockMetadata(x, y, z);
+               final int l = world.getBlockId(x, y, z);
+               final int i1 = world.getBlockMetadata(x, y, z);
                world.playAuxSFXAtEntity(player, 2001, x, y, z, l + (world.getBlockMetadata(x, y, z) << 12));
                boolean flag = false;
                
                if (player.theItemInWorldManager.isCreative())
                {
-                    flag = removeBlock(world, player, x, y, z);
+                    flag = this.removeBlock(world, player, x, y, z);
                     player.playerNetServerHandler.sendPacketToPlayer(new Packet53BlockChange(x, y, z, world));
                }
                else
                {
-                    ItemStack itemstack = player.getCurrentEquippedItem();
+                    final ItemStack itemstack = player.getCurrentEquippedItem();
                     boolean flag1 = false;
-                    Block block = Block.blocksList[l];
+                    final Block block = Block.blocksList[l];
                     if (block != null)
                     {
                          flag1 = block.canHarvestBlock(player, i1);
@@ -114,7 +116,7 @@ public class ItemWhock extends ItemDeltaTool
                          }
                     }
                     
-                    flag = removeBlock(world, player, x, y, z);
+                    flag = this.removeBlock(world, player, x, y, z);
                     if (flag && flag1)
                     {
                          Block.blocksList[l].harvestBlock(world, player, x, y, z, i1);
@@ -134,17 +136,17 @@ public class ItemWhock extends ItemDeltaTool
      
      
      
-     private boolean removeBlock (World world, EntityPlayerMP player, int x, int y, int z)
+     private boolean removeBlock (final World world, final EntityPlayerMP player, final int x, final int y, final int z)
      {
-          Block block = Block.blocksList[world.getBlockId(x, y, z)];
-          int l = world.getBlockMetadata(x, y, z);
+          final Block block = Block.blocksList[world.getBlockId(x, y, z)];
+          final int l = world.getBlockMetadata(x, y, z);
           
           if (block != null)
           {
                block.onBlockHarvested(world, x, y, z, l, player);
           }
           
-          boolean flag = (block != null && block.removeBlockByPlayer(world, player, x, y, z));
+          final boolean flag = block != null && block.removeBlockByPlayer(world, player, x, y, z);
           
           if (block != null && flag)
           {
@@ -157,9 +159,9 @@ public class ItemWhock extends ItemDeltaTool
      
      
      
-     private List<Position> getPositionsFromSide (Position pos, int side)
+     private List<Position> getPositionsFromSide (final Position pos, final int side)
      {
-          List<Position> positions = new ArrayList<Position>();
+          final List<Position> positions = new ArrayList<Position>();
           
           switch (side)
           {
@@ -206,30 +208,32 @@ public class ItemWhock extends ItemDeltaTool
      
      
      
-     public boolean canHarvestBlock (Block block)
+     @Override
+     public boolean canHarvestBlock (final Block block)
      {
-          return block == Block.obsidian ? itemMaterial.getHarvestLevel() == 3 : (block != Block.blockDiamond && block != Block.oreDiamond ? (block != Block.oreEmerald && block != Block.blockEmerald ? (block != Block.blockGold && block != Block.oreGold ? (block != Block.blockIron && block != Block.oreIron ? (block != Block.blockLapis && block != Block.oreLapis ? (block != Block.oreRedstone && block != Block.oreRedstoneGlowing ? (block.blockMaterial == Material.rock ? true : (block.blockMaterial == Material.iron ? true : block.blockMaterial == Material.anvil)) : itemMaterial.getHarvestLevel() >= 2) : itemMaterial.getHarvestLevel() >= 1) : itemMaterial.getHarvestLevel() >= 1) : itemMaterial.getHarvestLevel() >= 2) : itemMaterial.getHarvestLevel() >= 2) : itemMaterial.getHarvestLevel() >= 2);
+          return block == Block.obsidian ? this.itemMaterial.getHarvestLevel() == 3 : block != Block.blockDiamond && block != Block.oreDiamond ? block != Block.oreEmerald && block != Block.blockEmerald ? block != Block.blockGold && block != Block.oreGold ? block != Block.blockIron && block != Block.oreIron ? block != Block.blockLapis && block != Block.oreLapis ? block != Block.oreRedstone && block != Block.oreRedstoneGlowing ? block.blockMaterial == Material.rock ? true : block.blockMaterial == Material.iron ? true : block.blockMaterial == Material.anvil : this.itemMaterial.getHarvestLevel() >= 2 : this.itemMaterial.getHarvestLevel() >= 1 : this.itemMaterial.getHarvestLevel() >= 1 : this.itemMaterial.getHarvestLevel() >= 2 : this.itemMaterial.getHarvestLevel() >= 2 : this.itemMaterial.getHarvestLevel() >= 2;
      }
      
      
      
      
      @Override
-     public float getStrVsBlock (ItemStack stack, Block block, int meta)
+     public float getStrVsBlock (final ItemStack stack, final Block block, final int meta)
      {
-          float strength = super.getStrVsBlock(stack, block, meta);
+          final float strength = super.getStrVsBlock(stack, block, meta);
           return strength / 4F;
      }
      
      
      
      
-     public String getItemDisplayName (ItemStack stack)
+     @Override
+     public String getItemDisplayName (final ItemStack stack)
      {
-          ItemMaterial mat = itemMaterial;
+          final ItemMaterial mat = this.itemMaterial;
           
-          String weapon = StatCollector.translateToLocal("tool." + toolName);
-          String material = StatCollector.translateToLocal("material." + mat.getName());
+          final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
+          final String material = StatCollector.translateToLocal("material." + mat.getName());
           
           return material + " " + weapon;
      }
@@ -238,27 +242,28 @@ public class ItemWhock extends ItemDeltaTool
      
      
      @Override
-     public void registerIcons (IconRegister register)
+     public void registerIcons (final IconRegister register)
      {
-          itemIcon = doRegister("tuxweapons", toolName + "_1", register);
-          itemOverlay = doRegister("tuxweapons", toolName + "_2", register);
+          this.itemIcon = doRegister("tuxweapons", this.toolName + "_1", register);
+          this.itemOverlay = doRegister("tuxweapons", this.toolName + "_2", register);
           
-          overrideExists = Assets.resourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + itemMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName + ".png"));
           
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               overrideIcon = doRegister("/override/" + itemMaterial.getName().toLowerCase() + "_" + toolName, register);
+               this.overrideIcon = this.doRegister("/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
      
      
      
-     public boolean getIsRepairable (ItemStack repair, ItemStack gem)
+     @Override
+     public boolean getIsRepairable (final ItemStack repair, final ItemStack gem)
      {
-          if (OreDictionary.getOres(itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(itemMaterial.getOreDictionaryName()).isEmpty())
+          if (OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).isEmpty())
           {
-               return OreDictionary.itemMatches(OreDictionary.getOres(itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
+               return OreDictionary.itemMatches(OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
           }
           
           return super.getIsRepairable(repair, gem);

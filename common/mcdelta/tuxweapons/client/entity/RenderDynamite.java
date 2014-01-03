@@ -17,13 +17,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderDynamite extends Render
 {
      
-     ModelDynamite            model    = new ModelDynamite();
-     private ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/weapons.png");
+     ModelDynamite                  model    = new ModelDynamite();
+     private final ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/weapons.png");
      
      
      
      
-     private float func_82400_a (float par1, float x, float par3)
+     private float func_82400_a (final float par1, final float x, final float par3)
      {
           float f3;
           
@@ -43,17 +43,17 @@ public class RenderDynamite extends Render
      
      
      
-     public void renderDynamite (EntityDynamite dynamite, double x, double y, double z, float par8, float par9)
+     public void renderDynamite (final EntityDynamite dynamite, final double x, final double y, final double z, final float par8, final float par9)
      {
           GL11.glPushMatrix();
           GL11.glDisable(GL11.GL_CULL_FACE);
           
-          this.renderManager.renderEngine.bindTexture(location);
+          this.renderManager.renderEngine.bindTexture(this.location);
           
-          float f2 = this.func_82400_a(dynamite.prevRotationYaw, dynamite.rotationYaw, par9);
-          float f3 = dynamite.prevRotationPitch + (dynamite.rotationPitch - dynamite.prevRotationPitch) * par9;
+          final float f2 = this.func_82400_a(dynamite.prevRotationYaw, dynamite.rotationYaw, par9);
+          final float f3 = dynamite.prevRotationPitch + (dynamite.rotationPitch - dynamite.prevRotationPitch) * par9;
           GL11.glTranslatef((float) x, (float) y, (float) z);
-          float f4 = 0.0625F;
+          final float f4 = 0.0625F;
           GL11.glEnable(GL12.GL_RESCALE_NORMAL);
           GL11.glScalef(-1.0F, -1.0F, 1.0F);
           GL11.glEnable(GL11.GL_ALPHA_TEST);
@@ -66,7 +66,7 @@ public class RenderDynamite extends Render
      
      
      @Override
-     public void doRender (Entity par1Entity, double x, double y, double z, float par8, float par9)
+     public void doRender (final Entity par1Entity, final double x, final double y, final double z, final float par8, final float par9)
      {
           this.renderDynamite((EntityDynamite) par1Entity, x, y, z, par8, par9);
      }
@@ -75,8 +75,8 @@ public class RenderDynamite extends Render
      
      
      @Override
-     protected ResourceLocation getEntityTexture (Entity entity)
+     protected ResourceLocation getEntityTexture (final Entity entity)
      {
-          return location;
+          return this.location;
      }
 }

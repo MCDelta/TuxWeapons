@@ -15,14 +15,14 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderShield implements IItemRenderer
 {
-     Random                                rand   = new Random();
-     int                                   zLevel = 0;
+     Random rand   = new Random();
+     int    zLevel = 0;
      
      
      
      
      @Override
-     public boolean handleRenderType (ItemStack item, ItemRenderType type)
+     public boolean handleRenderType (final ItemStack item, final ItemRenderType type)
      {
           switch (type)
           {
@@ -43,23 +43,23 @@ public class RenderShield implements IItemRenderer
      
      
      @Override
-     public boolean shouldUseRenderHelper (ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+     public boolean shouldUseRenderHelper (final ItemRenderType type, final ItemStack item, final ItemRendererHelper helper)
      {
-          return (helper == ItemRendererHelper.ENTITY_ROTATION && Minecraft.getMinecraft().gameSettings.fancyGraphics) || helper == ItemRendererHelper.ENTITY_BOBBING;
+          return helper == ItemRendererHelper.ENTITY_ROTATION && Minecraft.getMinecraft().gameSettings.fancyGraphics || helper == ItemRendererHelper.ENTITY_BOBBING;
      }
      
      
      
      
      @Override
-     public void renderItem (ItemRenderType type, ItemStack stack, Object... data)
+     public void renderItem (final ItemRenderType type, final ItemStack stack, final Object... data)
      {
           GL11.glPushMatrix();
           
-          int passes = ((IExtraPasses) stack.getItem()).getPasses(stack);
-          Icon[] icons = new Icon[passes];
-          int[] colors = new int[passes];
-          boolean[] shiny = new boolean[passes];
+          final int passes = ((IExtraPasses) stack.getItem()).getPasses(stack);
+          final Icon[] icons = new Icon[passes];
+          final int[] colors = new int[passes];
+          final boolean[] shiny = new boolean[passes];
           
           for (int i = 0; i < passes; i++)
           {
@@ -68,11 +68,11 @@ public class RenderShield implements IItemRenderer
                shiny[i] = ((IExtraPasses) stack.getItem()).getShinyFromPass(stack, i + 1);
           }
           
-          TextureManager engine = Minecraft.getMinecraft().getTextureManager();
+          final TextureManager engine = Minecraft.getMinecraft().getTextureManager();
           
           if (type == ItemRenderType.INVENTORY)
           {
-               RenderAssets.renderItemInventory(stack, engine, passes, icons, colors, shiny, zLevel);
+               RenderAssets.renderItemInventory(stack, engine, passes, icons, colors, shiny, this.zLevel);
           }
           
           if (type == ItemRenderType.EQUIPPED)
@@ -88,7 +88,7 @@ public class RenderShield implements IItemRenderer
           
           if (type == ItemRenderType.ENTITY)
           {
-               EntityItem entityItem = (EntityItem) data[1];
+               final EntityItem entityItem = (EntityItem) data[1];
                
                RenderAssets.renderEntityItem(entityItem, stack, passes, icons, colors, shiny);
           }

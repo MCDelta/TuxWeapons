@@ -6,7 +6,7 @@ import mcdelta.core.config.IConfig;
 public class TWConfig extends IConfig
 {
      @Override
-     protected void initCommon (ConfigWrapper config)
+     protected void initCommon (final ConfigWrapper config)
      {
           config.getConfiguration().addCustomCategoryComment(TWSettings.CATEGORY_GENERAL, TWSettings.COMMENT_GENERAL);
           TWSettings.GREIFING = config.get(TWSettings.CATEGORY_GENERAL, TWSettings.GREIFING_KEY, TWSettings.GREIFING);
@@ -18,5 +18,5 @@ public class TWConfig extends IConfig
           TWSettings.DAMAGE_MODIFIER_GOLD = config.get(TWSettings.CATEGORY_DAMAGE_MODIFIER, TWSettings.DAMAGE_MODIFIER_GOLD_KEY, TWSettings.DAMAGE_MODIFIER_GOLD);
           TWSettings.DAMAGE_MODIFIER_MACE = config.get(TWSettings.CATEGORY_DAMAGE_MODIFIER, TWSettings.DAMAGE_MODIFIER_MACE_KEY, TWSettings.DAMAGE_MODIFIER_MACE);
           TWSettings.DAMAGE_MODIFIER_STRIKE = config.get(TWSettings.CATEGORY_DAMAGE_MODIFIER, TWSettings.DAMAGE_MODIFIER_STRIKE_KEY, TWSettings.DAMAGE_MODIFIER_STRIKE);
-     }    
+     }
 }

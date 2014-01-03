@@ -13,17 +13,17 @@ import net.minecraft.world.World;
 public class ItemSpear extends ItemWeapon
 {
      
-     public ItemSpear (ItemMaterial mat)
+     public ItemSpear (final ItemMaterial mat)
      {
           super("spear", TuxWeapons.instance, mat, 2.0F);
-          this.setMaxDamage((int) ((float) mat.getMaxUses() * 0.9F));
+          this.setMaxDamage((int) (mat.getMaxUses() * 0.9F));
      }
      
      
      
      
      @Override
-     public EnumAction getItemUseAction (ItemStack stack)
+     public EnumAction getItemUseAction (final ItemStack stack)
      {
           return EnumAction.bow;
      }
@@ -32,11 +32,11 @@ public class ItemSpear extends ItemWeapon
      
      
      @Override
-     public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int par4)
+     public void onPlayerStoppedUsing (final ItemStack stack, final World world, final EntityPlayer player, final int par4)
      {
           stack.damageItem(2, player);
           
-          int duration = this.getMaxItemUseDuration(stack) - par4;
+          final int duration = this.getMaxItemUseDuration(stack) - par4;
           
           float charge = duration / 30.0F;
           
@@ -50,7 +50,7 @@ public class ItemSpear extends ItemWeapon
                charge = 0.8F;
           }
           
-          EntitySpear spear = new EntitySpear(world, player, charge, stack.copy());
+          final EntitySpear spear = new EntitySpear(world, player, charge, stack.copy());
           
           if (charge == 1.0F)
           {
@@ -74,7 +74,7 @@ public class ItemSpear extends ItemWeapon
      
      
      @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onItemRightClick (final ItemStack stack, final World world, final EntityPlayer player)
      {
           if (player.capabilities.isCreativeMode || player.inventory.hasItem(this.itemID))
           {

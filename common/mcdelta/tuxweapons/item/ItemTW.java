@@ -6,7 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class ItemTW extends ItemDelta
 {
-     public ItemTW (String s, boolean b)
+     public ItemTW (final String s, final boolean b)
      {
           super(TuxWeapons.instance, s, b);
           this.setCreativeTab(CreativeTabs.tabCombat);
@@ -15,9 +15,9 @@ public class ItemTW extends ItemDelta
      
      
      
-     public ItemTW (String s)
+     public ItemTW (final String s)
      {
           super(TuxWeapons.instance, s);
           this.setCreativeTab(CreativeTabs.tabCombat);
-     }    
+     }
 }

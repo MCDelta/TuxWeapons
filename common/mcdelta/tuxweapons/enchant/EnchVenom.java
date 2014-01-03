@@ -4,7 +4,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 
 public class EnchVenom extends EnchantmentTW
 {
-     public EnchVenom (String name, int weight, EnumEnchantmentType type)
+     public EnchVenom (final String name, final int weight, final EnumEnchantmentType type)
      {
           super(name, weight, type);
      }
@@ -13,7 +13,7 @@ public class EnchVenom extends EnchantmentTW
      
      
      @Override
-     public int getMinEnchantability (int enchLevel)
+     public int getMinEnchantability (final int enchLevel)
      {
           return 10 + 20 * (enchLevel - 1);
      }
@@ -22,9 +22,9 @@ public class EnchVenom extends EnchantmentTW
      
      
      @Override
-     public int getMaxEnchantability (int enchLevel)
+     public int getMaxEnchantability (final int enchLevel)
      {
-          return getMinEnchantability(enchLevel) + 50;
+          return this.getMinEnchantability(enchLevel) + 50;
      }
      
      

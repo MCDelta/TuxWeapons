@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public class EnchDrawback extends EnchantmentTW
 {
-     public EnchDrawback (String name, int weight, EnumEnchantmentType type)
+     public EnchDrawback (final String name, final int weight, final EnumEnchantmentType type)
      {
           super(name, weight, type);
      }
@@ -15,18 +15,18 @@ public class EnchDrawback extends EnchantmentTW
      
      
      @Override
-     public int getMinEnchantability (int enchLevel)
+     public int getMinEnchantability (final int enchLevel)
      {
-          return (enchLevel) * 10;
+          return enchLevel * 10;
      }
      
      
      
      
      @Override
-     public int getMaxEnchantability (int enchLevel)
+     public int getMaxEnchantability (final int enchLevel)
      {
-          return getMinEnchantability(enchLevel) + 20;
+          return this.getMinEnchantability(enchLevel) + 20;
      }
      
      
@@ -41,7 +41,8 @@ public class EnchDrawback extends EnchantmentTW
      
      
      
-     public boolean canApply (ItemStack stack)
+     @Override
+     public boolean canApply (final ItemStack stack)
      {
           return stack.getItem() instanceof ItemBow;
      }

@@ -25,20 +25,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
 {
-     private String      toolName;
-     public ItemMaterial itemMaterial;
+     private final String toolName;
+     public ItemMaterial  itemMaterial;
      
      @SideOnly (Side.CLIENT)
-     protected Icon      overrideIcon;
+     protected Icon       overrideIcon;
      
-     private boolean     overrideExists = false;
+     private boolean      overrideExists = false;
      
-     private int         spawnDamage;
-     
-     
+     private final int    spawnDamage;
      
      
-     public ItemWhockCrafter (ItemMaterial mat)
+     
+     
+     public ItemWhockCrafter (final ItemMaterial mat)
      {
           super(TuxWeapons.instance, mat.getName() + ".whockCrafter", false);
           
@@ -49,8 +49,8 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
           this.setMaxDamage(mat.getMaxUses());
           this.spawnDamage = mat.getMaxUses() - 1;
           
-          String weapon = "tool." + toolName;
-          String material = "material." + mat.getName();
+          final String weapon = "tool." + this.toolName;
+          final String material = "material." + mat.getName();
           
           if (!StatCollector.func_94522_b(weapon))
           {
@@ -68,15 +68,16 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      @SideOnly (Side.CLIENT)
      @Override
-     public void getSubItems (int id, CreativeTabs tab, List list)
+     public void getSubItems (final int id, final CreativeTabs tab, final List list)
      {
-          list.add(new ItemStack(id, 1, spawnDamage));
+          list.add(new ItemStack(id, 1, this.spawnDamage));
      }
      
      
      
      
-     public boolean getIsRepairable (ItemStack stack1, ItemStack stack2)
+     @Override
+     public boolean getIsRepairable (final ItemStack stack1, final ItemStack stack2)
      {
           if (stack2.getItem() instanceof ItemDeltaPickaxe && ((ItemDeltaPickaxe) stack2.getItem()).itemMaterial == this.itemMaterial)
           {
@@ -94,21 +95,22 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      
      
-     public void onUpdate (ItemStack stack, World world, Entity entity, int i2, boolean b)
+     @Override
+     public void onUpdate (final ItemStack stack, final World world, final Entity entity, final int i2, final boolean b)
      {
-          if (stack.getItemDamage() != spawnDamage && entity instanceof EntityPlayer)
+          if (stack.getItemDamage() != this.spawnDamage && entity instanceof EntityPlayer)
           {
-               EntityPlayer player = (EntityPlayer) entity;
+               final EntityPlayer player = (EntityPlayer) entity;
                
                int i = -1;
                
-               for (ItemStack stack2 : player.inventory.mainInventory)
+               for (final ItemStack stack2 : player.inventory.mainInventory)
                {
                     i++;
                     
                     if (stack2 != null && stack2.equals(stack))
                     {
-                         player.inventory.mainInventory[i] = new ItemStack(TWContent.whocks.get(itemMaterial), 1, stack.getItemDamage());
+                         player.inventory.mainInventory[i] = new ItemStack(TWContent.whocks.get(this.itemMaterial), 1, stack.getItemDamage());
                          
                          if (stack.hasDisplayName())
                          {
@@ -124,9 +126,10 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      
      
-     public boolean isDamaged (ItemStack stack)
+     @Override
+     public boolean isDamaged (final ItemStack stack)
      {
-          if (Assets.isClient() && !(stack.getItemDamage() != spawnDamage))
+          if (Assets.isClient() && !(stack.getItemDamage() != this.spawnDamage))
           {
                return false;
           }
@@ -137,15 +140,16 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      
      
-     public String getItemDisplayName (ItemStack stack)
+     @Override
+     public String getItemDisplayName (final ItemStack stack)
      {
-          ItemMaterial mat = itemMaterial;
+          final ItemMaterial mat = this.itemMaterial;
           
           
-          String weapon = StatCollector.translateToLocal("tool." + toolName);
-          String material = StatCollector.translateToLocal("material." + mat.getName());
+          String weapon = StatCollector.translateToLocal("tool." + this.toolName);
+          final String material = StatCollector.translateToLocal("material." + mat.getName());
           
-          if (stack.getItemDamage() != spawnDamage)
+          if (stack.getItemDamage() != this.spawnDamage)
           {
                weapon = StatCollector.translateToLocal("tool.whock");
           }
@@ -157,15 +161,15 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public void registerIcons (IconRegister register)
+     public void registerIcons (final IconRegister register)
      {
-          this.itemIcon = ItemDelta.doRegister(mod.id().toLowerCase(), toolName, register);
+          this.itemIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName, register);
           
-          overrideExists = Assets.resourceExists(new ResourceLocation(mod.id().toLowerCase(), "textures/items/override/" + itemMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName + ".png"));
           
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(mod.id().toLowerCase(), "override/" + itemMaterial.getName().toLowerCase() + "_" + toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
@@ -173,11 +177,11 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public int getPasses (ItemStack stack)
+     public int getPasses (final ItemStack stack)
      {
-          if (stack.getItemDamage() != spawnDamage)
+          if (stack.getItemDamage() != this.spawnDamage)
           {
-               return TWContent.whocks.get(itemMaterial).getPasses(stack);
+               return TWContent.whocks.get(this.itemMaterial).getPasses(stack);
           }
           
           return 1;
@@ -187,52 +191,52 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public Icon getIconFromPass (ItemStack stack, int pass)
+     public Icon getIconFromPass (final ItemStack stack, final int pass)
      {
-          if (stack.getItemDamage() != spawnDamage)
+          if (stack.getItemDamage() != this.spawnDamage)
           {
-               return TWContent.whocks.get(itemMaterial).getIconFromPass(stack, pass);
+               return TWContent.whocks.get(this.itemMaterial).getIconFromPass(stack, pass);
           }
           
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               return overrideIcon;
+               return this.overrideIcon;
           }
           
-          return itemIcon;
+          return this.itemIcon;
      }
      
      
      
      
      @Override
-     public int getColorFromPass (ItemStack stack, int pass)
+     public int getColorFromPass (final ItemStack stack, final int pass)
      {
-          if (stack.getItemDamage() != spawnDamage)
+          if (stack.getItemDamage() != this.spawnDamage)
           {
-               return TWContent.whocks.get(itemMaterial).getColorFromPass(stack, pass);
+               return TWContent.whocks.get(this.itemMaterial).getColorFromPass(stack, pass);
           }
           
-          if (overrideExists)
+          if (this.overrideExists)
           {
                return 0xffffff;
           }
           
-          return itemMaterial.getColor();
+          return this.itemMaterial.getColor();
      }
      
      
      
      
      @Override
-     public boolean getShinyFromPass (ItemStack stack, int pass)
+     public boolean getShinyFromPass (final ItemStack stack, final int pass)
      {
-          if (stack.getItemDamage() != spawnDamage)
+          if (stack.getItemDamage() != this.spawnDamage)
           {
-               return TWContent.whocks.get(itemMaterial).getShinyFromPass(stack, pass);
+               return TWContent.whocks.get(this.itemMaterial).getShinyFromPass(stack, pass);
           }
           
-          if (itemMaterial.isShinyDefault())
+          if (this.itemMaterial.isShinyDefault())
           {
                return true;
           }

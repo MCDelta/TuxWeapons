@@ -36,8 +36,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = TuxWeapons.MOD_ID, useMetadata = true)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels =
+@Mod (modid = TuxWeapons.MOD_ID, useMetadata = true)
+@NetworkMod (clientSideRequired = true, serverSideRequired = false, channels =
 { TuxWeapons.MOD_ID }, packetHandler = PacketHandler.class)
 public class TuxWeapons extends ModDelta
 {
@@ -60,7 +60,7 @@ public class TuxWeapons extends ModDelta
      
      
      @EventHandler
-     public void preInit (FMLPreInitializationEvent event)
+     public void preInit (final FMLPreInitializationEvent event)
      {
           PacketHandler.packets[2] = PacketSpawnParticle.class;
           PacketHandler.packets[3] = PacketThrowablePickup.class;
@@ -72,7 +72,7 @@ public class TuxWeapons extends ModDelta
      
      
      @EventHandler
-     public void load (FMLInitializationEvent event)
+     public void load (final FMLInitializationEvent event)
      {
           MinecraftForge.EVENT_BUS.register(new EventEnchants());
           MinecraftForge.EVENT_BUS.register(new DamageModifier());
@@ -89,9 +89,9 @@ public class TuxWeapons extends ModDelta
      
      
      @EventHandler
-     public void postInit (FMLPostInitializationEvent event)
+     public void postInit (final FMLPostInitializationEvent event)
      {
-          for (Item item : Item.itemsList)
+          for (final Item item : Item.itemsList)
           {
                if (item instanceof ItemSword && !BASHER.effc_item.contains(item) && !SLASHER.effc_item.contains(item))
                {
@@ -118,7 +118,7 @@ public class TuxWeapons extends ModDelta
      
      
      
-     public static void spawnParticle (int particle, World world, double x, double y, double z, Object... obj)
+     public static void spawnParticle (final int particle, final World world, final double x, final double y, final double z, final Object... obj)
      {
           if (Assets.isClient())
           {
@@ -131,13 +131,14 @@ public class TuxWeapons extends ModDelta
           }
      }
      
-     private IContent content = new TWContent();
+     private final IContent content = new TWContent();
      
      
      
      
+     @Override
      public IContent content ()
      {
-          return content;
+          return this.content;
      }
 }

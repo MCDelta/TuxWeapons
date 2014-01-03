@@ -2,7 +2,7 @@ package mcdelta.tuxweapons.potions;
 
 public class PotionParalysis extends PotionTW
 {
-     public PotionParalysis (String s, int color, int x, int y)
+     public PotionParalysis (final String s, final int color, final int x, final int y)
      {
           super(s, true, color, x, y);
           this.setEffectiveness(0.25D);
@@ -12,7 +12,7 @@ public class PotionParalysis extends PotionTW
      
      
      @Override
-     public boolean isReady (int i, int i2)
+     public boolean isReady (final int i, final int i2)
      {
           return true;
      }

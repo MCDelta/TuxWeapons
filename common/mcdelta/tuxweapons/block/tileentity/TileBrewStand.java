@@ -23,9 +23,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileBrewStand extends TileEntityBrewingStand implements ISidedInventory
 {
-     private String getPotionName (ItemStack stack)
+     private String getPotionName (final ItemStack stack)
      {
-          List<PotionEffect> effects = Item.potion.getEffects(stack);
+          final List<PotionEffect> effects = Item.potion.getEffects(stack);
           String s;
           
           if (effects != null && !effects.isEmpty())
@@ -46,7 +46,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      private boolean canBrew ()
      {
-          ItemStack input = this.brewingItemStacks[3];
+          final ItemStack input = this.brewingItemStacks[3];
           
           if (input != null)
           {
@@ -57,7 +57,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                
                for (int i = 0; i < 3; ++i)
                {
-                    ItemStack stack = this.brewingItemStacks[i];
+                    final ItemStack stack = this.brewingItemStacks[i];
                     
                     if (stack == null)
                     {
@@ -69,8 +69,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                          stack.stackTagCompound = new NBTTagCompound();
                     }
                     
-                    List<PotionEffect> effects = Item.potion.getEffects(stack);
-                    String s = getPotionName(stack);
+                    final List<PotionEffect> effects = Item.potion.getEffects(stack);
+                    final String s = this.getPotionName(stack);
                     
                     if (stack != null)
                     {
@@ -81,7 +81,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                          
                          if (Potions.modifiers.containsKey(input.getItem()))
                          {
-                              String modification = Potions.modifiers.get(input.getItem());
+                              final String modification = Potions.modifiers.get(input.getItem());
                               
                               if (effects != null)
                               {
@@ -135,14 +135,14 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                               }
                          }
                          
-                         if ((input.getItem() instanceof ItemPotion) && (Item.potion.getEffects(stack) != null) && (input.getItem() != Item.glassBottle) && effects != null)
+                         if (input.getItem() instanceof ItemPotion && Item.potion.getEffects(stack) != null && input.getItem() != Item.glassBottle && effects != null)
                          {
                               return true;
                          }
                          
-                         int vanillaResult = this.getPotionResult(stack.getItemDamage(), input);
+                         final int vanillaResult = this.getPotionResult(stack.getItemDamage(), input);
                          
-                         if (!Potions.itemToPotion.containsKey(input.getItem()) && !Potions.modifiers.containsKey(input.getItem()) && Item.potion.getEffects(vanillaResult) == null && !(input.getItem() instanceof ItemPotion) && (input.getItem() != Item.glassBottle))
+                         if (!Potions.itemToPotion.containsKey(input.getItem()) && !Potions.modifiers.containsKey(input.getItem()) && Item.potion.getEffects(vanillaResult) == null && !(input.getItem() instanceof ItemPotion) && input.getItem() != Item.glassBottle)
                          {
                               return true;
                          }
@@ -158,13 +158,13 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      private void brewPotions ()
      {
-          ItemStack input = this.brewingItemStacks[3];
+          final ItemStack input = this.brewingItemStacks[3];
           
           if (this.canBrew())
           {
                for (int i = 0; i < 3; ++i)
                {
-                    ItemStack stack = this.brewingItemStacks[i];
+                    final ItemStack stack = this.brewingItemStacks[i];
                     
                     if (stack != null)
                     {
@@ -202,8 +202,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                          
                          if (this.brewingItemStacks[3] != null && this.brewingItemStacks[3].getItem() instanceof ItemPotion && !(effects == null))
                          {
-                              NBTTagList tagList = new NBTTagList();
-                              List<PotionEffect> inputEffects = Item.potion.getEffects(this.brewingItemStacks[3]);
+                              final NBTTagList tagList = new NBTTagList();
+                              final List<PotionEffect> inputEffects = Item.potion.getEffects(this.brewingItemStacks[3]);
                               
                               for (int ii = 0; ii < effects.size(); ii++)
                               {
@@ -212,7 +212,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                    
                                    for (int iii = 0; iii < inputEffects.size(); iii++)
                                    {
-                                        PotionEffect effect = inputEffects.get(iii);
+                                        final PotionEffect effect = inputEffects.get(iii);
                                         
                                         int newVal = (int) (effect.duration * 0.2);
                                         
@@ -254,7 +254,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                               {
                                    for (int ii = 0; ii < inputEffects.size(); ii++)
                                    {
-                                        PotionEffect effect = new PotionEffect(inputEffects.get(ii));
+                                        final PotionEffect effect = new PotionEffect(inputEffects.get(ii));
                                         
                                         int newVal = (int) (effect.duration * 0.2);
                                         
@@ -289,7 +289,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                          
                          if (stack != null && stack.getItem() instanceof ItemPotion)
                          {
-                              String s = getPotionName(stack);
+                              final String s = this.getPotionName(stack);
                               boolean success = false;
                               int infinite = -1;
                               
@@ -300,7 +300,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                         effects = new ArrayList<PotionEffect>();
                                    }
                                    
-                                   Potion potion = Potions.itemToPotion.get(input.getItem());
+                                   final Potion potion = Potions.itemToPotion.get(input.getItem());
                                    int time = (int) (Potions.time * potion.getEffectiveness());
                                    
                                    if (Potion.potionTypes[potion.id].isInstant())
@@ -341,7 +341,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                                        
                                                        if (modification.contains("/"))
                                                        {
-                                                            String[] nums = modification.split("/");
+                                                            final String[] nums = modification.split("/");
                                                             time = Double.parseDouble(nums[0]) / Double.parseDouble(nums[1]);
                                                        }
                                                        
@@ -352,7 +352,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                                        
                                                        if (!Potion.potionTypes[effects.get(l).getPotionID()].isInstant())
                                                        {
-                                                            PotionEffect effect = new PotionEffect(effects.get(0));
+                                                            final PotionEffect effect = new PotionEffect(effects.get(0));
                                                             effect.duration *= time;
                                                             effects.add(0, effect);
                                                        }
@@ -378,8 +378,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                                        
                                                        if (!Potion.potionTypes[effects.get(l).getPotionID()].isInstant())
                                                        {
-                                                            PotionEffect effect = new PotionEffect(effects.get(l));
-                                                            effect.duration *= ((double) 1 / 2);
+                                                            final PotionEffect effect = new PotionEffect(effects.get(l));
+                                                            effect.duration *= (double) 1 / 2;
                                                             effects.set(l, effect);
                                                        }
                                                        
@@ -424,8 +424,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                              {
                                                   if (!Potion.potionTypes[effects.get(l).getPotionID()].isInstant())
                                                   {
-                                                       PotionEffect effect = new PotionEffect(effects.get(l));
-                                                       effect.duration *= ((double) 3 / 4);
+                                                       final PotionEffect effect = new PotionEffect(effects.get(l));
+                                                       effect.duration *= (double) 3 / 4;
                                                        effects.set(l, effect);
                                                   }
                                              }
@@ -505,13 +505,13 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                               
                               if (success)
                               {
-                                   NBTTagList tagList = new NBTTagList();
+                                   final NBTTagList tagList = new NBTTagList();
                                    
                                    if (!effects.isEmpty())
                                    {
                                         for (int l = 0; l < effects.size(); l++)
                                         {
-                                             PotionEffect finalEffect = new PotionEffect(effects.get(l));
+                                             final PotionEffect finalEffect = new PotionEffect(effects.get(l));
                                              
                                              if (finalEffect.duration > 24000 && !(finalEffect.duration >= 240000))
                                              {
@@ -531,7 +531,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                    stack.stackTagCompound.setTag(TWNBTTags.POTION_EFFECTS, tagList);
                               }
                               
-                              int vanillaResult = this.getPotionResult(stack.getItemDamage(), input);
+                              final int vanillaResult = this.getPotionResult(stack.getItemDamage(), input);
                               
                               if (!Potions.itemToPotion.containsKey(input.getItem()) && !Potions.modifiers.containsKey(input.getItem()) && Item.potion.getEffects(vanillaResult) == null && !success)
                               {
@@ -543,7 +543,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                
                if (Item.itemsList[input.itemID].hasContainerItem())
                {
-                    this.brewingItemStacks[3] = Item.itemsList[input.itemID].getContainerItemStack(brewingItemStacks[3]);
+                    this.brewingItemStacks[3] = Item.itemsList[input.itemID].getContainerItemStack(this.brewingItemStacks[3]);
                }
                
                else if (input.getItem() instanceof ItemPotion)
@@ -561,7 +561,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                     }
                }
                
-               MinecraftForge.EVENT_BUS.post(new PotionBrewedEvent(brewingItemStacks));
+               MinecraftForge.EVENT_BUS.post(new PotionBrewedEvent(this.brewingItemStacks));
           }
      }
      
@@ -578,6 +578,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      public String getInvName ()
      {
           return this.isInvNameLocalized() ? this.customName : "container.brewing";
@@ -586,6 +587,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      public boolean isInvNameLocalized ()
      {
           return this.customName != null && this.customName.length() > 0;
@@ -594,7 +596,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public void func_94131_a (String par1Str)
+     @Override
+     public void func_94131_a (final String par1Str)
      {
           this.customName = par1Str;
      }
@@ -602,6 +605,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      public int getSizeInventory ()
      {
           return this.brewingItemStacks.length;
@@ -610,6 +614,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      public void updateEntity ()
      {
           if (this.brewTime > 0)
@@ -640,7 +645,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                this.ingredientID = this.brewingItemStacks[3].itemID;
           }
           
-          int i = this.getFilledSlots();
+          final int i = this.getFilledSlots();
           
           if (i != this.filledSlots)
           {
@@ -654,6 +659,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      public int getBrewTime ()
      {
           return this.brewTime;
@@ -662,24 +668,25 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     private int getPotionResult (int par1, ItemStack stack)
+     private int getPotionResult (final int par1, final ItemStack stack)
      {
-          return stack == null ? par1 : (Item.itemsList[stack.itemID].isPotionIngredient() ? PotionHelper.applyIngredient(par1, Item.itemsList[stack.itemID].getPotionEffect()) : par1);
+          return stack == null ? par1 : Item.itemsList[stack.itemID].isPotionIngredient() ? PotionHelper.applyIngredient(par1, Item.itemsList[stack.itemID].getPotionEffect()) : par1;
      }
      
      
      
      
-     public void readFromNBT (NBTTagCompound nbtTag)
+     @Override
+     public void readFromNBT (final NBTTagCompound nbtTag)
      {
           super.readFromNBT(nbtTag);
-          NBTTagList nbttaglist = nbtTag.getTagList("Items");
+          final NBTTagList nbttaglist = nbtTag.getTagList("Items");
           this.brewingItemStacks = new ItemStack[this.getSizeInventory()];
           
           for (int i = 0; i < nbttaglist.tagCount(); ++i)
           {
-               NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
-               byte b0 = nbttagcompound1.getByte("Slot");
+               final NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+               final byte b0 = nbttagcompound1.getByte("Slot");
                
                if (b0 >= 0 && b0 < this.brewingItemStacks.length)
                {
@@ -698,17 +705,18 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public void writeToNBT (NBTTagCompound nbtTag)
+     @Override
+     public void writeToNBT (final NBTTagCompound nbtTag)
      {
           super.writeToNBT(nbtTag);
           nbtTag.setShort("BrewTime", (short) this.brewTime);
-          NBTTagList nbttaglist = new NBTTagList();
+          final NBTTagList nbttaglist = new NBTTagList();
           
           for (int i = 0; i < this.brewingItemStacks.length; ++i)
           {
                if (this.brewingItemStacks[i] != null)
                {
-                    NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                    final NBTTagCompound nbttagcompound1 = new NBTTagCompound();
                     nbttagcompound1.setByte("Slot", (byte) i);
                     this.brewingItemStacks[i].writeToNBT(nbttagcompound1);
                     nbttaglist.appendTag(nbttagcompound1);
@@ -726,7 +734,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public ItemStack getStackInSlot (int slot)
+     @Override
+     public ItemStack getStackInSlot (final int slot)
      {
           return slot >= 0 && slot < this.brewingItemStacks.length ? this.brewingItemStacks[slot] : null;
      }
@@ -734,11 +743,12 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public ItemStack decrStackSize (int slot, int i)
+     @Override
+     public ItemStack decrStackSize (final int slot, final int i)
      {
           if (slot >= 0 && slot < this.brewingItemStacks.length)
           {
-               ItemStack itemstack = this.brewingItemStacks[slot];
+               final ItemStack itemstack = this.brewingItemStacks[slot];
                this.brewingItemStacks[slot] = null;
                return itemstack;
           }
@@ -751,11 +761,12 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public ItemStack getStackInSlotOnClosing (int slot)
+     @Override
+     public ItemStack getStackInSlotOnClosing (final int slot)
      {
           if (slot >= 0 && slot < this.brewingItemStacks.length)
           {
-               ItemStack itemstack = this.brewingItemStacks[slot];
+               final ItemStack itemstack = this.brewingItemStacks[slot];
                this.brewingItemStacks[slot] = null;
                return itemstack;
           }
@@ -768,7 +779,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public void setInventorySlotContents (int slot, ItemStack stack)
+     @Override
+     public void setInventorySlotContents (final int slot, final ItemStack stack)
      {
           if (slot >= 0 && slot < this.brewingItemStacks.length)
           {
@@ -779,6 +791,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      public int getInventoryStackLimit ()
      {
           return 64;
@@ -787,14 +800,16 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public boolean isUseableByPlayer (EntityPlayer player)
+     @Override
+     public boolean isUseableByPlayer (final EntityPlayer player)
      {
-          return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D) <= 64.0D;
+          return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : player.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
      }
      
      
      
      
+     @Override
      public void openChest ()
      {
      }
@@ -802,6 +817,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      public void closeChest ()
      {
      }
@@ -809,7 +825,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public boolean isItemValidForSlot (int slot, ItemStack stack)
+     @Override
+     public boolean isItemValidForSlot (final int slot, final ItemStack stack)
      {
           return slot == 3 ? Item.itemsList[stack.itemID].isPotionIngredient() : stack.getItem() instanceof ItemPotion || stack.itemID == Item.glassBottle.itemID;
      }
@@ -817,8 +834,9 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      @SideOnly (Side.CLIENT)
-     public void setBrewTime (int i)
+     public void setBrewTime (final int i)
      {
           this.brewTime = i;
      }
@@ -826,6 +844,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
+     @Override
      public int getFilledSlots ()
      {
           int i = 0;
@@ -844,7 +863,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public int[] getAccessibleSlotsFromSide (int slot)
+     @Override
+     public int[] getAccessibleSlotsFromSide (final int slot)
      {
           return slot == 1 ? input : output;
      }
@@ -852,7 +872,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public boolean canInsertItem (int slot, ItemStack stack, int side)
+     @Override
+     public boolean canInsertItem (final int slot, final ItemStack stack, final int side)
      {
           return this.isItemValidForSlot(slot, stack);
      }
@@ -860,7 +881,8 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
      
      
      
-     public boolean canExtractItem (int slot, ItemStack stack, int side)
+     @Override
+     public boolean canExtractItem (final int slot, final ItemStack stack, final int side)
      {
           return true;
      }

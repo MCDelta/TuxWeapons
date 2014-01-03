@@ -27,11 +27,11 @@ public class TickHandler implements ITickHandler
      
      
      @Override
-     public void tickStart (EnumSet<TickType> type, Object... tickData)
+     public void tickStart (final EnumSet<TickType> type, final Object... tickData)
      {
           if (type.equals(EnumSet.of(TickType.PLAYER)))
           {
-               playerTick(true, (EntityPlayer) tickData[0]);
+               this.playerTick(true, (EntityPlayer) tickData[0]);
           }
      }
      
@@ -39,92 +39,92 @@ public class TickHandler implements ITickHandler
      
      
      @Override
-     public void tickEnd (EnumSet<TickType> type, Object... tickData)
+     public void tickEnd (final EnumSet<TickType> type, final Object... tickData)
      {
           if (type.equals(EnumSet.of(TickType.PLAYER)))
           {
-               playerTick(false, (EntityPlayer) tickData[0]);
+               this.playerTick(false, (EntityPlayer) tickData[0]);
           }
      }
      
      
      
      
-     private void playerTick (boolean pre, EntityPlayer player)
+     private void playerTick (final boolean pre, final EntityPlayer player)
      {
           if (player.worldObj.isRemote)
           {
-               playerClientTick(player, pre);
+               this.playerClientTick(player, pre);
           }
      }
      
      
      
      
-     private void playerClientTick (EntityPlayer player, boolean pre)
+     private void playerClientTick (final EntityPlayer player, final boolean pre)
      {
-          GameSettings settings = Minecraft.getMinecraft().gameSettings;
+          final GameSettings settings = Minecraft.getMinecraft().gameSettings;
           
-          if (back == null)
+          if (this.back == null)
           {
-               forward = settings.keyBindForward;
-               back = settings.keyBindBack;
+               this.forward = settings.keyBindForward;
+               this.back = settings.keyBindBack;
                
-               left = settings.keyBindLeft;
-               right = settings.keyBindRight;
+               this.left = settings.keyBindLeft;
+               this.right = settings.keyBindRight;
                
-               jump = settings.keyBindJump;
-               sneak = settings.keyBindSneak;
+               this.jump = settings.keyBindJump;
+               this.sneak = settings.keyBindSneak;
                
-               key = new KeyBinding("nope", 0);
+               this.key = new KeyBinding("nope", 0);
           }
           
-          if (player.isPotionActive(PotionTW.confusion.id) && settings.keyBindForward != back)
+          if (player.isPotionActive(PotionTW.confusion.id) && settings.keyBindForward != this.back)
           {
-               settings.keyBindForward = back;
-               settings.keyBindBack = forward;
+               settings.keyBindForward = this.back;
+               settings.keyBindBack = this.forward;
                
-               settings.keyBindLeft = right;
-               settings.keyBindRight = left;
+               settings.keyBindLeft = this.right;
+               settings.keyBindRight = this.left;
                
-               settings.keyBindJump = sneak;
-               settings.keyBindSneak = jump;
+               settings.keyBindJump = this.sneak;
+               settings.keyBindSneak = this.jump;
           }
           
-          if (!player.isPotionActive(PotionTW.confusion.id) && settings.keyBindForward == back)
+          if (!player.isPotionActive(PotionTW.confusion.id) && settings.keyBindForward == this.back)
           {
-               settings.keyBindForward = forward;
-               settings.keyBindBack = back;
+               settings.keyBindForward = this.forward;
+               settings.keyBindBack = this.back;
                
-               settings.keyBindLeft = left;
-               settings.keyBindRight = right;
+               settings.keyBindLeft = this.left;
+               settings.keyBindRight = this.right;
                
-               settings.keyBindJump = jump;
-               settings.keyBindSneak = sneak;
+               settings.keyBindJump = this.jump;
+               settings.keyBindSneak = this.sneak;
           }
           
-          if (player.isPotionActive(PotionTW.paralysis.id) && settings.keyBindForward != key)
+          if (player.isPotionActive(PotionTW.paralysis.id) && settings.keyBindForward != this.key)
           {
-               settings.keyBindForward = key;
-               settings.keyBindBack = key;
+               settings.keyBindForward = this.key;
+               settings.keyBindBack = this.key;
                
-               settings.keyBindLeft = key;
-               settings.keyBindRight = key;
+               settings.keyBindLeft = this.key;
+               settings.keyBindRight = this.key;
                
-               settings.keyBindJump = key;
-               settings.keyBindSneak = key;
+               settings.keyBindJump = this.key;
+               settings.keyBindSneak = this.key;
           }
           
-          if (!player.isPotionActive(PotionTW.paralysis.id) && settings.keyBindForward == key)
+          if (!player.isPotionActive(PotionTW.paralysis.id) && settings.keyBindForward == this.key)
           {
-               settings.keyBindForward = forward;
-               settings.keyBindBack = back;
+               settings.keyBindForward = this.forward;
+               settings.keyBindBack = this.back;
                
-               settings.keyBindLeft = left;
-               settings.keyBindRight = right;
+               settings.keyBindLeft = this.left;
+               settings.keyBindRight = this.right;
                
-               settings.keyBindJump = jump;
-               settings.keyBindSneak = sneak;
+               settings.keyBindJump = this.jump;
+               settings.keyBindSneak = this.sneak;
           }
           
           if (!player.isPotionActive(PotionTW.quickStep.id) && player.stepHeight == 1.1415F)

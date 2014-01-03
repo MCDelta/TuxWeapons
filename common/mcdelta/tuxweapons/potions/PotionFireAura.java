@@ -8,7 +8,7 @@ import net.minecraft.entity.monster.EntityMob;
 
 public class PotionFireAura extends PotionTW
 {
-     public PotionFireAura (String s, int color, int x, int y)
+     public PotionFireAura (final String s, final int color, final int x, final int y)
      {
           super(s, color, x, y);
           this.setEffectiveness(0.5D);
@@ -18,13 +18,13 @@ public class PotionFireAura extends PotionTW
      
      
      @Override
-     public void performEffect (EntityLivingBase entity, int i)
+     public void performEffect (final EntityLivingBase entity, int i)
      {
           if (entity != null && entity.boundingBox != null)
           {
                i++;
                
-               List<Entity> targets = entity.worldObj.getEntitiesWithinAABB((entity instanceof EntityMob) ? EntityLivingBase.class : EntityMob.class, entity.boundingBox.copy().expand(2 * i, 2 * i, 2 * i));
+               final List<Entity> targets = entity.worldObj.getEntitiesWithinAABB(entity instanceof EntityMob ? EntityLivingBase.class : EntityMob.class, entity.boundingBox.copy().expand(2 * i, 2 * i, 2 * i));
                
                if (targets != null && !targets.isEmpty())
                {
@@ -48,7 +48,7 @@ public class PotionFireAura extends PotionTW
      
      
      @Override
-     public boolean isReady (int i, int i2)
+     public boolean isReady (final int i, final int i2)
      {
           return true;
      }

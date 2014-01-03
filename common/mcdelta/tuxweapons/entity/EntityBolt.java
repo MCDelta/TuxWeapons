@@ -52,7 +52,7 @@ public class EntityBolt extends Entity implements IProjectile
      
      
      
-     public EntityBolt (World world)
+     public EntityBolt (final World world)
      {
           super(world);
           this.renderDistanceWeight = 10.0D;
@@ -62,7 +62,7 @@ public class EntityBolt extends Entity implements IProjectile
      
      
      
-     public EntityBolt (World world, EntityLivingBase living, float par3, NBTTagList nbtTagList)
+     public EntityBolt (final World world, final EntityLivingBase living, final float par3, final NBTTagList nbtTagList)
      {
           super(world);
           this.renderDistanceWeight = 10.0D;
@@ -101,9 +101,9 @@ public class EntityBolt extends Entity implements IProjectile
      
      
      @Override
-     public void setThrowableHeading (double par1, double par3, double par5, float par7, float par8)
+     public void setThrowableHeading (double par1, double par3, double par5, final float par7, final float par8)
      {
-          float var9 = MathHelper.sqrt_double(par1 * par1 + par3 * par3 + par5 * par5);
+          final float var9 = MathHelper.sqrt_double(par1 * par1 + par3 * par3 + par5 * par5);
           par1 /= var9;
           par3 /= var9;
           par5 /= var9;
@@ -116,7 +116,7 @@ public class EntityBolt extends Entity implements IProjectile
           this.motionX = par1;
           this.motionY = par3;
           this.motionZ = par5;
-          float var10 = MathHelper.sqrt_double(par1 * par1 + par5 * par5);
+          final float var10 = MathHelper.sqrt_double(par1 * par1 + par5 * par5);
           this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(par1, par5) * 180.0D / Math.PI);
           this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(par3, var10) * 180.0D / Math.PI);
           this.ticksInGround = 0;
@@ -127,7 +127,7 @@ public class EntityBolt extends Entity implements IProjectile
      
      @Override
      @SideOnly (Side.CLIENT)
-     public void setPositionAndRotation2 (double par1, double par3, double par5, float par7, float par8, int par9)
+     public void setPositionAndRotation2 (final double par1, final double par3, final double par5, final float par7, final float par8, final int par9)
      {
           this.setPosition(par1, par3, par5);
           this.setRotation(par7, par8);
@@ -138,7 +138,7 @@ public class EntityBolt extends Entity implements IProjectile
      
      @Override
      @SideOnly (Side.CLIENT)
-     public void setVelocity (double par1, double par3, double par5)
+     public void setVelocity (final double par1, final double par3, final double par5)
      {
           this.motionX = par1;
           this.motionY = par3;
@@ -146,7 +146,7 @@ public class EntityBolt extends Entity implements IProjectile
           
           if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
           {
-               float var7 = MathHelper.sqrt_double(par1 * par1 + par5 * par5);
+               final float var7 = MathHelper.sqrt_double(par1 * par1 + par5 * par5);
                this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(par1, par5) * 180.0D / Math.PI);
                this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(par3, var7) * 180.0D / Math.PI);
                this.prevRotationPitch = this.rotationPitch;
@@ -166,43 +166,43 @@ public class EntityBolt extends Entity implements IProjectile
           
           if (Assets.isClient() && this.potionEffects != null && this.potionEffects.tagCount() > 0)
           {
-               int amount = inGround ? 1 : 5;
+               final int amount = this.inGround ? 1 : 5;
                
                for (int i = 0; i < amount; i++)
                {
-                    double xOffset = rand.nextDouble() - 0.5;
-                    double yOffset = rand.nextDouble() - 0.5;
-                    double zOffset = rand.nextDouble() - 0.5;
+                    final double xOffset = this.rand.nextDouble() - 0.5;
+                    final double yOffset = this.rand.nextDouble() - 0.5;
+                    final double zOffset = this.rand.nextDouble() - 0.5;
                     
-                    EntityFX entityfx = Minecraft.getMinecraft().renderGlobal.doSpawnParticle("spell", this.posX + xOffset, this.posY + yOffset, this.posZ + zOffset, 0, 0, 0);
+                    final EntityFX entityfx = Minecraft.getMinecraft().renderGlobal.doSpawnParticle("spell", this.posX + xOffset, this.posY + yOffset, this.posZ + zOffset, 0, 0, 0);
                     
                     if (entityfx != null)
                     {
-                         List<PotionEffect> effects = new ArrayList<PotionEffect>();
+                         final List<PotionEffect> effects = new ArrayList<PotionEffect>();
                          
                          for (int i2 = 0; i2 < this.potionEffects.tagCount(); i2++)
                          {
-                              PotionEffect effect = PotionEffect.readCustomPotionEffectFromNBT((NBTTagCompound) this.potionEffects.tagAt(i2));
+                              final PotionEffect effect = PotionEffect.readCustomPotionEffectFromNBT((NBTTagCompound) this.potionEffects.tagAt(i2));
                               effects.add(effect);
                          }
                          
-                         float[] r = new float[effects.size()];
-                         float[] g = new float[effects.size()];
-                         float[] b = new float[effects.size()];
+                         final float[] r = new float[effects.size()];
+                         final float[] g = new float[effects.size()];
+                         final float[] b = new float[effects.size()];
                          
                          for (int i3 = 0; i3 < effects.size(); i3++)
                          {
-                              PotionEffect effect = effects.get(i3);
-                              float[] rgb = Assets.hexToRGB(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
+                              final PotionEffect effect = effects.get(i3);
+                              final float[] rgb = Assets.hexToRGB(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
                               
                               r[i3] = rgb[0];
                               g[i3] = rgb[1];
                               b[i3] = rgb[2];
                          }
                          
-                         float finalR = Assets.average(r);
-                         float finalG = Assets.average(g);
-                         float finalB = Assets.average(b);
+                         final float finalR = Assets.average(r);
+                         final float finalG = Assets.average(g);
+                         final float finalB = Assets.average(b);
                          
                          entityfx.setRBGColorF(finalR, finalG, finalB);
                     }
@@ -211,17 +211,17 @@ public class EntityBolt extends Entity implements IProjectile
           
           if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
           {
-               float var1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+               final float var1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
                this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
                this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, var1) * 180.0D / Math.PI);
           }
           
-          int var16 = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
+          final int var16 = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
           
           if (var16 > 0)
           {
                Block.blocksList[var16].setBlockBoundsBasedOnState(this.worldObj, this.xTile, this.yTile, this.zTile);
-               AxisAlignedBB var2 = Block.blocksList[var16].getCollisionBoundingBoxFromPool(this.worldObj, this.xTile, this.yTile, this.zTile);
+               final AxisAlignedBB var2 = Block.blocksList[var16].getCollisionBoundingBoxFromPool(this.worldObj, this.xTile, this.yTile, this.zTile);
                
                if (var2 != null && var2.isVecInside(this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ)))
                {
@@ -236,8 +236,8 @@ public class EntityBolt extends Entity implements IProjectile
           
           if (this.inGround)
           {
-               int var18 = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
-               int var19 = this.worldObj.getBlockMetadata(this.xTile, this.yTile, this.zTile);
+               final int var18 = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
+               final int var19 = this.worldObj.getBlockMetadata(this.xTile, this.yTile, this.zTile);
                
                if (var18 == this.inTile && var19 == this.inData)
                {
@@ -273,24 +273,24 @@ public class EntityBolt extends Entity implements IProjectile
                }
                
                Entity var5 = null;
-               List<Entity> var6 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+               final List<Entity> var6 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
                double var7 = 0.0D;
                int var9;
                float var11;
                
                for (var9 = 0; var9 < var6.size(); ++var9)
                {
-                    Entity var10 = (Entity) var6.get(var9);
+                    final Entity var10 = var6.get(var9);
                     
                     if (var10.canBeCollidedWith() && (var10 != this.shootingEntity || this.ticksInAir >= 5))
                     {
                          var11 = 0.3F;
-                         AxisAlignedBB var12 = var10.boundingBox.expand(var11, var11, var11);
-                         MovingObjectPosition var13 = var12.calculateIntercept(var17, var3);
+                         final AxisAlignedBB var12 = var10.boundingBox.expand(var11, var11, var11);
+                         final MovingObjectPosition var13 = var12.calculateIntercept(var17, var3);
                          
                          if (var13 != null)
                          {
-                              double var14 = var17.distanceTo(var13.hitVec);
+                              final double var14 = var17.distanceTo(var13.hitVec);
                               
                               if (var14 < var7 || var7 == 0.0D)
                               {
@@ -332,7 +332,7 @@ public class EntityBolt extends Entity implements IProjectile
                               var4.entityHit.setFire(5);
                          }
                          
-                         DamageSource source = new DamageSourceWeapon("tuxweapons:bolt", var4.entityHit, this.shootingEntity, null);
+                         final DamageSource source = new DamageSourceWeapon("tuxweapons:bolt", var4.entityHit, this.shootingEntity, null);
                          
                          this.setDead();
                          this.kill();
@@ -347,14 +347,14 @@ public class EntityBolt extends Entity implements IProjectile
                               {
                                    for (int i = 0; i < this.potionEffects.tagCount(); i++)
                                    {
-                                        PotionEffect effect = PotionEffect.readCustomPotionEffectFromNBT((NBTTagCompound) this.potionEffects.tagAt(i));
+                                        final PotionEffect effect = PotionEffect.readCustomPotionEffectFromNBT((NBTTagCompound) this.potionEffects.tagAt(i));
                                         ((EntityLivingBase) var4.entityHit).addPotionEffect(effect);
                                    }
                               }
                               
                               if (var4.entityHit instanceof EntityLiving)
                               {
-                                   EntityLiving var24 = (EntityLiving) var4.entityHit;
+                                   final EntityLiving var24 = (EntityLiving) var4.entityHit;
                                    
                                    var24.setArrowCountInEntity(var24.getArrowCountInEntity() + 1);
                                    
@@ -482,7 +482,7 @@ public class EntityBolt extends Entity implements IProjectile
      
      
      @Override
-     public void writeEntityToNBT (NBTTagCompound nbtTag)
+     public void writeEntityToNBT (final NBTTagCompound nbtTag)
      {
           nbtTag.setShort("xTile", (short) this.xTile);
           nbtTag.setShort("yTile", (short) this.yTile);
@@ -493,14 +493,14 @@ public class EntityBolt extends Entity implements IProjectile
           nbtTag.setByte("inGround", (byte) (this.inGround ? 1 : 0));
           nbtTag.setByte("pickup", (byte) this.canBePickedUp);
           nbtTag.setDouble("damage", this.damage);
-          nbtTag.setTag("effects", potionEffects);
+          nbtTag.setTag("effects", this.potionEffects);
      }
      
      
      
      
      @Override
-     public void readEntityFromNBT (NBTTagCompound nbtTag)
+     public void readEntityFromNBT (final NBTTagCompound nbtTag)
      {
           
           this.xTile = nbtTag.getShort("xTile");
@@ -510,7 +510,7 @@ public class EntityBolt extends Entity implements IProjectile
           this.inData = nbtTag.getByte("inData") & 255;
           this.boltShake = nbtTag.getByte("shake") & 255;
           this.inGround = nbtTag.getByte("inGround") == 1;
-          potionEffects = nbtTag.getTagList("effects");
+          this.potionEffects = nbtTag.getTagList("effects");
           
           if (nbtTag.hasKey("damage"))
           {
@@ -531,7 +531,7 @@ public class EntityBolt extends Entity implements IProjectile
      
      
      @Override
-     public void onCollideWithPlayer (EntityPlayer player)
+     public void onCollideWithPlayer (final EntityPlayer player)
      {
           if (this.inGround && this.boltShake <= 0)
           {
@@ -581,7 +581,7 @@ public class EntityBolt extends Entity implements IProjectile
      
      
      
-     public void setKnockbackStrength (int i)
+     public void setKnockbackStrength (final int i)
      {
           this.knockbackStrength = i;
      }
@@ -598,9 +598,9 @@ public class EntityBolt extends Entity implements IProjectile
      
      
      
-     public void setIsCritical (boolean b)
+     public void setIsCritical (final boolean b)
      {
-          byte var2 = this.dataWatcher.getWatchableObjectByte(16);
+          final byte var2 = this.dataWatcher.getWatchableObjectByte(16);
           
           if (b)
           {
@@ -617,7 +617,7 @@ public class EntityBolt extends Entity implements IProjectile
      
      public boolean getIsCritical ()
      {
-          byte var1 = this.dataWatcher.getWatchableObjectByte(16);
+          final byte var1 = this.dataWatcher.getWatchableObjectByte(16);
           return (var1 & 1) != 0;
      }
 }

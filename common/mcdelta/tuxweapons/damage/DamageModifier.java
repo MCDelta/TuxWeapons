@@ -26,21 +26,21 @@ public class DamageModifier
      
      
      
-     public static float getModifiedDamage (float f, ItemStack stack, Entity entity)
+     public static float getModifiedDamage (float f, final ItemStack stack, final Entity entity)
      {
           if (!TWSettings.DAMAGE_MODIFIER_ENABLE || stack == null)
           {
                return f;
           }
           
-          World world = entity.worldObj;
-          double x = entity.posX;
-          double y = entity.posY;
-          double z = entity.posZ;
+          final World world = entity.worldObj;
+          final double x = entity.posX;
+          final double y = entity.posY;
+          final double z = entity.posZ;
           
-          int i1 = TWSettings.DAMAGE_MODIFIER_WEAK;
-          int i2 = TWSettings.DAMAGE_MODIFIER_RESIST;
-          int i3 = TWSettings.DAMAGE_MODIFIER_GOLD;
+          final int i1 = TWSettings.DAMAGE_MODIFIER_WEAK;
+          final int i2 = TWSettings.DAMAGE_MODIFIER_RESIST;
+          final int i3 = TWSettings.DAMAGE_MODIFIER_GOLD;
           
           if (EntityList.getEntityString(entity) != null)
           {
@@ -99,11 +99,11 @@ public class DamageModifier
      
      
      @ForgeSubscribe
-     public void livingHurt (LivingHurtEvent event)
+     public void livingHurt (final LivingHurtEvent event)
      {
           if (event.entityLiving instanceof EntityPlayer)
           {
-               EntityPlayer player = (EntityPlayer) event.entityLiving;
+               final EntityPlayer player = (EntityPlayer) event.entityLiving;
                
                if (player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemShield && player.getItemInUseCount() > 0 && event.source.getEntity() != null)
                {
@@ -114,12 +114,12 @@ public class DamageModifier
           
           if (event.source.getEntity() instanceof EntityLivingBase)
           {
-               EntityLivingBase living = (EntityLivingBase) event.source.getEntity();
+               final EntityLivingBase living = (EntityLivingBase) event.source.getEntity();
                event.ammount = getModifiedDamage(event.ammount, living.getHeldItem(), event.entityLiving);
                
                if (living.getHeldItem() != null && living.getHeldItem().getItem() instanceof ItemMace)
                {
-                    float f = rand.nextInt(TWSettings.DAMAGE_MODIFIER_MACE + 1);
+                    final float f = this.rand.nextInt(TWSettings.DAMAGE_MODIFIER_MACE + 1);
                     event.ammount += f;
                     
                     if (f >= TWSettings.DAMAGE_MODIFIER_MACE - 2)

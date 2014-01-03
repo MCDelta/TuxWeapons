@@ -22,14 +22,14 @@ import org.lwjgl.opengl.GL11;
 public class RenderItemPotion implements IItemRenderer
 {
      
-     Random                                rand   = new Random();
-     int                                   zLevel = 0;
+     Random rand   = new Random();
+     int    zLevel = 0;
      
      
      
      
      @Override
-     public boolean handleRenderType (ItemStack item, ItemRenderType type)
+     public boolean handleRenderType (final ItemStack item, final ItemRenderType type)
      {
           switch (type)
           {
@@ -50,25 +50,25 @@ public class RenderItemPotion implements IItemRenderer
      
      
      @Override
-     public boolean shouldUseRenderHelper (ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+     public boolean shouldUseRenderHelper (final ItemRenderType type, final ItemStack item, final ItemRendererHelper helper)
      {
-          return (helper == ItemRendererHelper.ENTITY_ROTATION && Minecraft.getMinecraft().gameSettings.fancyGraphics) || helper == ItemRendererHelper.ENTITY_BOBBING;
+          return helper == ItemRendererHelper.ENTITY_ROTATION && Minecraft.getMinecraft().gameSettings.fancyGraphics || helper == ItemRendererHelper.ENTITY_BOBBING;
      }
      
      
      
      
      @Override
-     public void renderItem (ItemRenderType type, ItemStack stack, Object... data)
+     public void renderItem (final ItemRenderType type, final ItemStack stack, final Object... data)
      {
           GL11.glPushMatrix();
           
-          Item item = stack.getItem();
+          final Item item = stack.getItem();
           
-          int passes = item.getRenderPasses(stack.getItemDamage());
-          Icon[] icons = new Icon[passes];
-          int[] colors = new int[passes];
-          boolean[] shiny = new boolean[passes];
+          final int passes = item.getRenderPasses(stack.getItemDamage());
+          final Icon[] icons = new Icon[passes];
+          final int[] colors = new int[passes];
+          final boolean[] shiny = new boolean[passes];
           
           for (int i = 0; i < passes; i++)
           {
@@ -79,39 +79,39 @@ public class RenderItemPotion implements IItemRenderer
           
           if (item instanceof ItemPotion)
           {
-               List<PotionEffect> effects = Item.potion.getEffects(stack);
+               final List<PotionEffect> effects = Item.potion.getEffects(stack);
                
                if (effects != null)
                {
-                    float[] r = new float[effects.size()];
-                    float[] g = new float[effects.size()];
-                    float[] b = new float[effects.size()];
+                    final float[] r = new float[effects.size()];
+                    final float[] g = new float[effects.size()];
+                    final float[] b = new float[effects.size()];
                     
                     for (int i = 0; i < effects.size(); i++)
                     {
-                         PotionEffect effect = effects.get(i);
-                         float[] rgb = Assets.hexToRGB(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
+                         final PotionEffect effect = effects.get(i);
+                         final float[] rgb = Assets.hexToRGB(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
                          
                          r[i] = rgb[0];
                          g[i] = rgb[1];
                          b[i] = rgb[2];
                     }
                     
-                    float finalR = Assets.average(r);
-                    float finalG = Assets.average(g);
-                    float finalB = Assets.average(b);
+                    final float finalR = Assets.average(r);
+                    final float finalG = Assets.average(g);
+                    final float finalB = Assets.average(b);
                     
-                    Color color = new Color(finalR, finalG, finalB);
+                    final Color color = new Color(finalR, finalG, finalB);
                     
                     colors[0] = color.getRGB();
                }
           }
           
-          TextureManager engine = Minecraft.getMinecraft().getTextureManager();
+          final TextureManager engine = Minecraft.getMinecraft().getTextureManager();
           
           if (type == ItemRenderType.INVENTORY)
           {
-               RenderAssets.renderItemInventory(stack, engine, passes, icons, colors, shiny, zLevel);
+               RenderAssets.renderItemInventory(stack, engine, passes, icons, colors, shiny, this.zLevel);
           }
           
           if (type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON)
@@ -121,7 +121,7 @@ public class RenderItemPotion implements IItemRenderer
           
           if (type == ItemRenderType.ENTITY)
           {
-               EntityItem entityItem = (EntityItem) data[1];
+               final EntityItem entityItem = (EntityItem) data[1];
                
                GL11.glScalef(2F, 2F, 2F);
                RenderAssets.renderEntityItem(entityItem, stack, passes, icons, colors, shiny);

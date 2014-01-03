@@ -5,13 +5,13 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class PlayerData
 {
-     public NBTTagCompound tag;
-     private EntityPlayer  player;
+     public NBTTagCompound      tag;
+     private final EntityPlayer player;
      
      
      
      
-     public PlayerData (EntityPlayer player)
+     public PlayerData (final EntityPlayer player)
      {
           this.player = player;
           this.tag = player.getEntityData().getCompoundTag("MCDeltaInfo");
@@ -19,7 +19,7 @@ public class PlayerData
           if (this.tag == null)
           {
                this.tag = new NBTTagCompound();
-               save();
+               this.save();
           }
      }
      

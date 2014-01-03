@@ -19,11 +19,11 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 public class EventItemInfo
 {
      @ForgeSubscribe
-     public void getTooltip (ItemTooltipEvent event)
+     public void getTooltip (final ItemTooltipEvent event)
      {
-          ItemStack stack = event.itemStack;
-          Item item = event.itemStack.getItem();
-          List<String> toolTip = event.toolTip;
+          final ItemStack stack = event.itemStack;
+          final Item item = event.itemStack.getItem();
+          final List<String> toolTip = event.toolTip;
           int damageIndex = -1;
           
           for (int i = 0; i < toolTip.size(); i++)
@@ -35,7 +35,7 @@ public class EventItemInfo
                
                if (toolTip.get(i).contains("(200:00)"))
                {
-                    String s = toolTip.get(i).replace("(200:00)", "(**:**)");
+                    final String s = toolTip.get(i).replace("(200:00)", "(**:**)");
                     toolTip.set(i, s);
                }
           }
@@ -54,7 +54,7 @@ public class EventItemInfo
                
                if (item instanceof ItemMace)
                {
-                    int damage = (int) ((AttributeModifier) stack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName()).toArray()[0]).getAmount();
+                    final int damage = (int) ((AttributeModifier) stack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName()).toArray()[0]).getAmount();
                     
                     toolTip.set(damageIndex, EnumChatFormatting.BLUE + "+" + damage + "-" + (damage + TWSettings.DAMAGE_MODIFIER_MACE) + " " + StatCollector.translateToLocal("attribute.name.generic.attackDamage") + EnumChatFormatting.RESET);
                }

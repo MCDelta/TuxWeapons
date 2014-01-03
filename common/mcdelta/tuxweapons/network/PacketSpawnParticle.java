@@ -28,7 +28,7 @@ public class PacketSpawnParticle extends PacketDelta
      
      
      
-     public PacketSpawnParticle (int i, double d1, double d2, double d3)
+     public PacketSpawnParticle (final int i, final double d1, final double d2, final double d3)
      {
           super(2);
           this.particle = i;
@@ -41,34 +41,34 @@ public class PacketSpawnParticle extends PacketDelta
      
      
      @Override
-     public void writeData (DataOutputStream data) throws IOException
+     public void writeData (final DataOutputStream data) throws IOException
      {
-          data.writeInt(particle);
-          data.writeDouble(x);
-          data.writeDouble(y);
-          data.writeDouble(z);
+          data.writeInt(this.particle);
+          data.writeDouble(this.x);
+          data.writeDouble(this.y);
+          data.writeDouble(this.z);
      }
      
      
      
      
      @Override
-     public void readData (DataInputStream data) throws IOException
+     public void readData (final DataInputStream data) throws IOException
      {
-          particle = data.readInt();
-          x = data.readDouble();
-          y = data.readDouble();
-          z = data.readDouble();
+          this.particle = data.readInt();
+          this.x = data.readDouble();
+          this.y = data.readDouble();
+          this.z = data.readDouble();
      }
      
      
      
      
      @Override
-     public void execute (INetworkManager manager, Player playerParam)
+     public void execute (final INetworkManager manager, final Player playerParam)
      {
-          EntityPlayer player = (EntityPlayer) playerParam;
+          final EntityPlayer player = (EntityPlayer) playerParam;
           
-          EnumParticles.values()[particle].spawnParticleFromPacket(player, x, y, z);
+          EnumParticles.values()[this.particle].spawnParticleFromPacket(player, this.x, this.y, this.z);
      }
 }

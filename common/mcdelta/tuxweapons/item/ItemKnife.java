@@ -21,21 +21,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemKnife extends ItemDelta implements IExtraPasses
 {
-     private String      toolName;
-     public ItemMaterial toolMaterialDelta;
+     private final String toolName;
+     public ItemMaterial  toolMaterialDelta;
      
      @SideOnly (Side.CLIENT)
-     protected Icon      itemOverlay;
+     protected Icon       itemOverlay;
      
      @SideOnly (Side.CLIENT)
-     protected Icon      overrideIcon;
+     protected Icon       overrideIcon;
      
-     private boolean     overrideExists = false;
-     
-     
+     private boolean      overrideExists = false;
      
      
-     public ItemKnife (ItemMaterial mat)
+     
+     
+     public ItemKnife (final ItemMaterial mat)
      {
           super(TuxWeapons.instance, mat.getName() + "." + "knife", false);
           
@@ -44,8 +44,8 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
           this.maxStackSize = 64;
           this.setCreativeTab(CreativeTabs.tabCombat);
           
-          String weapon = "tool." + toolName;
-          String material = "material." + mat.getName();
+          final String weapon = "tool." + this.toolName;
+          final String material = "material." + mat.getName();
           
           if (!StatCollector.func_94522_b(weapon))
           {
@@ -62,14 +62,14 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onItemRightClick (ItemStack stack, final World world, final EntityPlayer player)
      {
           player.swingItem();
           
-          ItemStack item = stack.copy();
+          final ItemStack item = stack.copy();
           item.stackSize = 1;
           
-          EntityKnife knife = new EntityKnife(world, player, 0.8F, item.copy());
+          final EntityKnife knife = new EntityKnife(world, player, 0.8F, item.copy());
           
           if (!player.capabilities.isCreativeMode)
           {
@@ -94,16 +94,16 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public void registerIcons (IconRegister register)
+     public void registerIcons (final IconRegister register)
      {
-          this.itemIcon = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_1", register);
-          this.itemOverlay = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_2", register);
+          this.itemIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_1", register);
+          this.itemOverlay = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_2", register);
           
-          overrideExists = Assets.resourceExists(new ResourceLocation(mod.id().toLowerCase(), "textures/items/override/" + toolMaterialDelta.getName().toLowerCase() + "_" + toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.toolMaterialDelta.getName().toLowerCase() + "_" + this.toolName + ".png"));
           
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(mod.id().toLowerCase(), "override/" + toolMaterialDelta.getName().toLowerCase() + "_" + toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.toolMaterialDelta.getName().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
@@ -111,9 +111,9 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public int getPasses (ItemStack stack)
+     public int getPasses (final ItemStack stack)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
                return 1;
           }
@@ -125,28 +125,28 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public Icon getIconFromPass (ItemStack stack, int pass)
+     public Icon getIconFromPass (final ItemStack stack, final int pass)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               return overrideIcon;
+               return this.overrideIcon;
           }
           
           if (pass == 2)
           {
-               return itemOverlay;
+               return this.itemOverlay;
           }
           
-          return itemIcon;
+          return this.itemIcon;
      }
      
      
      
      
      @Override
-     public int getColorFromPass (ItemStack stack, int pass)
+     public int getColorFromPass (final ItemStack stack, final int pass)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
                return 0xffffff;
           }
@@ -156,16 +156,16 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
                return MaterialRegistry.WOOD.getColor();
           }
           
-          return toolMaterialDelta.getColor();
+          return this.toolMaterialDelta.getColor();
      }
      
      
      
      
      @Override
-     public boolean getShinyFromPass (ItemStack stack, int pass)
+     public boolean getShinyFromPass (final ItemStack stack, final int pass)
      {
-          if (pass == 1 && toolMaterialDelta.isShinyDefault())
+          if (pass == 1 && this.toolMaterialDelta.isShinyDefault())
           {
                return true;
           }
@@ -176,12 +176,13 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      
      
      
-     public String getItemDisplayName (ItemStack stack)
+     @Override
+     public String getItemDisplayName (final ItemStack stack)
      {
-          ItemMaterial mat = toolMaterialDelta;
+          final ItemMaterial mat = this.toolMaterialDelta;
           
-          String weapon = StatCollector.translateToLocal("tool." + toolName);
-          String material = StatCollector.translateToLocal("material." + mat.getName());
+          final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
+          final String material = StatCollector.translateToLocal("material." + mat.getName());
           
           return material + " " + weapon;
      }

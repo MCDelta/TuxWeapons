@@ -27,11 +27,11 @@ public class ItemDynamite extends ItemTW
      
      
      @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onItemRightClick (final ItemStack stack, final World world, final EntityPlayer player)
      {
           world.playSoundAtEntity(player, "random.hurt", 1.0F, 1.0F / (itemRand.nextFloat() * 0.1F + 0.95F));
           
-          EntityDynamite dynamite = new EntityDynamite(world, player);
+          final EntityDynamite dynamite = new EntityDynamite(world, player);
           
           if (Assets.isServer())
           {

@@ -14,14 +14,14 @@ public class EventFOVModifier
 {
      @ForgeSubscribe
      @SideOnly (Side.CLIENT)
-     public void fovUpdate (FOVUpdateEvent event)
+     public void fovUpdate (final FOVUpdateEvent event)
      {
-          EntityPlayer player = event.entity;
+          final EntityPlayer player = event.entity;
           
           if (player.isUsingItem() && (player.getItemInUse().getItem() instanceof ItemDeltaBow || player.getItemInUse().getItem() instanceof ItemSpear || player.getItemInUse().getItem() instanceof ItemHammer || player.getItemInUse().getItem() instanceof ItemGrappHook))
           {
-               int i = player.getItemInUseDuration();
-               float f1 = (float) i / 20.0F;
+               final int i = player.getItemInUseDuration();
+               float f1 = i / 20.0F;
                
                if (f1 > 1.0F)
                {

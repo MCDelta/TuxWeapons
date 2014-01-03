@@ -36,7 +36,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      @Override
-     public int isProvidingWeakPower (IBlockAccess world, int x, int y, int z, int par5)
+     public int isProvidingWeakPower (final IBlockAccess world, final int x, final int y, final int z, final int par5)
      {
           return 15;
      }
@@ -45,7 +45,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      @Override
-     public int isProvidingStrongPower (IBlockAccess world, int x, int y, int z, int side)
+     public int isProvidingStrongPower (final IBlockAccess world, final int x, final int y, final int z, final int side)
      {
           return this.getPowerSupply(world.getBlockMetadata(x, y, z));
      }
@@ -54,7 +54,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      @Override
-     public int tickRate (World idWorld)
+     public int tickRate (final World idWorld)
      {
           return 1;
      }
@@ -63,7 +63,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      @Override
-     public void updateTick (World idWorld, int x, int y, int z, Random par5Random)
+     public void updateTick (final World idWorld, final int x, final int y, final int z, final Random par5Random)
      {
           idWorld.setBlockToAir(x, y, z);
      }
@@ -72,15 +72,15 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      @Override
-     public void randomDisplayTick (World idWorld, int x, int y, int z, Random par5Random)
+     public void randomDisplayTick (final World idWorld, final int x, final int y, final int z, final Random par5Random)
      {
           for (int i = 0; i <= 5; i++)
           {
-               double ii = 1;
+               final double ii = 1;
                
-               double parX = ((Math.random() * ii));
-               double parY = ((Math.random() * ii));
-               double parZ = ((Math.random() * ii));
+               final double parX = Math.random() * ii;
+               final double parY = Math.random() * ii;
+               final double parZ = Math.random() * ii;
                
                idWorld.spawnParticle("reddust", x + parX, y + parY, z + parZ, 0.0D, 0.0D, 0.0D);
           }
@@ -90,7 +90,8 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      
-     public AxisAlignedBB getCollisionBoundingBoxFromPool (World idWorld, int x, int y, int z)
+     @Override
+     public AxisAlignedBB getCollisionBoundingBoxFromPool (final World idWorld, final int x, final int y, final int z)
      {
           return null;
      }
@@ -98,7 +99,8 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      
-     public MovingObjectPosition collisionRayTrace (World idWorld, int x, int y, int z, Vec3 par5Vec3, Vec3 par6Vec3)
+     @Override
+     public MovingObjectPosition collisionRayTrace (final World idWorld, final int x, final int y, final int z, final Vec3 par5Vec3, final Vec3 par6Vec3)
      {
           this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
           
@@ -108,7 +110,8 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      
-     public boolean isBlockReplaceable (World world, int x, int y, int z)
+     @Override
+     public boolean isBlockReplaceable (final World world, final int x, final int y, final int z)
      {
           return true;
      }
@@ -116,7 +119,8 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      
-     public int quantityDropped (Random idRandom)
+     @Override
+     public int quantityDropped (final Random idRandom)
      {
           return 0;
      }
@@ -124,6 +128,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      
+     @Override
      @SideOnly (Side.CLIENT)
      public int getRenderBlockPass ()
      {
@@ -133,6 +138,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      
+     @Override
      public boolean isOpaqueCube ()
      {
           return false;
@@ -141,6 +147,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      
+     @Override
      public boolean renderAsNormalBlock ()
      {
           return false;
@@ -151,7 +158,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      @Override
      @SideOnly (Side.CLIENT)
-     public void registerIcons (IconRegister iconRegister)
+     public void registerIcons (final IconRegister iconRegister)
      {
           this.blockIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "air");
      }
@@ -159,7 +166,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      
      
-     protected int getPowerSupply (int i)
+     protected int getPowerSupply (final int i)
      {
           return 15;
      }

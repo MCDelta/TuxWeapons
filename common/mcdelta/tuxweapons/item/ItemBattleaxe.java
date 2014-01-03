@@ -7,9 +7,9 @@ import mcdelta.tuxweapons.TuxWeapons;
 public class ItemBattleaxe extends ItemWeapon
 {
      
-     public ItemBattleaxe (ItemMaterial mat)
+     public ItemBattleaxe (final ItemMaterial mat)
      {
           super("battleaxe", TuxWeapons.instance, mat, 6.0F);
-          this.setMaxDamage((int) ((float) mat.getMaxUses() * 0.8F));
+          this.setMaxDamage((int) (mat.getMaxUses() * 0.8F));
      }
 }

@@ -9,12 +9,12 @@ import cpw.mods.fml.common.IPlayerTracker;
 public class PlayerTracker implements IPlayerTracker
 {
      
-     private void removeGrappHook (EntityPlayer player)
+     private void removeGrappHook (final EntityPlayer player)
      {
-          PlayerData data = new PlayerData(player);
+          final PlayerData data = new PlayerData(player);
           if (player.worldObj.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP)) instanceof EntityGrappHook)
           {
-               EntityGrappHook grappHook = (EntityGrappHook) player.worldObj.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP));
+               final EntityGrappHook grappHook = (EntityGrappHook) player.worldObj.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP));
                if (grappHook != null)
                {
                     grappHook.setDead();
@@ -28,35 +28,35 @@ public class PlayerTracker implements IPlayerTracker
      
      
      @Override
-     public void onPlayerLogin (EntityPlayer player)
+     public void onPlayerLogin (final EntityPlayer player)
      {
-          removeGrappHook(player);
+          this.removeGrappHook(player);
      }
      
      
      
      
      @Override
-     public void onPlayerLogout (EntityPlayer player)
+     public void onPlayerLogout (final EntityPlayer player)
      {
-          removeGrappHook(player);
+          this.removeGrappHook(player);
      }
      
      
      
      
      @Override
-     public void onPlayerChangedDimension (EntityPlayer player)
+     public void onPlayerChangedDimension (final EntityPlayer player)
      {
-          removeGrappHook(player);
+          this.removeGrappHook(player);
      }
      
      
      
      
      @Override
-     public void onPlayerRespawn (EntityPlayer player)
+     public void onPlayerRespawn (final EntityPlayer player)
      {
-          removeGrappHook(player);
+          this.removeGrappHook(player);
      }
 }

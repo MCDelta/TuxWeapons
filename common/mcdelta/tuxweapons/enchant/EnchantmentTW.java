@@ -5,14 +5,14 @@ import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.enchantment.EnumEnchantmentType;
 
 public class EnchantmentTW extends EnchantmentDelta
-{    
-     protected int               enchantLvlMin = 0;
-     protected int               enchantLvlMax = 5;
+{
+     protected int enchantLvlMin = 0;
+     protected int enchantLvlMax = 5;
      
      
      
      
-     public EnchantmentTW (String s, int rarity, EnumEnchantmentType enchType)
+     public EnchantmentTW (final String s, final int rarity, final EnumEnchantmentType enchType)
      {
           super(TuxWeapons.instance, s, rarity, enchType);
      }
@@ -20,7 +20,7 @@ public class EnchantmentTW extends EnchantmentDelta
      
      
      
-     public EnchantmentTW setMinMax (int i, int i2)
+     public EnchantmentTW setMinMax (final int i, final int i2)
      {
           this.enchantLvlMin = i;
           this.enchantLvlMax = i2;
@@ -31,18 +31,18 @@ public class EnchantmentTW extends EnchantmentDelta
      
      
      @Override
-     public int getMinEnchantability (int enchLevel)
+     public int getMinEnchantability (final int enchLevel)
      {
-          return enchantLvlMin;
+          return this.enchantLvlMin;
      }
      
      
      
      
      @Override
-     public int getMaxEnchantability (int enchLevel)
+     public int getMaxEnchantability (final int enchLevel)
      {
-          return enchantLvlMax;
+          return this.enchantLvlMax;
      }
      
      

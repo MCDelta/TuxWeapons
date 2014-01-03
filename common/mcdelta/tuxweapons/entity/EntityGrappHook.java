@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class EntityGrappHook extends EntityTWThrowable
 {
-     public EntityGrappHook (World world)
+     public EntityGrappHook (final World world)
      {
           super(world);
      }
@@ -17,14 +17,14 @@ public class EntityGrappHook extends EntityTWThrowable
      
      
      
-     public EntityGrappHook (World world, EntityLivingBase living, float charge, ItemStack item)
+     public EntityGrappHook (final World world, final EntityLivingBase living, final float charge, final ItemStack item)
      {
           super(world, living, charge, item);
           
-          if (owner instanceof EntityPlayer)
+          if (this.owner instanceof EntityPlayer)
           {
-               PlayerData data = new PlayerData((EntityPlayer) owner);
-               data.tag.setInteger(TWNBTTags.GRAPP, entityId);
+               final PlayerData data = new PlayerData((EntityPlayer) this.owner);
+               data.tag.setInteger(TWNBTTags.GRAPP, this.entityId);
                data.save();
           }
      }
@@ -33,11 +33,11 @@ public class EntityGrappHook extends EntityTWThrowable
      
      
      @Override
-     public void doCollide (EntityPlayer player)
+     public void doCollide (final EntityPlayer player)
      {
-          if (owner != null)
+          if (this.owner != null)
           {
-               PlayerData data = new PlayerData((EntityPlayer) owner);
+               final PlayerData data = new PlayerData((EntityPlayer) this.owner);
                data.tag.setInteger(TWNBTTags.GRAPP, -1);
                data.save();
           }

@@ -14,8 +14,8 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderFireChargeCannon implements IItemRenderer
 {
-     ModelFireChargeCannon    cannonModel;
-     private ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/FireChargeCannon.png");
+     ModelFireChargeCannon          cannonModel;
+     private final ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/FireChargeCannon.png");
      
      
      
@@ -23,14 +23,14 @@ public class RenderFireChargeCannon implements IItemRenderer
      public RenderFireChargeCannon ()
      {
           Minecraft.getMinecraft();
-          cannonModel = new ModelFireChargeCannon();
+          this.cannonModel = new ModelFireChargeCannon();
      }
      
      
      
      
      @Override
-     public boolean handleRenderType (ItemStack item, ItemRenderType type)
+     public boolean handleRenderType (final ItemStack item, final ItemRenderType type)
      {
           switch (type)
           {
@@ -47,7 +47,7 @@ public class RenderFireChargeCannon implements IItemRenderer
      
      
      @Override
-     public boolean shouldUseRenderHelper (ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+     public boolean shouldUseRenderHelper (final ItemRenderType type, final ItemStack item, final ItemRendererHelper helper)
      {
           return false;
      }
@@ -56,18 +56,18 @@ public class RenderFireChargeCannon implements IItemRenderer
      
      
      @Override
-     public void renderItem (ItemRenderType type, ItemStack stack, Object... data)
+     public void renderItem (final ItemRenderType type, final ItemStack stack, final Object... data)
      {
-          EntityPlayer player = (EntityPlayer) data[1];
+          final EntityPlayer player = (EntityPlayer) data[1];
           
           GL11.glPushMatrix();
           
-          TextureManager engine = Minecraft.getMinecraft().getTextureManager();
-          engine.bindTexture(location);
+          final TextureManager engine = Minecraft.getMinecraft().getTextureManager();
+          engine.bindTexture(this.location);
           
           if (type == ItemRenderType.EQUIPPED)
           {
-               float scale = 1.8F;
+               final float scale = 1.8F;
                GL11.glScalef(scale, scale, scale);
                
                GL11.glRotatef(190.0F, 1.0F, 0.0F, 0.0F);
@@ -78,7 +78,7 @@ public class RenderFireChargeCannon implements IItemRenderer
           
           if (type == ItemRenderType.EQUIPPED_FIRST_PERSON)
           {
-               float scale = 3F;
+               final float scale = 3F;
                GL11.glScalef(scale, scale, scale);
                
                GL11.glTranslatef(0.2F, 0.2F, 0.5F);
@@ -92,7 +92,7 @@ public class RenderFireChargeCannon implements IItemRenderer
                }
           }
           
-          cannonModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+          this.cannonModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
           
           GL11.glPopMatrix();
      }

@@ -3,7 +3,7 @@ package mcdelta.tuxweapons.potions;
 
 public class PotionConfusion extends PotionTW
 {
-     public PotionConfusion (String s, int color, int x, int y)
+     public PotionConfusion (final String s, final int color, final int x, final int y)
      {
           super(s, true, color, x, y);
      }

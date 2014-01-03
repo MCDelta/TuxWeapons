@@ -25,7 +25,7 @@ public enum EnumDamageTypes
      
      static
      {
-          for (ItemMaterial mat : MaterialRegistry.materials())
+          for (final ItemMaterial mat : MaterialRegistry.materials())
           {
                SLASHER.effc_item.add(DeltaContent.swords.get(mat));
                SLASHER.effc_item.add(TWContent.battleaxes.get(mat));
@@ -48,9 +48,9 @@ public enum EnumDamageTypes
      
      
      
-     EnumDamageTypes (String[] arr)
+     EnumDamageTypes (final String[] arr)
      {
           this();
-          effc_entity.addAll(Arrays.asList(arr));
+          this.effc_entity.addAll(Arrays.asList(arr));
      }
 }

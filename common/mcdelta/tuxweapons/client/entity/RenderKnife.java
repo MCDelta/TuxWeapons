@@ -18,18 +18,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly (Side.CLIENT)
 public class RenderKnife extends Render
 {
-     public void renderknife (EntityKnife knife, double par2, double par4, double par6, float par8, float par9)
+     public void renderknife (final EntityKnife knife, final double par2, final double par4, final double par6, final float par8, final float par9)
      {
-          ItemStack stack = knife.stack;
+          final ItemStack stack = knife.stack;
           
           if (stack != null)
           {
                GL11.glPushMatrix();
                
-               int passes = ((IExtraPasses) stack.getItem()).getPasses(stack);
-               Icon[] icons = new Icon[passes];
-               int[] colors = new int[passes];
-               boolean[] shiny = new boolean[passes];
+               final int passes = ((IExtraPasses) stack.getItem()).getPasses(stack);
+               final Icon[] icons = new Icon[passes];
+               final int[] colors = new int[passes];
+               final boolean[] shiny = new boolean[passes];
                
                for (int i = 0; i < passes; i++)
                {
@@ -56,15 +56,15 @@ public class RenderKnife extends Render
                     GL11.glRotatef(-knife.spin, 0.0F, 0.0F, 1.0F);
                }
                
-               float f11 = (float) knife.arrowShake - par9;
+               final float f11 = knife.arrowShake - par9;
                
                if (f11 > 0.0F)
                {
-                    float f12 = -MathHelper.sin(f11 * 3.0F) * f11;
+                    final float f12 = -MathHelper.sin(f11 * 3.0F) * f11;
                     GL11.glRotatef(f12, 0.0F, 0.0F, 1.0F);
                }
                
-               float scale = 1.5F;
+               final float scale = 1.5F;
                GL11.glScalef(scale, scale, scale);
                
                RenderAssets.renderItemInWorld(stack, passes, icons, colors, shiny);
@@ -77,7 +77,7 @@ public class RenderKnife extends Render
      
      
      @Override
-     public void doRender (Entity entity, double par2, double par4, double par6, float par8, float par9)
+     public void doRender (final Entity entity, final double par2, final double par4, final double par6, final float par8, final float par9)
      {
           this.renderknife((EntityKnife) entity, par2, par4, par6, par8, par9);
      }
@@ -86,9 +86,9 @@ public class RenderKnife extends Render
      
      
      @Override
-     protected ResourceLocation getEntityTexture (Entity entity)
+     protected ResourceLocation getEntityTexture (final Entity entity)
      {
-          EntityKnife knife = (EntityKnife) entity;
+          final EntityKnife knife = (EntityKnife) entity;
           return this.renderManager.renderEngine.getResourceLocation(knife.stack.getItemSpriteNumber());
      }
 }

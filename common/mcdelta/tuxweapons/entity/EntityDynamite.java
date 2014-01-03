@@ -21,16 +21,16 @@ public class EntityDynamite extends EntityThrowable
      
      
      
-     public EntityDynamite (World world)
+     public EntityDynamite (final World world)
      {
           super(world);
-          bounceFactor = 20;
+          this.bounceFactor = 20;
      }
      
      
      
      
-     public EntityDynamite (World world, EntityPlayer living)
+     public EntityDynamite (final World world, final EntityPlayer living)
      {
           super(world, living);
      }
@@ -38,7 +38,7 @@ public class EntityDynamite extends EntityThrowable
      
      
      
-     public EntityDynamite (World world, double x, double y, double z)
+     public EntityDynamite (final World world, final double x, final double y, final double z)
      {
           super(world, x, y, z);
      }
@@ -47,16 +47,16 @@ public class EntityDynamite extends EntityThrowable
      
      
      @Override
-     protected void onImpact (MovingObjectPosition pos)
+     protected void onImpact (final MovingObjectPosition pos)
      {
           if (pos.entityHit != null)
           {
-               byte b0 = 0;
+               final byte b0 = 0;
                
                pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), b0);
           }
           
-          fuse = fuse - 10;
+          this.fuse = this.fuse - 10;
           
      }
      
@@ -66,40 +66,40 @@ public class EntityDynamite extends EntityThrowable
      @Override
      public void onUpdate ()
      {
-          double prevVelX = motionX;
-          double prevVelY = motionY;
-          double prevVelZ = motionZ;
-          prevPosX = posX;
-          prevPosY = posY;
-          prevPosZ = posZ;
-          moveEntity(motionX, motionY, motionZ);
+          final double prevVelX = this.motionX;
+          final double prevVelY = this.motionY;
+          final double prevVelZ = this.motionZ;
+          this.prevPosX = this.posX;
+          this.prevPosY = this.posY;
+          this.prevPosZ = this.posZ;
+          this.moveEntity(this.motionX, this.motionY, this.motionZ);
           ++this.ticksInAir;
           
-          if (motionX != prevVelX)
+          if (this.motionX != prevVelX)
           {
-               motionX = -bounceFactor * prevVelX;
+               this.motionX = -this.bounceFactor * prevVelX;
           }
           
-          if (motionY != prevVelY)
+          if (this.motionY != prevVelY)
           {
-               motionY = -bounceFactor * prevVelY;
+               this.motionY = -this.bounceFactor * prevVelY;
           }
           else
           {
-               motionY -= 0.04;
+               this.motionY -= 0.04;
           }
           
-          if (motionZ != prevVelZ)
+          if (this.motionZ != prevVelZ)
           {
-               motionZ = -bounceFactor * prevVelZ;
+               this.motionZ = -this.bounceFactor * prevVelZ;
           }
           
-          motionX *= 0.9;
-          motionY *= 0.9;
-          motionZ *= 0.9;
+          this.motionX *= 0.9;
+          this.motionY *= 0.9;
+          this.motionZ *= 0.9;
           
-          if (ticksInAir >= fuse)
-          {    
+          if (this.ticksInAir >= this.fuse)
+          {
                if (!this.worldObj.isRemote)
                {
                     this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3, TWSettings.GREIFING);

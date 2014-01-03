@@ -29,21 +29,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemGrappHook extends ItemDelta implements IExtraPasses
 {
-     private String      toolName;
-     public ItemMaterial itemMaterial;
+     private final String toolName;
+     public ItemMaterial  itemMaterial;
      
      @SideOnly (Side.CLIENT)
-     protected Icon      itemOverlay;
+     protected Icon       itemOverlay;
      
      @SideOnly (Side.CLIENT)
-     protected Icon      overrideIcon;
+     protected Icon       overrideIcon;
      
-     private boolean     overrideExists = false;
-     
-     
+     private boolean      overrideExists = false;
      
      
-     public ItemGrappHook (ItemMaterial mat)
+     
+     
+     public ItemGrappHook (final ItemMaterial mat)
      {
           super(TuxWeapons.instance, mat.getName() + "." + "grappHook", false);
           
@@ -54,8 +54,8 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
           
           this.setMaxDamage(mat.getMaxUses());
           
-          String weapon = "tool." + toolName;
-          String material = "material." + mat.getName();
+          final String weapon = "tool." + this.toolName;
+          final String material = "material." + mat.getName();
           
           if (!StatCollector.func_94522_b(weapon))
           {
@@ -72,7 +72,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public EnumAction getItemUseAction (ItemStack stack)
+     public EnumAction getItemUseAction (final ItemStack stack)
      {
           return EnumAction.bow;
      }
@@ -81,13 +81,13 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onItemRightClick (final ItemStack stack, final World world, final EntityPlayer player)
      {
-          PlayerData data = new PlayerData(player);
+          final PlayerData data = new PlayerData(player);
           
           if (data.tag.getInteger(TWNBTTags.GRAPP) == -1)
           {
-               ArrowNockEvent event = new ArrowNockEvent(player, stack);
+               final ArrowNockEvent event = new ArrowNockEvent(player, stack);
                MinecraftForge.EVENT_BUS.post(event);
                if (event.isCanceled())
                {
@@ -103,13 +103,13 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
           
           if (world.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP)) instanceof EntityGrappHook)
           {
-               EntityGrappHook grappHook = (EntityGrappHook) world.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP));
+               final EntityGrappHook grappHook = (EntityGrappHook) world.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP));
                
                if (grappHook != null)
                {
                     if (!player.onGround && grappHook.inGround)
                     {
-                         stack.damageItem((int) (Math.sqrt(Math.pow((Math.abs(grappHook.posX - player.posX)), 2) + Math.pow((Math.abs(grappHook.posY - player.posY)), 2) + Math.pow((Math.abs(grappHook.posZ - player.posZ)), 2))) / 2, player);
+                         stack.damageItem((int) Math.sqrt(Math.pow(Math.abs(grappHook.posX - player.posX), 2) + Math.pow(Math.abs(grappHook.posY - player.posY), 2) + Math.pow(Math.abs(grappHook.posZ - player.posZ), 2)) / 2, player);
                     }
                     
                     data.tag.setInteger(TWNBTTags.GRAPP, -1);
@@ -132,22 +132,22 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
                     //return stack;
                }
                
-               int range = 40;
-               List<EntityGrappHook> hooks = world.getEntitiesWithinAABB(EntityGrappHook.class, AxisAlignedBB.getBoundingBox(player.posX - range, player.posY - range, player.posZ - range, player.posX + range, player.posY + range, player.posZ + range));
+               final int range = 40;
+               final List<EntityGrappHook> hooks = world.getEntitiesWithinAABB(EntityGrappHook.class, AxisAlignedBB.getBoundingBox(player.posX - range, player.posY - range, player.posZ - range, player.posX + range, player.posY + range, player.posZ + range));
                
-               for (EntityGrappHook grappHook : hooks)
+               for (final EntityGrappHook grappHook : hooks)
                {
                     if (grappHook.owner.equals(player))
                     {
                          if (!player.onGround && grappHook.inGround)
                          {
-                              double relPosX = grappHook.posX - player.posX;
-                              double relPosY = grappHook.posY - player.posY;
-                              double relPosZ = grappHook.posZ - player.posZ;
+                              final double relPosX = grappHook.posX - player.posX;
+                              final double relPosY = grappHook.posY - player.posY;
+                              final double relPosZ = grappHook.posZ - player.posZ;
                               
                               player.addVelocity(relPosX / 10, (relPosY + 3.5) / 10, relPosZ / 10);
                               
-                              stack.damageItem((int) (Math.sqrt(Math.pow((Math.abs(grappHook.posX - player.posX)), 2) + Math.pow((Math.abs(grappHook.posY - player.posY)), 2) + Math.pow((Math.abs(grappHook.posZ - player.posZ)), 2))) / 2, player);
+                              stack.damageItem((int) Math.sqrt(Math.pow(Math.abs(grappHook.posX - player.posX), 2) + Math.pow(Math.abs(grappHook.posY - player.posY), 2) + Math.pow(Math.abs(grappHook.posZ - player.posZ), 2)) / 2, player);
                          }
                     }
                }
@@ -160,9 +160,9 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int par4)
+     public void onPlayerStoppedUsing (final ItemStack stack, final World world, final EntityPlayer player, final int par4)
      {
-          int duration = this.getMaxItemUseDuration(stack) - par4;
+          final int duration = this.getMaxItemUseDuration(stack) - par4;
           
           float charge = duration / 30.0F;
           
@@ -176,7 +176,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
                charge = 0.8F;
           }
           
-          EntityGrappHook hookEntity = new EntityGrappHook(world, player, charge, stack);
+          final EntityGrappHook hookEntity = new EntityGrappHook(world, player, charge, stack);
           hookEntity.canBePickedUp = 0;
           
           world.playSoundAtEntity(player, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.1F - 1.2F) + charge * 0.5F);
@@ -192,7 +192,8 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      
-     public int getMaxItemUseDuration (ItemStack par1ItemStack)
+     @Override
+     public int getMaxItemUseDuration (final ItemStack par1ItemStack)
      {
           return 72000;
      }
@@ -201,16 +202,16 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public void registerIcons (IconRegister register)
+     public void registerIcons (final IconRegister register)
      {
-          this.itemIcon = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_1", register);
-          this.itemOverlay = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_2", register);
+          this.itemIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_1", register);
+          this.itemOverlay = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_2", register);
           
-          overrideExists = Assets.resourceExists(new ResourceLocation(mod.id().toLowerCase(), "textures/items/override/" + itemMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName + ".png"));
           
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(mod.id().toLowerCase(), "override/" + itemMaterial.getName().toLowerCase() + "_" + toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
@@ -218,9 +219,9 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public int getPasses (ItemStack stack)
+     public int getPasses (final ItemStack stack)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
                return 1;
           }
@@ -232,28 +233,28 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public Icon getIconFromPass (ItemStack stack, int pass)
+     public Icon getIconFromPass (final ItemStack stack, final int pass)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               return overrideIcon;
+               return this.overrideIcon;
           }
           
           if (pass == 2)
           {
-               return itemOverlay;
+               return this.itemOverlay;
           }
           
-          return itemIcon;
+          return this.itemIcon;
      }
      
      
      
      
      @Override
-     public int getColorFromPass (ItemStack stack, int pass)
+     public int getColorFromPass (final ItemStack stack, final int pass)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
                return 0xffffff;
           }
@@ -263,16 +264,16 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
                return 0xc4c3ac;
           }
           
-          return itemMaterial.getColor();
+          return this.itemMaterial.getColor();
      }
      
      
      
      
      @Override
-     public boolean getShinyFromPass (ItemStack stack, int pass)
+     public boolean getShinyFromPass (final ItemStack stack, final int pass)
      {
-          if (pass == 1 && itemMaterial.isShinyDefault())
+          if (pass == 1 && this.itemMaterial.isShinyDefault())
           {
                return true;
           }
@@ -283,12 +284,13 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      
-     public String getItemDisplayName (ItemStack stack)
+     @Override
+     public String getItemDisplayName (final ItemStack stack)
      {
-          ItemMaterial mat = itemMaterial;
+          final ItemMaterial mat = this.itemMaterial;
           
-          String weapon = StatCollector.translateToLocal("tool." + toolName);
-          String material = StatCollector.translateToLocal("material." + mat.getName());
+          final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
+          final String material = StatCollector.translateToLocal("material." + mat.getName());
           
           return material + " " + weapon;
      }
@@ -296,11 +298,12 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      
-     public boolean getIsRepairable (ItemStack repair, ItemStack gem)
+     @Override
+     public boolean getIsRepairable (final ItemStack repair, final ItemStack gem)
      {
-          if (OreDictionary.getOres(itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(itemMaterial.getOreDictionaryName()).isEmpty())
+          if (OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).isEmpty())
           {
-               return OreDictionary.itemMatches(OreDictionary.getOres(itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
+               return OreDictionary.itemMatches(OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
           }
           
           return super.getIsRepairable(repair, gem);

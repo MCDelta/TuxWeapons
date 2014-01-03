@@ -15,7 +15,7 @@ public class RenderCrossbow implements IItemRenderer
 {
      
      @Override
-     public boolean handleRenderType (ItemStack item, ItemRenderType type)
+     public boolean handleRenderType (final ItemStack item, final ItemRenderType type)
      {
           switch (type)
           {
@@ -32,7 +32,7 @@ public class RenderCrossbow implements IItemRenderer
      
      
      @Override
-     public boolean shouldUseRenderHelper (ItemRenderType type, ItemStack item, ItemRendererHelper helper)
+     public boolean shouldUseRenderHelper (final ItemRenderType type, final ItemStack item, final ItemRendererHelper helper)
      {
           return false;
      }
@@ -41,15 +41,15 @@ public class RenderCrossbow implements IItemRenderer
      
      
      @Override
-     public void renderItem (ItemRenderType type, ItemStack item, Object... data)
+     public void renderItem (final ItemRenderType type, final ItemStack item, final Object... data)
      {
-          TextureManager engine = Minecraft.getMinecraft().getTextureManager();
+          final TextureManager engine = Minecraft.getMinecraft().getTextureManager();
           
           if (type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON)
           {
                GL11.glPushMatrix();
                
-               EntityLivingBase player = (EntityLivingBase) data[1];
+               final EntityLivingBase player = (EntityLivingBase) data[1];
                
                if (type == ItemRenderType.EQUIPPED)
                {

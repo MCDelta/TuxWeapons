@@ -29,44 +29,44 @@ public class PacketThrowablePickup extends PacketDelta
      
      
      
-     public PacketThrowablePickup (int i, int i2)
+     public PacketThrowablePickup (final int i, final int i2)
      {
           super(3);
-          playerId = i;
-          throwableId = i2;
+          this.playerId = i;
+          this.throwableId = i2;
      }
      
      
      
      
      @Override
-     public void writeData (DataOutputStream data) throws IOException
+     public void writeData (final DataOutputStream data) throws IOException
      {
-          data.writeInt(playerId);
-          data.writeInt(throwableId);
+          data.writeInt(this.playerId);
+          data.writeInt(this.throwableId);
      }
      
      
      
      
      @Override
-     public void readData (DataInputStream data) throws IOException
+     public void readData (final DataInputStream data) throws IOException
      {
-          playerId = data.readInt();
-          throwableId = data.readInt();
+          this.playerId = data.readInt();
+          this.throwableId = data.readInt();
      }
      
      
      
      
      @Override
-     public void execute (INetworkManager manager, Player playerParam)
+     public void execute (final INetworkManager manager, final Player playerParam)
      {
-          EntityPlayer entity = (EntityPlayer) playerParam;
-          World world = entity.worldObj;
+          final EntityPlayer entity = (EntityPlayer) playerParam;
+          final World world = entity.worldObj;
           
-          EntityPlayer player = (EntityPlayer) world.getEntityByID(playerId);
-          EntityTWThrowable throwable = (EntityTWThrowable) world.getEntityByID(throwableId);
+          final EntityPlayer player = (EntityPlayer) world.getEntityByID(this.playerId);
+          final EntityTWThrowable throwable = (EntityTWThrowable) world.getEntityByID(this.throwableId);
           
           throwable.doCollide(player);
           

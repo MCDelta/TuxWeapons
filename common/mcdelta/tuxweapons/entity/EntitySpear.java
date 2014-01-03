@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 public class EntitySpear extends EntityTWThrowable
 {
-     public EntitySpear (World world)
+     public EntitySpear (final World world)
      {
           super(world);
      }
@@ -14,7 +14,7 @@ public class EntitySpear extends EntityTWThrowable
      
      
      
-     public EntitySpear (World world, EntityLivingBase living, float charge, ItemStack item)
+     public EntitySpear (final World world, final EntityLivingBase living, final float charge, final ItemStack item)
      {
           super(world, living, charge, item);
      }

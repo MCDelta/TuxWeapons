@@ -23,16 +23,17 @@ public class ItemTechnical extends ItemTW
      
      
      
-     public void getSubItems (int id, CreativeTabs tabs, List list)
+     @Override
+     public void getSubItems (final int id, final CreativeTabs tabs, final List list)
      {
           for (int i = 0; i < Potions.creativeTab.size(); i++)
           {
-               Potion potion = Potions.creativeTab.get(i);
+               final Potion potion = Potions.creativeTab.get(i);
                
                for (int l = 0; l < 6; l++)
                {
-                    ItemStack stack = new ItemStack(Item.potion);
-                    NBTTagList tags = new NBTTagList();
+                    final ItemStack stack = new ItemStack(Item.potion);
+                    final NBTTagList tags = new NBTTagList();
                     boolean splash = false;
                     PotionEffect effect = null;
                     
@@ -46,14 +47,14 @@ public class ItemTechnical extends ItemTW
                          case 4:
                               if (!potion.isInstant())
                               {
-                                   effect = new PotionEffect(potion.id, (int) (Potions.time * potion.getEffectiveness() * ((double) (8 / 3))), 0);
+                                   effect = new PotionEffect(potion.id, (int) (Potions.time * potion.getEffectiveness() * (8 / 3)), 0);
                               }
                               break;
                          case 2:
                          case 5:
                               if (!Potions.nonUpgradable.contains(potion))
                               {
-                                   effect = new PotionEffect(potion.id, (int) ((Potions.time * potion.getEffectiveness()) / 2), 1);
+                                   effect = new PotionEffect(potion.id, (int) (Potions.time * potion.getEffectiveness() / 2), 1);
                               }
                               break;
                     }

@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class PotionFlight extends PotionTW
 {
-     public PotionFlight (String s, int color, int x, int y)
+     public PotionFlight (final String s, final int color, final int x, final int y)
      {
           super(s, color, x, y);
           this.setEffectiveness(0.25D);
@@ -17,7 +17,7 @@ public class PotionFlight extends PotionTW
      
      
      @Override
-     public void performEffect (EntityLivingBase entity, int i)
+     public void performEffect (final EntityLivingBase entity, final int i)
      {
           if (entity.worldObj.isRemote)
           {
@@ -53,7 +53,7 @@ public class PotionFlight extends PotionTW
      
      
      @Override
-     public boolean isReady (int i, int i2)
+     public boolean isReady (final int i, final int i2)
      {
           return true;
      }

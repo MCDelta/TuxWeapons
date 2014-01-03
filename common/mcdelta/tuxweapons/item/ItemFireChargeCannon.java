@@ -30,8 +30,9 @@ public class ItemFireChargeCannon extends ItemDeltaBow
      
      
      
+     @Override
      @SideOnly (Side.CLIENT)
-     public void registerIcons (IconRegister register)
+     public void registerIcons (final IconRegister register)
      {
           this.itemIcon = register.registerIcon("tuxweapons:fireChargeCannon");
      }
@@ -40,11 +41,11 @@ public class ItemFireChargeCannon extends ItemDeltaBow
      
      
      @Override
-     public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int par4)
+     public void onPlayerStoppedUsing (final ItemStack stack, final World world, final EntityPlayer player, final int par4)
      {
-          int charge = this.getMaxItemUseDuration(stack) - par4;
+          final int charge = this.getMaxItemUseDuration(stack) - par4;
           
-          EntityTWFireball fireBall = new EntityTWFireball(world, player, charge);
+          final EntityTWFireball fireBall = new EntityTWFireball(world, player, charge);
           
           if (charge >= 20)
           {
@@ -67,7 +68,7 @@ public class ItemFireChargeCannon extends ItemDeltaBow
      @Override
      public Multimap<String, AttributeModifier> getItemAttributeModifiers ()
      {
-          Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers();
+          final Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers();
           multimap.removeAll(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName());
           multimap.put(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", -0.05D, 0));
           
@@ -77,6 +78,7 @@ public class ItemFireChargeCannon extends ItemDeltaBow
      
      
      
+     @Override
      public int getItemEnchantability ()
      {
           return 0;

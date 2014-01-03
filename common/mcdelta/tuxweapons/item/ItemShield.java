@@ -25,21 +25,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemShield extends ItemDelta implements IExtraPasses
 {
-     private String      toolName;
-     public ItemMaterial itemMaterial;
+     private final String toolName;
+     public ItemMaterial  itemMaterial;
      
      @SideOnly (Side.CLIENT)
-     protected Icon      itemOverlay;
+     protected Icon       itemOverlay;
      
      @SideOnly (Side.CLIENT)
-     protected Icon      overrideIcon;
+     protected Icon       overrideIcon;
      
-     private boolean     overrideExists = false;
-     
-     
+     private boolean      overrideExists = false;
      
      
-     public ItemShield (ItemMaterial mat)
+     
+     
+     public ItemShield (final ItemMaterial mat)
      {
           super(TuxWeapons.instance, mat.getName() + "." + "shield", false);
           
@@ -50,8 +50,8 @@ public class ItemShield extends ItemDelta implements IExtraPasses
           
           this.setMaxDamage((int) (mat.getMaxUses() * 0.5F));
           
-          String weapon = "tool." + toolName;
-          String material = "material." + mat.getName();
+          final String weapon = "tool." + this.toolName;
+          final String material = "material." + mat.getName();
           
           if (!StatCollector.func_94522_b(weapon))
           {
@@ -67,7 +67,7 @@ public class ItemShield extends ItemDelta implements IExtraPasses
           
           if (Assets.isClient())
           {
-               MinecraftForgeClient.registerItemRenderer(itemID, new RenderShield());
+               MinecraftForgeClient.registerItemRenderer(this.itemID, new RenderShield());
           }
      }
      
@@ -75,7 +75,7 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     public ItemStack onItemRightClick (final ItemStack stack, final World world, final EntityPlayer player)
      {
           player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
           return stack;
@@ -85,7 +85,7 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public EnumAction getItemUseAction (ItemStack stack)
+     public EnumAction getItemUseAction (final ItemStack stack)
      {
           return EnumAction.block;
      }
@@ -94,16 +94,16 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public void registerIcons (IconRegister register)
+     public void registerIcons (final IconRegister register)
      {
-          this.itemIcon = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_1", register);
-          this.itemOverlay = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_2", register);
+          this.itemIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_1", register);
+          this.itemOverlay = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_2", register);
           
-          overrideExists = Assets.resourceExists(new ResourceLocation(mod.id().toLowerCase(), "textures/items/override/" + itemMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName + ".png"));
           
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(mod.id().toLowerCase(), "override/" + itemMaterial.getName().toLowerCase() + "_" + toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
@@ -111,9 +111,9 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public int getPasses (ItemStack stack)
+     public int getPasses (final ItemStack stack)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
                return 1;
           }
@@ -125,28 +125,28 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      @Override
-     public Icon getIconFromPass (ItemStack stack, int pass)
+     public Icon getIconFromPass (final ItemStack stack, final int pass)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
-               return overrideIcon;
+               return this.overrideIcon;
           }
           
           if (pass == 2)
           {
-               return itemOverlay;
+               return this.itemOverlay;
           }
           
-          return itemIcon;
+          return this.itemIcon;
      }
      
      
      
      
      @Override
-     public int getColorFromPass (ItemStack stack, int pass)
+     public int getColorFromPass (final ItemStack stack, final int pass)
      {
-          if (overrideExists)
+          if (this.overrideExists)
           {
                return 0xffffff;
           }
@@ -156,16 +156,16 @@ public class ItemShield extends ItemDelta implements IExtraPasses
                return MaterialRegistry.WOOD.getColor();
           }
           
-          return itemMaterial.getColor();
+          return this.itemMaterial.getColor();
      }
      
      
      
      
      @Override
-     public boolean getShinyFromPass (ItemStack stack, int pass)
+     public boolean getShinyFromPass (final ItemStack stack, final int pass)
      {
-          if (pass == 1 && itemMaterial.isShinyDefault())
+          if (pass == 1 && this.itemMaterial.isShinyDefault())
           {
                return true;
           }
@@ -176,12 +176,13 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      
-     public String getItemDisplayName (ItemStack stack)
+     @Override
+     public String getItemDisplayName (final ItemStack stack)
      {
-          ItemMaterial mat = itemMaterial;
+          final ItemMaterial mat = this.itemMaterial;
           
-          String weapon = StatCollector.translateToLocal("tool." + toolName);
-          String material = StatCollector.translateToLocal("material." + mat.getName());
+          final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
+          final String material = StatCollector.translateToLocal("material." + mat.getName());
           
           return material + " " + weapon;
      }
@@ -189,7 +190,8 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      
-     public int getMaxItemUseDuration (ItemStack par1ItemStack)
+     @Override
+     public int getMaxItemUseDuration (final ItemStack par1ItemStack)
      {
           return 72000;
      }
@@ -197,6 +199,7 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      
+     @Override
      @SideOnly (Side.CLIENT)
      public boolean isFull3D ()
      {
@@ -206,11 +209,12 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      
      
-     public boolean getIsRepairable (ItemStack repair, ItemStack gem)
+     @Override
+     public boolean getIsRepairable (final ItemStack repair, final ItemStack gem)
      {
-          if (OreDictionary.getOres(itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(itemMaterial.getOreDictionaryName()).isEmpty())
+          if (OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).isEmpty())
           {
-               return OreDictionary.itemMatches(OreDictionary.getOres(itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
+               return OreDictionary.itemMatches(OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
           }
           
           return super.getIsRepairable(repair, gem);

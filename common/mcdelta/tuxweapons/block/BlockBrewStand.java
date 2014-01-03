@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class BlockBrewStand extends BlockBrewingStand
 {
-     public BlockBrewStand (int id)
+     public BlockBrewStand (final int id)
      {
           super(id);
      }
@@ -15,7 +15,8 @@ public class BlockBrewStand extends BlockBrewingStand
      
      
      
-     public TileEntity createNewTileEntity (World world)
+     @Override
+     public TileEntity createNewTileEntity (final World world)
      {
           return new TileBrewStand();
      }

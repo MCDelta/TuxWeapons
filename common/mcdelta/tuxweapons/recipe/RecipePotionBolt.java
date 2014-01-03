@@ -17,14 +17,14 @@ public class RecipePotionBolt implements IRecipe
 {
      
      @Override
-     public boolean matches (InventoryCrafting inv, World world)
+     public boolean matches (final InventoryCrafting inv, final World world)
      {
           boolean hasPotion = false;
           boolean hasBolt = false;
           
           for (int i = 0; i < inv.getSizeInventory(); i++)
           {
-               ItemStack stack = inv.getStackInSlot(i);
+               final ItemStack stack = inv.getStackInSlot(i);
                
                if (stack != null)
                {
@@ -47,14 +47,14 @@ public class RecipePotionBolt implements IRecipe
      
      
      @Override
-     public ItemStack getCraftingResult (InventoryCrafting inv)
+     public ItemStack getCraftingResult (final InventoryCrafting inv)
      {
-          List<PotionEffect> effects = new ArrayList<PotionEffect>();
+          final List<PotionEffect> effects = new ArrayList<PotionEffect>();
           int bolts = 0;
           
           for (int i = 0; i < inv.getSizeInventory(); i++)
           {
-               ItemStack stack = inv.getStackInSlot(i);
+               final ItemStack stack = inv.getStackInSlot(i);
                
                if (stack != null)
                {
@@ -70,16 +70,16 @@ public class RecipePotionBolt implements IRecipe
                }
           }
           
-          NBTTagList tagList = new NBTTagList();
+          final NBTTagList tagList = new NBTTagList();
           
-          for (PotionEffect effect : effects)
+          for (final PotionEffect effect : effects)
           {
-               PotionEffect newEffect = new PotionEffect(effect);
+               final PotionEffect newEffect = new PotionEffect(effect);
                newEffect.duration /= bolts;
                tagList.appendTag(newEffect.writeCustomPotionEffectToNBT(new NBTTagCompound()));
           }
           
-          ItemStack stack = new ItemStack(TWContent.bolt, bolts);
+          final ItemStack stack = new ItemStack(TWContent.bolt, bolts);
           
           stack.stackTagCompound = new NBTTagCompound();
           stack.stackTagCompound.setTag("CustomPotionEffects", tagList);
