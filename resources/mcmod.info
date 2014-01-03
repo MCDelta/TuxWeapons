@@ -7,6 +7,9 @@
     "version": "${version}",
     "mcversion": "${mcversion}",
     "logoFile": "assets/tuxweapons/logo.png",
+    "dependencies": [
+      "required-after:deltacore"
+    ],
     "authors": [
       "TuxCraft"
     ]
