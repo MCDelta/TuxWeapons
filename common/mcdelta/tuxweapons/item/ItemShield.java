@@ -41,17 +41,17 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      public ItemShield (final ItemMaterial mat)
      {
-          super(TuxWeapons.instance, mat.getName() + "." + "shield", false);
+          super(TuxWeapons.instance, mat.name() + "." + "shield", false);
           
           this.toolName = "shield";
           this.itemMaterial = mat;
           this.maxStackSize = 1;
           this.setCreativeTab(CreativeTabs.tabTools);
           
-          this.setMaxDamage((int) (mat.getMaxUses() * 0.5F));
+          this.setMaxDamage((int) (mat.maxUses() * 0.5F));
           
           final String weapon = "tool." + this.toolName;
-          final String material = "material." + mat.getName();
+          final String material = "material." + mat.name();
           
           if (!StatCollector.func_94522_b(weapon))
           {
@@ -99,11 +99,11 @@ public class ItemShield extends ItemDelta implements IExtraPasses
           this.itemIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_1", register);
           this.itemOverlay = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_2", register);
           
-          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.itemMaterial.name().toLowerCase() + "_" + this.toolName + ".png"));
           
           if (this.overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.itemMaterial.name().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
@@ -153,10 +153,10 @@ public class ItemShield extends ItemDelta implements IExtraPasses
           
           if (pass == 2)
           {
-               return MaterialRegistry.WOOD.getColor();
+               return MaterialRegistry.WOOD.color();
           }
           
-          return this.itemMaterial.getColor();
+          return this.itemMaterial.color();
      }
      
      
@@ -165,7 +165,7 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      @Override
      public boolean getShinyFromPass (final ItemStack stack, final int pass)
      {
-          if (pass == 1 && this.itemMaterial.isShinyDefault())
+          if (pass == 1 && this.itemMaterial.defaultShiny())
           {
                return true;
           }
@@ -182,7 +182,7 @@ public class ItemShield extends ItemDelta implements IExtraPasses
           final ItemMaterial mat = this.itemMaterial;
           
           final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
-          final String material = StatCollector.translateToLocal("material." + mat.getName());
+          final String material = StatCollector.translateToLocal("material." + mat.name());
           
           return material + " " + weapon;
      }
@@ -212,9 +212,9 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      @Override
      public boolean getIsRepairable (final ItemStack repair, final ItemStack gem)
      {
-          if (OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).isEmpty())
+          if (OreDictionary.getOres(this.itemMaterial.oreName()) != null && !OreDictionary.getOres(this.itemMaterial.oreName()).isEmpty())
           {
-               return OreDictionary.itemMatches(OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
+               return OreDictionary.itemMatches(OreDictionary.getOres(this.itemMaterial.oreName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
           }
           
           return super.getIsRepairable(repair, gem);

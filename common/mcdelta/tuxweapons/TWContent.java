@@ -178,7 +178,7 @@ public class TWContent implements IContent
           
           for (final ItemMaterial mat : MaterialRegistry.materials())
           {
-               final String material = mat.getOreDictionaryName();
+               final String material = mat.oreName();
                
                if (mat.needsWeapons())
                {
@@ -207,7 +207,7 @@ public class TWContent implements IContent
                     GameRegistry.addRecipe(new ShapedOreRecipe(shield, "oxo", "xox", "oxo", 'x', material, 'o', "plankWood"));
                     
                     // Whock Crafter
-                    final ItemStack whockCrafter = new ItemStack(TWContent.whockCrafters.get(mat), 1, mat.getMaxUses() - 1);
+                    final ItemStack whockCrafter = new ItemStack(TWContent.whockCrafters.get(mat), 1, mat.maxUses() - 1);
                     GameRegistry.addRecipe(new ShapedOreRecipe(whockCrafter, "xxx", "xox", " x ", 'x', material, 'o', Block.obsidian));
                }
           }

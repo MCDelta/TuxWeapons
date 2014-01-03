@@ -16,7 +16,7 @@ public class ItemSpear extends ItemWeapon
      public ItemSpear (final ItemMaterial mat)
      {
           super("spear", TuxWeapons.instance, mat, 2.0F);
-          this.setMaxDamage((int) (mat.getMaxUses() * 0.9F));
+          this.setMaxDamage((int) (mat.maxUses() * 0.9F));
      }
      
      

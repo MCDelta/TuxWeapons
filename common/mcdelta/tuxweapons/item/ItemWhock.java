@@ -53,7 +53,7 @@ public class ItemWhock extends ItemDeltaTool
                final MovingObjectPosition moving = this.getMovingObjectPositionFromPlayer(world, (EntityPlayer) living, false);
                final Position hitBlock = new Position(world, x, y, z);
                
-               if (hitBlock != null && moving != null && moving.typeOfHit == EnumMovingObjectType.TILE)
+               if (moving != null && moving.typeOfHit == EnumMovingObjectType.TILE)
                {
                     final List<Position> positions = this.getPositionsFromSide(hitBlock, moving.sideHit);
                     
@@ -86,51 +86,48 @@ public class ItemWhock extends ItemDeltaTool
           {
                return false;
           }
+          final int l = world.getBlockId(x, y, z);
+          final int i1 = world.getBlockMetadata(x, y, z);
+          world.playAuxSFXAtEntity(player, 2001, x, y, z, l + (world.getBlockMetadata(x, y, z) << 12));
+          boolean flag = false;
+          
+          if (player.theItemInWorldManager.isCreative())
+          {
+               flag = this.removeBlock(world, player, x, y, z);
+               player.playerNetServerHandler.sendPacketToPlayer(new Packet53BlockChange(x, y, z, world));
+          }
           else
           {
-               final int l = world.getBlockId(x, y, z);
-               final int i1 = world.getBlockMetadata(x, y, z);
-               world.playAuxSFXAtEntity(player, 2001, x, y, z, l + (world.getBlockMetadata(x, y, z) << 12));
-               boolean flag = false;
-               
-               if (player.theItemInWorldManager.isCreative())
+               final ItemStack itemstack = player.getCurrentEquippedItem();
+               boolean flag1 = false;
+               final Block block = Block.blocksList[l];
+               if (block != null)
                {
-                    flag = this.removeBlock(world, player, x, y, z);
-                    player.playerNetServerHandler.sendPacketToPlayer(new Packet53BlockChange(x, y, z, world));
+                    flag1 = block.canHarvestBlock(player, i1);
                }
-               else
+               
+               if (itemstack != null)
                {
-                    final ItemStack itemstack = player.getCurrentEquippedItem();
-                    boolean flag1 = false;
-                    final Block block = Block.blocksList[l];
-                    if (block != null)
+                    if (itemstack.stackSize == 0)
                     {
-                         flag1 = block.canHarvestBlock(player, i1);
-                    }
-                    
-                    if (itemstack != null)
-                    {
-                         if (itemstack.stackSize == 0)
-                         {
-                              player.destroyCurrentEquippedItem();
-                         }
-                    }
-                    
-                    flag = this.removeBlock(world, player, x, y, z);
-                    if (flag && flag1)
-                    {
-                         Block.blocksList[l].harvestBlock(world, player, x, y, z, i1);
+                         player.destroyCurrentEquippedItem();
                     }
                }
                
-               // Drop experience
-               if (!player.theItemInWorldManager.isCreative() && flag && event != null)
+               flag = this.removeBlock(world, player, x, y, z);
+               if (flag && flag1)
                {
-                    Block.blocksList[l].dropXpOnBlockBreak(world, x, y, z, event.getExpToDrop());
+                    Block.blocksList[l].harvestBlock(world, player, x, y, z, i1);
                }
-               
-               return flag;
           }
+          
+          // Drop experience
+          if (!player.theItemInWorldManager.isCreative() && flag && event != null)
+          {
+               Block.blocksList[l].dropXpOnBlockBreak(world, x, y, z, event.getExpToDrop());
+          }
+          
+          return flag;
      }
      
      
@@ -233,7 +230,7 @@ public class ItemWhock extends ItemDeltaTool
           final ItemMaterial mat = this.itemMaterial;
           
           final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
-          final String material = StatCollector.translateToLocal("material." + mat.getName());
+          final String material = StatCollector.translateToLocal("material." + mat.name());
           
           return material + " " + weapon;
      }
@@ -247,11 +244,11 @@ public class ItemWhock extends ItemDeltaTool
           this.itemIcon = doRegister("tuxweapons", this.toolName + "_1", register);
           this.itemOverlay = doRegister("tuxweapons", this.toolName + "_2", register);
           
-          this.overrideExists = Assets.resourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + this.itemMaterial.name().toLowerCase() + "_" + this.toolName + ".png"));
           
           if (this.overrideExists)
           {
-               this.overrideIcon = this.doRegister("/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName, register);
+               this.overrideIcon = this.doRegister("/override/" + this.itemMaterial.name().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
@@ -261,9 +258,9 @@ public class ItemWhock extends ItemDeltaTool
      @Override
      public boolean getIsRepairable (final ItemStack repair, final ItemStack gem)
      {
-          if (OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).isEmpty())
+          if (OreDictionary.getOres(this.itemMaterial.oreName()) != null && !OreDictionary.getOres(this.itemMaterial.oreName()).isEmpty())
           {
-               return OreDictionary.itemMatches(OreDictionary.getOres(this.itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
+               return OreDictionary.itemMatches(OreDictionary.getOres(this.itemMaterial.oreName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
           }
           
           return super.getIsRepairable(repair, gem);

@@ -40,17 +40,17 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      public ItemWhockCrafter (final ItemMaterial mat)
      {
-          super(TuxWeapons.instance, mat.getName() + ".whockCrafter", false);
+          super(TuxWeapons.instance, mat.name() + ".whockCrafter", false);
           
           this.toolName = "whockCrafter";
           this.itemMaterial = mat;
           this.setCreativeTab(CreativeTabs.tabTools);
           this.setMaxStackSize(1);
-          this.setMaxDamage(mat.getMaxUses());
-          this.spawnDamage = mat.getMaxUses() - 1;
+          this.setMaxDamage(mat.maxUses());
+          this.spawnDamage = mat.maxUses() - 1;
           
           final String weapon = "tool." + this.toolName;
-          final String material = "material." + mat.getName();
+          final String material = "material." + mat.name();
           
           if (!StatCollector.func_94522_b(weapon))
           {
@@ -84,7 +84,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
                return true;
           }
           
-          if (stack2.getItem() instanceof ItemPickaxe && ((ItemPickaxe) stack2.getItem()).getToolMaterialName() == this.itemMaterial.toolMaterial.name())
+          if (stack2.getItem() instanceof ItemPickaxe && ((ItemPickaxe) stack2.getItem()).getToolMaterialName() == this.itemMaterial.name())
           {
                return true;
           }
@@ -147,7 +147,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
           
           
           String weapon = StatCollector.translateToLocal("tool." + this.toolName);
-          final String material = StatCollector.translateToLocal("material." + mat.getName());
+          final String material = StatCollector.translateToLocal("material." + mat.name());
           
           if (stack.getItemDamage() != this.spawnDamage)
           {
@@ -165,11 +165,11 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      {
           this.itemIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName, register);
           
-          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.itemMaterial.name().toLowerCase() + "_" + this.toolName + ".png"));
           
           if (this.overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.itemMaterial.getName().toLowerCase() + "_" + this.toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.itemMaterial.name().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
@@ -222,7 +222,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
                return 0xffffff;
           }
           
-          return this.itemMaterial.getColor();
+          return this.itemMaterial.color();
      }
      
      
@@ -236,7 +236,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
                return TWContent.whocks.get(this.itemMaterial).getShinyFromPass(stack, pass);
           }
           
-          if (this.itemMaterial.isShinyDefault())
+          if (this.itemMaterial.defaultShiny())
           {
                return true;
           }

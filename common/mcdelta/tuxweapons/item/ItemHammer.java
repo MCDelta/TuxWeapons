@@ -26,7 +26,7 @@ public class ItemHammer extends ItemWeapon
      public ItemHammer (final ItemMaterial mat)
      {
           super("hammer", TuxWeapons.instance, mat, 3.0F);
-          this.setMaxDamage((int) (mat.getMaxUses() * 0.9F));
+          this.setMaxDamage((int) (mat.maxUses() * 0.9F));
      }
      
      

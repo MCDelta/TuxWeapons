@@ -37,7 +37,7 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      
      public ItemKnife (final ItemMaterial mat)
      {
-          super(TuxWeapons.instance, mat.getName() + "." + "knife", false);
+          super(TuxWeapons.instance, mat.name() + "." + "knife", false);
           
           this.toolName = "knife";
           this.toolMaterialDelta = mat;
@@ -45,7 +45,7 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
           this.setCreativeTab(CreativeTabs.tabCombat);
           
           final String weapon = "tool." + this.toolName;
-          final String material = "material." + mat.getName();
+          final String material = "material." + mat.name();
           
           if (!StatCollector.func_94522_b(weapon))
           {
@@ -99,11 +99,11 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
           this.itemIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_1", register);
           this.itemOverlay = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_2", register);
           
-          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.toolMaterialDelta.getName().toLowerCase() + "_" + this.toolName + ".png"));
+          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.toolMaterialDelta.name().toLowerCase() + "_" + this.toolName + ".png"));
           
           if (this.overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.toolMaterialDelta.getName().toLowerCase() + "_" + this.toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.toolMaterialDelta.name().toLowerCase() + "_" + this.toolName, register);
           }
      }
      
@@ -153,10 +153,10 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
           
           if (pass == 2)
           {
-               return MaterialRegistry.WOOD.getColor();
+               return MaterialRegistry.WOOD.color();
           }
           
-          return this.toolMaterialDelta.getColor();
+          return this.toolMaterialDelta.color();
      }
      
      
@@ -165,7 +165,7 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      @Override
      public boolean getShinyFromPass (final ItemStack stack, final int pass)
      {
-          if (pass == 1 && this.toolMaterialDelta.isShinyDefault())
+          if (pass == 1 && this.toolMaterialDelta.defaultShiny())
           {
                return true;
           }
@@ -182,7 +182,7 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
           final ItemMaterial mat = this.toolMaterialDelta;
           
           final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
-          final String material = StatCollector.translateToLocal("material." + mat.getName());
+          final String material = StatCollector.translateToLocal("material." + mat.name());
           
           return material + " " + weapon;
      }
