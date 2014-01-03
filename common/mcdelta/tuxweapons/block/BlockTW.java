@@ -7,10 +7,10 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class BlockTW extends BlockDelta
 {
-    public BlockTW(String s, Material mat)
-    {
-        super(TuxWeapons.instance, s, mat);
-
-        setCreativeTab(CreativeTabs.tabBlock);
-    }
+     public BlockTW (String s, Material mat)
+     {
+          super(TuxWeapons.instance, s, mat);
+          
+          this.setCreativeTab(CreativeTabs.tabBlock);
+     }
 }

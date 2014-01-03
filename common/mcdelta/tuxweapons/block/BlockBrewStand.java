@@ -7,14 +7,16 @@ import net.minecraft.world.World;
 
 public class BlockBrewStand extends BlockBrewingStand
 {
-    public BlockBrewStand(int id)
-    {
-        super(id);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World world)
-    {
-        return new TileBrewStand();
-    }
+     public BlockBrewStand (int id)
+     {
+          super(id);
+     }
+     
+     
+     
+     
+     public TileEntity createNewTileEntity (World world)
+     {
+          return new TileBrewStand();
+     }
 }

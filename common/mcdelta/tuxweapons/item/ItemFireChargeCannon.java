@@ -19,56 +19,66 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemFireChargeCannon extends ItemDeltaBow
 {
-    public ItemFireChargeCannon()
-    {
-        super(TuxWeapons.instance, "fireChargeCannon", new Item[]
-        { Item.fireballCharge });
-        setMaxDamage(100);
-        maxStackSize = 1;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister register)
-    {
-        itemIcon = register.registerIcon("tuxweapons:fireChargeCannon");
-    }
-
-    @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World world, EntityPlayer player, int par4)
-    {
-        int charge = getMaxItemUseDuration(stack) - par4;
-
-        EntityTWFireball fireBall = new EntityTWFireball(world, player, charge);
-
-        if (charge >= 20)
-        {
-            if (Assets.isServer())
-            {
-                world.spawnEntityInWorld(fireBall);
-            }
-
-            stack.damageItem(1, player);
-            if (player.capabilities.isCreativeMode == false)
-            {
-                player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
-            }
-        }
-    }
-
-    @Override
-    public Multimap<String, AttributeModifier> getItemAttributeModifiers()
-    {
-        Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers();
-        multimap.removeAll(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName());
-        multimap.put(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", -0.05D, 0));
-
-        return multimap;
-    }
-
-    @Override
-    public int getItemEnchantability()
-    {
-        return 0;
-    }
+     public ItemFireChargeCannon ()
+     {
+          super(TuxWeapons.instance, "fireChargeCannon", new Item[]
+          { Item.fireballCharge });
+          this.setMaxDamage(100);
+          this.maxStackSize = 1;
+     }
+     
+     
+     
+     
+     @SideOnly (Side.CLIENT)
+     public void registerIcons (IconRegister register)
+     {
+          this.itemIcon = register.registerIcon("tuxweapons:fireChargeCannon");
+     }
+     
+     
+     
+     
+     @Override
+     public void onPlayerStoppedUsing (ItemStack stack, World world, EntityPlayer player, int par4)
+     {
+          int charge = this.getMaxItemUseDuration(stack) - par4;
+          
+          EntityTWFireball fireBall = new EntityTWFireball(world, player, charge);
+          
+          if (charge >= 20)
+          {
+               if (Assets.isServer())
+               {
+                    world.spawnEntityInWorld(fireBall);
+               }
+               
+               stack.damageItem(1, player);
+               if (player.capabilities.isCreativeMode == false)
+               {
+                    player.inventory.consumeInventoryItem(Item.fireballCharge.itemID);
+               }
+          }
+     }
+     
+     
+     
+     
+     @Override
+     public Multimap<String, AttributeModifier> getItemAttributeModifiers ()
+     {
+          Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers();
+          multimap.removeAll(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName());
+          multimap.put(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", -0.05D, 0));
+          
+          return multimap;
+     }
+     
+     
+     
+     
+     public int getItemEnchantability ()
+     {
+          return 0;
+     }
 }

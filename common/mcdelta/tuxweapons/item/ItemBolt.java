@@ -33,298 +33,339 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBolt extends ItemTW implements IExtraPasses
 {
-    @SideOnly(Side.CLIENT)
-    private Icon potionIcon;
-
-    @SideOnly(Side.CLIENT)
-    private Icon potionIconOverlay;
-
-    public ItemBolt()
-    {
-        super("bolt");
-    }
-
-    @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-    {
-        player.setItemInUse(stack, getMaxItemUseDuration(stack));
-        return stack;
-    }
-
-    @Override
-    public EnumAction getItemUseAction(ItemStack stack)
-    {
-        return EnumAction.block;
-    }
-
-    @Override
-    public void registerIcons(IconRegister register)
-    {
-        String s = name.replace(".", "_");
-
-        itemIcon = doRegister(s, register);
-        potionIcon = doRegister(s + "_potion_1", register);
-        potionIconOverlay = doRegister(s + "_potion_2", register);
-    }
-
-    @Override
-    public int getMaxItemUseDuration(ItemStack stack)
-    {
-        return 72000;
-    }
-
-    @Override
-    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
-    {
-        return stack;
-    }
-
-    @Override
-    public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int extraInfo)
-    {
-        InventoryPlayer.getHotbarSize();
-        Item item;
-        ItemStack stack;
-        NBTTagList tagList = new NBTTagList();
-
-        if ((itemStack.stackTagCompound != null) && itemStack.stackTagCompound.hasKey("CustomPotionEffects"))
-        {
-            tagList = (NBTTagList) itemStack.stackTagCompound.getTagList("CustomPotionEffects").copy();
-        }
-
-        for (int i = 0; i < InventoryPlayer.getHotbarSize(); i++)
-        {
-            if (player.inventory.getStackInSlot(i) != null)
-            {
-                item = player.inventory.getStackInSlot(i).getItem();
-
-                if (item == TWContent.crossBow)
-                {
-                    stack = player.inventory.getStackInSlot(i);
-
-                    NBTTagCompound nbt = stack.getTagCompound();
-
-                    if (nbt == null)
+     @SideOnly (Side.CLIENT)
+     private Icon potionIcon;
+     
+     @SideOnly (Side.CLIENT)
+     private Icon potionIconOverlay;
+     
+     
+     
+     
+     public ItemBolt ()
+     {
+          super("bolt");
+     }
+     
+     
+     
+     
+     @Override
+     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
+     {
+          player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+          return stack;
+     }
+     
+     
+     
+     
+     @Override
+     public EnumAction getItemUseAction (ItemStack stack)
+     {
+          return EnumAction.block;
+     }
+     
+     
+     
+     
+     @Override
+     public void registerIcons (IconRegister register)
+     {
+          String s = this.name.replace(".", "_");
+          
+          this.itemIcon = doRegister(s, register);
+          this.potionIcon = doRegister(s + "_potion_1", register);
+          this.potionIconOverlay = doRegister(s + "_potion_2", register);
+     }
+     
+     
+     
+     
+     @Override
+     public int getMaxItemUseDuration (ItemStack stack)
+     {
+          return 72000;
+     }
+     
+     
+     
+     
+     @Override
+     public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
+     {
+          return stack;
+     }
+     
+     
+     
+     
+     @Override
+     public void onPlayerStoppedUsing (ItemStack itemStack, World world, EntityPlayer player, int extraInfo)
+     {
+          InventoryPlayer.getHotbarSize();
+          Item item;
+          ItemStack stack;
+          NBTTagList tagList = new NBTTagList();
+          
+          if (itemStack.stackTagCompound != null && itemStack.stackTagCompound.hasKey("CustomPotionEffects"))
+          {
+               tagList = (NBTTagList) itemStack.stackTagCompound.getTagList("CustomPotionEffects").copy();
+          }
+          
+          for (int i = 0; i < InventoryPlayer.getHotbarSize(); i++)
+          {
+               if (player.inventory.getStackInSlot(i) != null)
+               {
+                    item = player.inventory.getStackInSlot(i).getItem();
+                    
+                    if (item == TWContent.crossBow)
                     {
-                        ItemCrossbow.setNBT(false, stack);
-
-                        if (!player.capabilities.isCreativeMode)
-                        {
-                            itemStack.stackSize -= 1;
-
-                            if (itemStack.stackSize <= 0)
-                            {
-                                itemStack = null;
-                                player.destroyCurrentEquippedItem();
-                            }
-                        }
-
-                        ItemCrossbow.load(player.inventory.getStackInSlot(i), tagList);
+                         stack = player.inventory.getStackInSlot(i);
+                         
+                         NBTTagCompound nbt = stack.getTagCompound();
+                         
+                         if (nbt == null)
+                         {
+                              ItemCrossbow.setNBT(false, stack);
+                              
+                              if (!player.capabilities.isCreativeMode)
+                              {
+                                   itemStack.stackSize -= 1;
+                                   
+                                   if (itemStack.stackSize <= 0)
+                                   {
+                                        itemStack = null;
+                                        player.destroyCurrentEquippedItem();
+                                   }
+                              }
+                              
+                              ItemCrossbow.load(player.inventory.getStackInSlot(i), tagList);
+                         }
+                         
+                         if (nbt != null)
+                         {
+                              if (nbt.getBoolean("Loaded") == false)
+                              {
+                                   if (!player.capabilities.isCreativeMode)
+                                   {
+                                        itemStack.stackSize -= 1;
+                                        
+                                        if (itemStack.stackSize <= 0)
+                                        {
+                                             itemStack = null;
+                                             player.destroyCurrentEquippedItem();
+                                        }
+                                   }
+                                   
+                                   ItemCrossbow.load(player.inventory.getStackInSlot(i), tagList);
+                                   
+                                   return;
+                              }
+                         }
                     }
-
-                    if (nbt != null)
+               }
+          }
+     }
+     
+     
+     
+     
+     @SideOnly (Side.CLIENT)
+     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean extraInfo)
+     {
+          List<PotionEffect> list1 = Item.potion.getEffects(stack);
+          HashMultimap<Object, Object> hashmultimap = HashMultimap.create();
+          Iterator<PotionEffect> iterator;
+          
+          if (list1 != null && !list1.isEmpty())
+          {
+               iterator = list1.iterator();
+               
+               while (iterator.hasNext())
+               {
+                    PotionEffect potioneffect = (PotionEffect) iterator.next();
+                    String s = StatCollector.translateToLocal(potioneffect.getEffectName()).trim();
+                    Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
+                    Map<Attribute, AttributeModifier> map = potion.func_111186_k();
+                    
+                    if (map != null && map.size() > 0)
                     {
-                        if (nbt.getBoolean("Loaded") == false)
-                        {
-                            if (!player.capabilities.isCreativeMode)
-                            {
-                                itemStack.stackSize -= 1;
-
-                                if (itemStack.stackSize <= 0)
-                                {
-                                    itemStack = null;
-                                    player.destroyCurrentEquippedItem();
-                                }
-                            }
-
-                            ItemCrossbow.load(player.inventory.getStackInSlot(i), tagList);
-
-                            return;
-                        }
+                         Iterator<Entry<Attribute, AttributeModifier>> iterator1 = map.entrySet().iterator();
+                         
+                         while (iterator1.hasNext())
+                         {
+                              Entry<Attribute, AttributeModifier> entry = (Entry<Attribute, AttributeModifier>) iterator1.next();
+                              AttributeModifier attributemodifier = (AttributeModifier) entry.getValue();
+                              AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), potion.func_111183_a(potioneffect.getAmplifier(), attributemodifier), attributemodifier.getOperation());
+                              hashmultimap.put(((Attribute) entry.getKey()).getAttributeUnlocalizedName(), attributemodifier1);
+                         }
                     }
-                }
-            }
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean extraInfo)
-    {
-        List<PotionEffect> list1 = Item.potion.getEffects(stack);
-        HashMultimap<Object, Object> hashmultimap = HashMultimap.create();
-        Iterator<PotionEffect> iterator;
-
-        if ((list1 != null) && !list1.isEmpty())
-        {
-            iterator = list1.iterator();
-
-            while (iterator.hasNext())
-            {
-                PotionEffect potioneffect = iterator.next();
-                String s = StatCollector.translateToLocal(potioneffect.getEffectName()).trim();
-                Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
-                Map<Attribute, AttributeModifier> map = potion.func_111186_k();
-
-                if ((map != null) && (map.size() > 0))
-                {
-                    Iterator<Entry<Attribute, AttributeModifier>> iterator1 = map.entrySet().iterator();
-
-                    while (iterator1.hasNext())
+                    
+                    if (potioneffect.getAmplifier() > 0)
                     {
-                        Entry<Attribute, AttributeModifier> entry = iterator1.next();
-                        AttributeModifier attributemodifier = entry.getValue();
-                        AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), potion.func_111183_a(potioneffect.getAmplifier(),
-                                attributemodifier), attributemodifier.getOperation());
-                        hashmultimap.put(entry.getKey().getAttributeUnlocalizedName(), attributemodifier1);
+                         s = s + " " + StatCollector.translateToLocal("potion.potency." + potioneffect.getAmplifier()).trim();
                     }
-                }
-
-                if (potioneffect.getAmplifier() > 0)
-                {
-                    s = s + " " + StatCollector.translateToLocal("potion.potency." + potioneffect.getAmplifier()).trim();
-                }
-
-                if (potioneffect.getDuration() > 20)
-                {
-                    s = s + " (" + Potion.getDurationString(potioneffect) + ")";
-                }
-
-                if (potion.isBadEffect())
-                {
-                    list.add(EnumChatFormatting.RED + s);
-                } else
-                {
-                    list.add(EnumChatFormatting.GRAY + s);
-                }
-            }
-        } else
-        {
-            String s1 = StatCollector.translateToLocal("potion.empty").trim();
-            list.add(EnumChatFormatting.GRAY + s1);
-        }
-
-        if (!hashmultimap.isEmpty())
-        {
-            list.add("");
-            list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("potion.effects.whenDrank"));
-            Iterator<Entry<Object, Object>> iterator2 = hashmultimap.entries().iterator();
-
-            while (iterator2.hasNext())
-            {
-                Entry<Object, Object> entry1 = iterator2.next();
-                AttributeModifier attributemodifier2 = (AttributeModifier) entry1.getValue();
-                double d0 = attributemodifier2.getAmount();
-                double d1;
-
-                if ((attributemodifier2.getOperation() != 1) && (attributemodifier2.getOperation() != 2))
-                {
-                    d1 = attributemodifier2.getAmount();
-                } else
-                {
-                    d1 = attributemodifier2.getAmount() * 100.0D;
-                }
-
-                if (d0 > 0.0D)
-                {
-                    list.add(EnumChatFormatting.BLUE + StatCollector.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier2.getOperation(), new Object[]
-                    { ItemStack.field_111284_a.format(d1), StatCollector.translateToLocal("attribute.name." + (String) entry1.getKey()) }));
-                } else if (d0 < 0.0D)
-                {
-                    d1 *= -1.0D;
-                    list.add(EnumChatFormatting.RED + StatCollector.translateToLocalFormatted("attribute.modifier.take." + attributemodifier2.getOperation(), new Object[]
-                    { ItemStack.field_111284_a.format(d1), StatCollector.translateToLocal("attribute.name." + (String) entry1.getKey()) }));
-                }
-            }
-        }
-    }
-
-    private boolean isPotionArrow(ItemStack stack)
-    {
-        if (stack.stackTagCompound == null)
-        {
-            stack.stackTagCompound = new NBTTagCompound();
-        }
-
-        return stack.stackTagCompound.hasKey("CustomPotionEffects");
-    }
-
-    @Override
-    public int getPasses(ItemStack stack)
-    {
-        if (isPotionArrow(stack))
-        {
-            return 2;
-        }
-
-        return 1;
-    }
-
-    @Override
-    public Icon getIconFromPass(ItemStack stack, int pass)
-    {
-        if (isPotionArrow(stack))
-        {
-            if (pass == 1)
-            {
-                return potionIconOverlay;
-            }
-
-            return potionIcon;
-        }
-
-        return itemIcon;
-    }
-
-    @Override
-    public int getColorFromPass(ItemStack stack, int pass)
-    {
-        if (isPotionArrow(stack))
-        {
-            if (pass == 1)
-            {
-                List<PotionEffect> effects = Item.potion.getEffects(stack);
-
-                if (effects != null)
-                {
-                    float[] r = new float[effects.size()];
-                    float[] g = new float[effects.size()];
-                    float[] b = new float[effects.size()];
-
-                    for (int i = 0; i < effects.size(); i++)
+                    
+                    if (potioneffect.getDuration() > 20)
                     {
-                        PotionEffect effect = effects.get(i);
-                        float[] rgb = Assets.hexToRGB(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
-
-                        r[i] = rgb[0];
-                        g[i] = rgb[1];
-                        b[i] = rgb[2];
+                         s = s + " (" + Potion.getDurationString(potioneffect) + ")";
                     }
-
-                    float finalR = Assets.average(r);
-                    float finalG = Assets.average(g);
-                    float finalB = Assets.average(b);
-
-                    Color color = new Color(finalR, finalG, finalB);
-
-                    return color.getRGB();
-                }
-            }
-
-            return 0xffffff;
-        }
-
-        return 0xffffff;
-    }
-
-    @Override
-    public boolean getShinyFromPass(ItemStack stack, int pass)
-    {
-        if (isPotionArrow(stack))
-        {
-            return pass == 1;
-        }
-
-        return false;
-    }
+                    
+                    if (potion.isBadEffect())
+                    {
+                         list.add(EnumChatFormatting.RED + s);
+                    }
+                    else
+                    {
+                         list.add(EnumChatFormatting.GRAY + s);
+                    }
+               }
+          }
+          else
+          {
+               String s1 = StatCollector.translateToLocal("potion.empty").trim();
+               list.add(EnumChatFormatting.GRAY + s1);
+          }
+          
+          if (!hashmultimap.isEmpty())
+          {
+               list.add("");
+               list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("potion.effects.whenDrank"));
+               Iterator<Entry<Object, Object>> iterator2 = hashmultimap.entries().iterator();
+               
+               while (iterator2.hasNext())
+               {
+                    Entry<Object, Object> entry1 = (Entry<Object, Object>) iterator2.next();
+                    AttributeModifier attributemodifier2 = (AttributeModifier) entry1.getValue();
+                    double d0 = attributemodifier2.getAmount();
+                    double d1;
+                    
+                    if (attributemodifier2.getOperation() != 1 && attributemodifier2.getOperation() != 2)
+                    {
+                         d1 = attributemodifier2.getAmount();
+                    }
+                    else
+                    {
+                         d1 = attributemodifier2.getAmount() * 100.0D;
+                    }
+                    
+                    if (d0 > 0.0D)
+                    {
+                         list.add(EnumChatFormatting.BLUE + StatCollector.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier2.getOperation(), new Object[]
+                         { ItemStack.field_111284_a.format(d1), StatCollector.translateToLocal("attribute.name." + (String) entry1.getKey()) }));
+                    }
+                    else if (d0 < 0.0D)
+                    {
+                         d1 *= -1.0D;
+                         list.add(EnumChatFormatting.RED + StatCollector.translateToLocalFormatted("attribute.modifier.take." + attributemodifier2.getOperation(), new Object[]
+                         { ItemStack.field_111284_a.format(d1), StatCollector.translateToLocal("attribute.name." + (String) entry1.getKey()) }));
+                    }
+               }
+          }
+     }
+     
+     
+     
+     
+     private boolean isPotionArrow (ItemStack stack)
+     {
+          if (stack.stackTagCompound == null)
+          {
+               stack.stackTagCompound = new NBTTagCompound();
+          }
+          
+          return stack.stackTagCompound.hasKey("CustomPotionEffects");
+     }
+     
+     
+     
+     
+     @Override
+     public int getPasses (ItemStack stack)
+     {
+          if (isPotionArrow(stack))
+          {
+               return 2;
+          }
+          
+          return 1;
+     }
+     
+     
+     
+     
+     @Override
+     public Icon getIconFromPass (ItemStack stack, int pass)
+     {
+          if (isPotionArrow(stack))
+          {
+               if (pass == 1)
+               {
+                    return potionIconOverlay;
+               }
+               
+               return potionIcon;
+          }
+          
+          return itemIcon;
+     }
+     
+     
+     
+     
+     @Override
+     public int getColorFromPass (ItemStack stack, int pass)
+     {
+          if (isPotionArrow(stack))
+          {
+               if (pass == 1)
+               {
+                    List<PotionEffect> effects = Item.potion.getEffects(stack);
+                    
+                    if (effects != null)
+                    {
+                         float[] r = new float[effects.size()];
+                         float[] g = new float[effects.size()];
+                         float[] b = new float[effects.size()];
+                         
+                         for (int i = 0; i < effects.size(); i++)
+                         {
+                              PotionEffect effect = effects.get(i);
+                              float[] rgb = Assets.hexToRGB(Potion.potionTypes[effect.getPotionID()].getLiquidColor());
+                              
+                              r[i] = rgb[0];
+                              g[i] = rgb[1];
+                              b[i] = rgb[2];
+                         }
+                         
+                         float finalR = Assets.average(r);
+                         float finalG = Assets.average(g);
+                         float finalB = Assets.average(b);
+                         
+                         Color color = new Color(finalR, finalG, finalB);
+                         
+                         return color.getRGB();
+                    }
+               }
+               
+               return 0xffffff;
+          }
+          
+          return 0xffffff;
+     }
+     
+     
+     
+     
+     @Override
+     public boolean getShinyFromPass (ItemStack stack, int pass)
+     {
+          if (isPotionArrow(stack))
+          {
+               return pass == 1;
+          }
+          
+          return false;
+     }
 }

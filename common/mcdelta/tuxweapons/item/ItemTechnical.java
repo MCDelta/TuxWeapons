@@ -14,79 +14,82 @@ import net.minecraft.potion.PotionEffect;
 
 public class ItemTechnical extends ItemTW
 {
-    public ItemTechnical()
-    {
-        super("technical");
-        setCreativeTab(CreativeTabs.tabBrewing);
-    }
-
-    @Override
-    public void getSubItems(int id, CreativeTabs tabs, List list)
-    {
-        for (int i = 0; i < Potions.creativeTab.size(); i++)
-        {
-            Potion potion = Potions.creativeTab.get(i);
-
-            for (int l = 0; l < 6; l++)
-            {
-                ItemStack stack = new ItemStack(Item.potion);
-                NBTTagList tags = new NBTTagList();
-                boolean splash = false;
-                PotionEffect effect = null;
-
-                switch (l)
-                {
-                    case 0:
-                    case 3:
-                        effect = new PotionEffect(potion.id, (int) (Potions.time * potion.getEffectiveness()), 0);
-                        break;
-                    case 1:
-                    case 4:
-                        if (!potion.isInstant())
-                        {
-                            effect = new PotionEffect(potion.id, (int) (Potions.time * potion.getEffectiveness() * (8 / 3)), 0);
-                        }
-                        break;
-                    case 2:
-                    case 5:
-                        if (!Potions.nonUpgradable.contains(potion))
-                        {
-                            effect = new PotionEffect(potion.id, (int) ((Potions.time * potion.getEffectiveness()) / 2), 1);
-                        }
-                        break;
-                };
-
-                if (l >= 3)
-                {
-                    splash = true;
-                }
-
-                if (effect != null)
-                {
-                    if (potion.isInstant())
+     public ItemTechnical ()
+     {
+          super("technical");
+          this.setCreativeTab(CreativeTabs.tabBrewing);
+     }
+     
+     
+     
+     
+     public void getSubItems (int id, CreativeTabs tabs, List list)
+     {
+          for (int i = 0; i < Potions.creativeTab.size(); i++)
+          {
+               Potion potion = Potions.creativeTab.get(i);
+               
+               for (int l = 0; l < 6; l++)
+               {
+                    ItemStack stack = new ItemStack(Item.potion);
+                    NBTTagList tags = new NBTTagList();
+                    boolean splash = false;
+                    PotionEffect effect = null;
+                    
+                    switch (l)
                     {
-                        effect.duration = 0;
+                         case 0:
+                         case 3:
+                              effect = new PotionEffect(potion.id, (int) (Potions.time * potion.getEffectiveness()), 0);
+                              break;
+                         case 1:
+                         case 4:
+                              if (!potion.isInstant())
+                              {
+                                   effect = new PotionEffect(potion.id, (int) (Potions.time * potion.getEffectiveness() * ((double) (8 / 3))), 0);
+                              }
+                              break;
+                         case 2:
+                         case 5:
+                              if (!Potions.nonUpgradable.contains(potion))
+                              {
+                                   effect = new PotionEffect(potion.id, (int) ((Potions.time * potion.getEffectiveness()) / 2), 1);
+                              }
+                              break;
                     }
-
-                    if (splash)
+                    ;
+                    
+                    if (l >= 3)
                     {
-                        stack.setItemDamage(TWNBTTags.SPLASH_ID);
-                        effect.duration /= 2;
+                         splash = true;
                     }
-
-                    else
+                    
+                    if (effect != null)
                     {
-                        stack.setItemDamage(16);
+                         if (potion.isInstant())
+                         {
+                              effect.duration = 0;
+                         }
+                         
+                         if (splash)
+                         {
+                              stack.setItemDamage(TWNBTTags.SPLASH_ID);
+                              effect.duration /= 2;
+                         }
+                         
+                         else
+                         {
+                              stack.setItemDamage(16);
+                         }
+                         
+                         tags.appendTag(effect.writeCustomPotionEffectToNBT(new NBTTagCompound()));
+                         
+                         stack.stackTagCompound = new NBTTagCompound();
+                         stack.stackTagCompound.setTag(TWNBTTags.POTION_EFFECTS, tags);
+                         
+                         list.add(stack);
                     }
-
-                    tags.appendTag(effect.writeCustomPotionEffectToNBT(new NBTTagCompound()));
-
-                    stack.stackTagCompound = new NBTTagCompound();
-                    stack.stackTagCompound.setTag(TWNBTTags.POTION_EFFECTS, tags);
-
-                    list.add(stack);
-                }
-            }
-        }
-    }
+               }
+          }
+     }
 }

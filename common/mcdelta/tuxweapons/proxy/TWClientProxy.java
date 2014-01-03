@@ -24,21 +24,21 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class TWClientProxy extends TWCommonProxy
 {
-    @Override
-    public void registerRenderers()
-    {
-        RenderingRegistry.registerEntityRenderingHandler(EntitySpear.class, new RenderSpear());
-        RenderingRegistry.registerEntityRenderingHandler(EntityKnife.class, new RenderKnife());
-        RenderingRegistry.registerEntityRenderingHandler(EntityGrappHook.class, new RenderGrappHook());
-        RenderingRegistry.registerEntityRenderingHandler(EntityTWFireball.class, new RenderThrownItem(Item.fireballCharge));
-        RenderingRegistry.registerEntityRenderingHandler(EntityBolt.class, new RenderBolt());
-        RenderingRegistry.registerEntityRenderingHandler(EntityDynamite.class, new RenderDynamite());
-        RenderingRegistry.registerEntityRenderingHandler(EntityEMPGrenade.class, new RenderThrownItem(TWContent.empGrenade));
-
-        MinecraftForgeClient.registerItemRenderer(TWContent.fireChargeCannon.itemID, new RenderFireChargeCannon());
-        MinecraftForgeClient.registerItemRenderer(TWContent.crossBow.itemID, new RenderCrossbow());
-        MinecraftForgeClient.registerItemRenderer(Item.potion.itemID, new RenderItemPotion());
-
-        RenderAssets.flipInInventory.addAll(TWContent.spears.values());
-    }
+     @Override
+     public void registerRenderers ()
+     {
+          RenderingRegistry.registerEntityRenderingHandler(EntitySpear.class, new RenderSpear());
+          RenderingRegistry.registerEntityRenderingHandler(EntityKnife.class, new RenderKnife());
+          RenderingRegistry.registerEntityRenderingHandler(EntityGrappHook.class, new RenderGrappHook());
+          RenderingRegistry.registerEntityRenderingHandler(EntityTWFireball.class, new RenderThrownItem(Item.fireballCharge));
+          RenderingRegistry.registerEntityRenderingHandler(EntityBolt.class, new RenderBolt());
+          RenderingRegistry.registerEntityRenderingHandler(EntityDynamite.class, new RenderDynamite());
+          RenderingRegistry.registerEntityRenderingHandler(EntityEMPGrenade.class, new RenderThrownItem(TWContent.empGrenade));
+          
+          MinecraftForgeClient.registerItemRenderer(TWContent.fireChargeCannon.itemID, new RenderFireChargeCannon());
+          MinecraftForgeClient.registerItemRenderer(TWContent.crossBow.itemID, new RenderCrossbow());
+          MinecraftForgeClient.registerItemRenderer(Item.potion.itemID, new RenderItemPotion());
+          
+          RenderAssets.flipInInventory.addAll(TWContent.spears.values());
+     }
 }
