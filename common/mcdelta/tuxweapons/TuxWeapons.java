@@ -36,110 +36,94 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod (modid = TuxWeapons.MOD_ID, useMetadata = true)
-@NetworkMod (clientSideRequired = true, serverSideRequired = false, channels =
+@Mod(modid = TuxWeapons.MOD_ID, useMetadata = true)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels =
 { TuxWeapons.MOD_ID }, packetHandler = PacketHandler.class)
 public class TuxWeapons extends ModDelta
 {
-     // TODO
-     // - beheading enchant
-     // - giant magma core drops
-     // - death messages
-     // - reimplement ukulele
-     // - retexture magma core
-     
-     public static final String  MOD_ID = "tuxweapons";
-     
-     @Instance (MOD_ID)
-     public static TuxWeapons    instance;
-     
-     @SidedProxy (clientSide = "mcdelta.tuxweapons.proxy.TWClientProxy", serverSide = "mcdelta.tuxweapons.proxy.TWCommonProxy")
-     public static TWCommonProxy proxy;
-     
-     
-     
-     
-     @EventHandler
-     public void preInit (FMLPreInitializationEvent event)
-     {
-          init(event);
-          
-          PacketHandler.packets[2] = PacketSpawnParticle.class;
-          PacketHandler.packets[3] = PacketThrowablePickup.class;
-          
-          this.init(event, new TWConfig());
-     }
-     
-     
-     
-     
-     @EventHandler
-     public void load (FMLInitializationEvent event)
-     {
-          MinecraftForge.EVENT_BUS.register(new EventEnchants());
-          MinecraftForge.EVENT_BUS.register(new DamageModifier());
-          MinecraftForge.EVENT_BUS.register(new EventItemInfo());
-          MinecraftForge.EVENT_BUS.register(new EventFOVModifier());
-          
-          TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
-          GameRegistry.registerPlayerTracker(new PlayerTracker());
-          
-          proxy.registerRenderers();
-     }
-     
-     
-     
-     
-     @EventHandler
-     public void postInit (FMLPostInitializationEvent event)
-     {
-          for (Item item : Item.itemsList)
-          {
-               if (item instanceof ItemSword && !BASHER.effc_item.contains(item) && !SLASHER.effc_item.contains(item))
-               {
-                    SLASHER.effc_item.add(item);
-               }
-               
-               else if (item instanceof ItemAxe && !BASHER.effc_item.contains(item) && !SLASHER.effc_item.contains(item))
-               {
-                    BASHER.effc_item.add(item);
-               }
-               
-               if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().toLowerCase().contains("gold"))
-               {
-                    GOLDEN.effc_item.add(item);
-               }
-               
-               if (item instanceof ItemAxe && ((ItemAxe) item).getToolMaterialName().toLowerCase().contains("gold"))
-               {
-                    GOLDEN.effc_item.add(item);
-               }
-          }
-     }
-     
-     
-     
-     
-     public static void spawnParticle (int particle, World world, double x, double y, double z, Object... obj)
-     {
-          if (Assets.isClient())
-          {
-               EnumParticles.values()[particle].spawnParticle(world, x, y, z, obj);
-          }
-          
-          else
-          {
-               PacketDispatcher.sendPacketToAllAround(x, y, z, 10, world.provider.dimensionId, Assets.populatePacket(new PacketSpawnParticle(particle, x, y, z)));
-          }
-     }
-     
-     private IContent content = new TWContent();
-     
-     
-     
-     
-     public IContent content ()
-     {
-          return content;
-     }
+    // TODO
+    // - beheading enchant
+    // - giant magma core drops
+    // - death messages
+    // - re implement ukelele
+    // - re texture magma core
+
+    public static final String MOD_ID = "tuxweapons";
+
+    @Instance(MOD_ID)
+    public static TuxWeapons instance;
+
+    @SidedProxy(clientSide = "mcdelta.tuxweapons.proxy.TWClientProxy", serverSide = "mcdelta.tuxweapons.proxy.TWCommonProxy")
+    public static TWCommonProxy proxy;
+
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        this.init(event, new TWConfig());
+
+        PacketHandler.packets[2] = PacketSpawnParticle.class;
+        PacketHandler.packets[3] = PacketThrowablePickup.class;
+    }
+
+    @EventHandler
+    public void load(FMLInitializationEvent event)
+    {
+        MinecraftForge.EVENT_BUS.register(new EventEnchants());
+        MinecraftForge.EVENT_BUS.register(new DamageModifier());
+        MinecraftForge.EVENT_BUS.register(new EventItemInfo());
+        MinecraftForge.EVENT_BUS.register(new EventFOVModifier());
+
+        TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
+        GameRegistry.registerPlayerTracker(new PlayerTracker());
+
+        proxy.registerRenderers();
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        for (Item item : Item.itemsList)
+        {
+            if (item instanceof ItemSword && !BASHER.effc_item.contains(item) && !SLASHER.effc_item.contains(item))
+            {
+                SLASHER.effc_item.add(item);
+            }
+
+            else if (item instanceof ItemAxe && !BASHER.effc_item.contains(item) && !SLASHER.effc_item.contains(item))
+            {
+                BASHER.effc_item.add(item);
+            }
+
+            if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().toLowerCase().contains("gold"))
+            {
+                GOLDEN.effc_item.add(item);
+            }
+
+            if (item instanceof ItemAxe && ((ItemAxe) item).getToolMaterialName().toLowerCase().contains("gold"))
+            {
+                GOLDEN.effc_item.add(item);
+            }
+        }
+    }
+
+    public static void spawnParticle(int particle, World world, double x, double y, double z, Object... obj)
+    {
+        if (Assets.isClient())
+        {
+            EnumParticles.values()[particle].spawnParticle(world, x, y, z, obj);
+        }
+
+        else
+        {
+            PacketDispatcher.sendPacketToAllAround(x, y, z, 10, world.provider.dimensionId, Assets.populatePacket(new PacketSpawnParticle(particle, x, y, z)));
+        }
+    }
+
+    private IContent content = new TWContent();
+
+    @Override
+    public IContent content()
+    {
+        return content;
+    }
 }
