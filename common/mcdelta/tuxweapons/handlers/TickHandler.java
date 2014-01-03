@@ -2,7 +2,7 @@ package mcdelta.tuxweapons.handlers;
 
 import java.util.EnumSet;
 
-import mcdelta.tuxweapons.specials.potions.PotionTW;
+import mcdelta.tuxweapons.potions.PotionTW;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;

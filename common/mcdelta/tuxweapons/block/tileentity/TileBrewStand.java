@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mcdelta.tuxweapons.data.TWNBTTags;
-import mcdelta.tuxweapons.specials.potions.Potions;
+import mcdelta.tuxweapons.potions.Potions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;

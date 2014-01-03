@@ -1,12 +1,10 @@
-package mcdelta.tuxweapons.specials.enchant;
+package mcdelta.tuxweapons.enchant;
 
 import net.minecraft.enchantment.EnumEnchantmentType;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemStack;
 
-public class EnchDrawback extends EnchantmentTW
+public class EnchStrike extends EnchantmentTW
 {
-     public EnchDrawback (String name, int weight, EnumEnchantmentType type)
+     public EnchStrike (String name, int weight, EnumEnchantmentType type)
      {
           super(name, weight, type);
      }
@@ -36,13 +34,5 @@ public class EnchDrawback extends EnchantmentTW
      public int getMaxLevel ()
      {
           return 3;
-     }
-     
-     
-     
-     
-     public boolean canApply (ItemStack stack)
-     {
-          return stack.getItem() instanceof ItemBow;
      }
 }

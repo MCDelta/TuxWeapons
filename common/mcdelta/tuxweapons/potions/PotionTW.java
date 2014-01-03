@@ -1,4 +1,4 @@
-package mcdelta.tuxweapons.specials.potions;
+package mcdelta.tuxweapons.potions;
 
 import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.client.Minecraft;

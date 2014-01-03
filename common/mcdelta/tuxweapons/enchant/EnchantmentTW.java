@@ -1,6 +1,6 @@
-package mcdelta.tuxweapons.specials.enchant;
+package mcdelta.tuxweapons.enchant;
 
-import mcdelta.core.special.enchant.EnchantmentDelta;
+import mcdelta.core.enchant.EnchantmentDelta;
 import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.enchantment.EnumEnchantmentType;
 

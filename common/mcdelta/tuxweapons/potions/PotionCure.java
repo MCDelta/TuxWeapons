@@ -1,4 +1,4 @@
-package mcdelta.tuxweapons.specials.potions;
+package mcdelta.tuxweapons.potions;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.BaseAttributeMap;

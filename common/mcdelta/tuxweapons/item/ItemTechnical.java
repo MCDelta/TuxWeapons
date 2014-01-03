@@ -3,7 +3,7 @@ package mcdelta.tuxweapons.item;
 import java.util.List;
 
 import mcdelta.tuxweapons.data.TWNBTTags;
-import mcdelta.tuxweapons.specials.potions.Potions;
+import mcdelta.tuxweapons.potions.Potions;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

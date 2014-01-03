@@ -1,4 +1,4 @@
-package mcdelta.tuxweapons.specials.potions;
+package mcdelta.tuxweapons.potions;
 
 public class PotionParalysis extends PotionTW
 {

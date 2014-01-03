@@ -1,10 +1,10 @@
-package mcdelta.tuxweapons.specials.enchant;
+package mcdelta.tuxweapons.enchant;
 
 import net.minecraft.enchantment.EnumEnchantmentType;
 
-public class EnchStrike extends EnchantmentTW
+public class EnchVenom extends EnchantmentTW
 {
-     public EnchStrike (String name, int weight, EnumEnchantmentType type)
+     public EnchVenom (String name, int weight, EnumEnchantmentType type)
      {
           super(name, weight, type);
      }
@@ -15,7 +15,7 @@ public class EnchStrike extends EnchantmentTW
      @Override
      public int getMinEnchantability (int enchLevel)
      {
-          return (enchLevel) * 10;
+          return 10 + 20 * (enchLevel - 1);
      }
      
      
@@ -24,7 +24,7 @@ public class EnchStrike extends EnchantmentTW
      @Override
      public int getMaxEnchantability (int enchLevel)
      {
-          return getMinEnchantability(enchLevel) + 20;
+          return getMinEnchantability(enchLevel) + 50;
      }
      
      
@@ -33,6 +33,6 @@ public class EnchStrike extends EnchantmentTW
      @Override
      public int getMaxLevel ()
      {
-          return 3;
+          return 2;
      }
 }
