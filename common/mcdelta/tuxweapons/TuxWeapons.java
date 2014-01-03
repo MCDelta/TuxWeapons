@@ -7,7 +7,6 @@ import mcdelta.core.ModDelta;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.particle.EnumParticles;
 import mcdelta.core.network.PacketHandler;
-import mcdelta.core.support.CompatibilityHandler;
 import mcdelta.tuxweapons.config.TWConfig;
 import mcdelta.tuxweapons.damage.DamageModifier;
 import mcdelta.tuxweapons.event.EventEnchants;
@@ -69,9 +68,6 @@ public class TuxWeapons extends ModDelta
           PacketHandler.packets[3] = PacketThrowablePickup.class;
           
           this.init(event, new TWConfig());
-          
-          String supportPackage = "mcdelta.tuxweapons.support.";
-          CompatibilityHandler.addModHandler("Thaumcraft", supportPackage + "Thaumcraft");
           
           TWContent.load();
      }

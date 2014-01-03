@@ -152,7 +152,7 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
           
           if (pass == 2)
           {
-               return ToolMaterial.WOOD.getColor();
+               return DeltaCore.WOOD.getColor();
           }
           
           return toolMaterialDelta.getColor();
