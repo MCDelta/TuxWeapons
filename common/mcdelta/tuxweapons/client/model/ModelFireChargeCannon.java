@@ -6,9 +6,9 @@ import net.minecraft.entity.Entity;
 
 public class ModelFireChargeCannon extends ModelBase
 {
-    public ModelRenderer     Shape1;
-    public ModelRenderer     Shape2;
-    public ModelRenderer     Shape3;
+    public ModelRenderer Shape1;
+    public ModelRenderer Shape2;
+    public ModelRenderer Shape3;
 
     public ModelFireChargeCannon()
     {

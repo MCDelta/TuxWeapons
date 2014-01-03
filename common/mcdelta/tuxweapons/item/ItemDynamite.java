@@ -8,41 +8,35 @@ import net.minecraft.world.World;
 
 public class ItemDynamite extends ItemTW
 {
-     
-     public ItemDynamite ()
-     {
-          super("dynamite");
-     }
-     
-     
-     
-     
-     @Override
-     public boolean isFull3D ()
-     {
-          return true;
-     }
-     
-     
-     
-     
-     @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
-     {
-          world.playSoundAtEntity(player, "random.hurt", 1.0F, 1.0F / (itemRand.nextFloat() * 0.1F + 0.95F));
-          
-          EntityDynamite dynamite = new EntityDynamite(world, player);
-          
-          if (Assets.isServer())
-          {
-               world.spawnEntityInWorld(dynamite);
-          }
-          
-          if (!player.capabilities.isCreativeMode)
-          {
-               player.inventory.consumeInventoryItem(this.itemID);
-          }
-          
-          return stack;
-     }
+
+    public ItemDynamite()
+    {
+        super("dynamite");
+    }
+
+    @Override
+    public boolean isFull3D()
+    {
+        return true;
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    {
+        world.playSoundAtEntity(player, "random.hurt", 1.0F, 1.0F / ((itemRand.nextFloat() * 0.1F) + 0.95F));
+
+        EntityDynamite dynamite = new EntityDynamite(world, player);
+
+        if (Assets.isServer())
+        {
+            world.spawnEntityInWorld(dynamite);
+        }
+
+        if (!player.capabilities.isCreativeMode)
+        {
+            player.inventory.consumeInventoryItem(itemID);
+        }
+
+        return stack;
+    }
 }
