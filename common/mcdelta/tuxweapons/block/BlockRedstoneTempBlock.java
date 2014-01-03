@@ -100,8 +100,6 @@ public class BlockRedstoneTempBlock extends BlockTW
      
      public MovingObjectPosition collisionRayTrace (World idWorld, int x, int y, int z, Vec3 par5Vec3, Vec3 par6Vec3)
      {
-          float f = 0.15F;
-          
           this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
           
           return super.collisionRayTrace(idWorld, x, y, z, par5Vec3, par6Vec3);

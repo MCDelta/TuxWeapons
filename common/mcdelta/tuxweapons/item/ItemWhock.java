@@ -53,7 +53,6 @@ public class ItemWhock extends ItemDeltaTool
                
                if (hitBlock != null && moving != null && moving.typeOfHit == EnumMovingObjectType.TILE)
                {
-                    int side = moving.sideHit;
                     List<Position> positions = getPositionsFromSide(hitBlock, moving.sideHit);
                     
                     for (Position pos : positions)

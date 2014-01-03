@@ -2,23 +2,19 @@ package mcdelta.tuxweapons.client.item;
 
 import java.util.Random;
 
-import mcdelta.core.assets.Assets;
 import mcdelta.core.assets.client.RenderAssets;
 import mcdelta.core.client.item.IExtraPasses;
-import mcdelta.core.item.ItemWeapon;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
 public class RenderShield implements IItemRenderer
 {
-     private static final ResourceLocation glint  = new ResourceLocation("textures/misc/enchanted_item_glint.png");
      Random                                rand   = new Random();
      int                                   zLevel = 0;
      

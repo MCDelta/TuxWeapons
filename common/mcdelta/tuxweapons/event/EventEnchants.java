@@ -105,14 +105,10 @@ public class EventEnchants
      public void livingHurt (LivingHurtEvent event)
      {
           EntityLivingBase living = (EntityLivingBase) event.entityLiving;
-          World world = living.worldObj;
-          double x = living.posX;
-          double y = living.posY;
-          double z = living.posZ;
           
           if (EnchantmentHelper.getEnchantmentLevel(EnchantmentTW.hardened.effectId, living.getCurrentItemOrArmor(3)) > 0)
           {
-               Multimap map = HashMultimap.create();
+               Multimap<String, AttributeModifier> map = HashMultimap.create();
                map.put(SharedMonsterAttributes.knockbackResistance.getAttributeUnlocalizedName(), new AttributeModifier(living.getPersistentID(), "Enchanted Armor Modifier", 100.0F, 0));
                
                living.getAttributeMap().applyAttributeModifiers(map);
@@ -120,7 +116,7 @@ public class EventEnchants
           
           else
           {
-               Multimap map = HashMultimap.create();
+               Multimap<String, AttributeModifier> map = HashMultimap.create();
                map.put(SharedMonsterAttributes.knockbackResistance.getAttributeUnlocalizedName(), new AttributeModifier(living.getPersistentID(), "Enchanted Armor Modifier", 100.0F, 0));
                
                living.getAttributeMap().removeAttributeModifiers(map);
@@ -165,8 +161,6 @@ public class EventEnchants
                EntityPlayer player = event.entityPlayer;
                Item item = player.getCurrentEquippedItem().getItem();
                ItemStack stack = player.getCurrentEquippedItem();
-               World world = player.worldObj;
-               
                int drawbackLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentTW.drawback.effectId, player.getCurrentEquippedItem());
                
                if (drawbackLvl > 0)

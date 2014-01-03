@@ -18,15 +18,15 @@ public class ItemTW extends ItemDelta
      public static ItemTechnical                       technical        = new ItemTechnical();
      public static ItemTW                              magmaCore        = (ItemTW) new ItemTW("magmaCore").setCreativeTab(CreativeTabs.tabMaterials);
      
-     public static Map<ToolMaterial, ItemBattleaxe>    battleaxes       = new HashMap();
-     public static Map<ToolMaterial, ItemHammer>       hammers          = new HashMap();
-     public static Map<ToolMaterial, ItemSpear>        spears           = new HashMap();
-     public static Map<ToolMaterial, ItemMace>         maces            = new HashMap();
-     public static Map<ToolMaterial, ItemKnife>        knives           = new HashMap();
-     public static Map<ToolMaterial, ItemGrappHook>    grappHooks       = new HashMap();
-     public static Map<ToolMaterial, ItemShield>       shields          = new HashMap();
-     public static Map<ToolMaterial, ItemWhock>        whocks           = new HashMap();
-     public static Map<ToolMaterial, ItemWhockCrafter> whockCrafters    = new HashMap();
+     public static Map<ToolMaterial, ItemBattleaxe>    battleaxes       = new HashMap<ToolMaterial, ItemBattleaxe>();
+     public static Map<ToolMaterial, ItemHammer>       hammers          = new HashMap<ToolMaterial, ItemHammer>();
+     public static Map<ToolMaterial, ItemSpear>        spears           = new HashMap<ToolMaterial, ItemSpear>();
+     public static Map<ToolMaterial, ItemMace>         maces            = new HashMap<ToolMaterial, ItemMace>();
+     public static Map<ToolMaterial, ItemKnife>        knives           = new HashMap<ToolMaterial, ItemKnife>();
+     public static Map<ToolMaterial, ItemGrappHook>    grappHooks       = new HashMap<ToolMaterial, ItemGrappHook>();
+     public static Map<ToolMaterial, ItemShield>       shields          = new HashMap<ToolMaterial, ItemShield>();
+     public static Map<ToolMaterial, ItemWhock>        whocks           = new HashMap<ToolMaterial, ItemWhock>();
+     public static Map<ToolMaterial, ItemWhockCrafter> whockCrafters    = new HashMap<ToolMaterial, ItemWhockCrafter>();
      
      static
      {

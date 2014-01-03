@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.StatCollector;
 
 public class DamageSourceWeapon extends EntityDamageSource
 {

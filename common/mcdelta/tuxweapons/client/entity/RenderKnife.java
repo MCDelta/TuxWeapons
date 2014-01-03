@@ -3,9 +3,7 @@ package mcdelta.tuxweapons.client.entity;
 import mcdelta.core.assets.client.RenderAssets;
 import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.tuxweapons.entity.EntityKnife;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -20,11 +18,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly (Side.CLIENT)
 public class RenderKnife extends Render
 {
-     private static final ResourceLocation glint = new ResourceLocation("textures/misc/enchanted_item_glint.png");
-     
-     
-     
-     
      public void renderknife (EntityKnife knife, double par2, double par4, double par6, float par8, float par9)
      {
           ItemStack stack = knife.stack;

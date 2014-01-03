@@ -2,7 +2,6 @@ package mcdelta.tuxweapons.handlers;
 
 import java.util.EnumSet;
 
-import mcdelta.core.assets.Assets;
 import mcdelta.tuxweapons.specials.potions.PotionTW;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
@@ -10,8 +9,6 @@ import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TickHandler implements ITickHandler
 {
@@ -32,14 +29,10 @@ public class TickHandler implements ITickHandler
      @Override
      public void tickStart (EnumSet<TickType> type, Object... tickData)
      {
-          long l = System.currentTimeMillis();
-          
           if (type.equals(EnumSet.of(TickType.PLAYER)))
           {
                playerTick(true, (EntityPlayer) tickData[0]);
           }
-          
-          //Assets.print("pre: " + (System.currentTimeMillis() - l));
      }
      
      
@@ -48,14 +41,10 @@ public class TickHandler implements ITickHandler
      @Override
      public void tickEnd (EnumSet<TickType> type, Object... tickData)
      {
-          long l = System.currentTimeMillis();
-          
           if (type.equals(EnumSet.of(TickType.PLAYER)))
           {
                playerTick(false, (EntityPlayer) tickData[0]);
           }
-          
-          //Assets.print("post: " + (System.currentTimeMillis() - l));
      }
      
      

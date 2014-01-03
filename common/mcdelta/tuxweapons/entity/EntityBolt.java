@@ -273,7 +273,7 @@ public class EntityBolt extends Entity implements IProjectile
                }
                
                Entity var5 = null;
-               List var6 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+               List<Entity> var6 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
                double var7 = 0.0D;
                int var9;
                float var11;
@@ -314,17 +314,12 @@ public class EntityBolt extends Entity implements IProjectile
                     if (var4.entityHit != null)
                     {
                          var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                         int var23 = MathHelper.ceiling_double_int(var20 * this.damage);
-                         
-                         DamageSource var21 = null;
                          
                          if (this.shootingEntity == null)
                          {
-                              var21 = DamageSource.causeThrownDamage(this, this);
                          }
                          else
                          {
-                              var21 = DamageSource.causeThrownDamage(this, this.shootingEntity);
                          }
                          
                          if (this.isBurning() && !(var4.entityHit instanceof EntityEnderman))

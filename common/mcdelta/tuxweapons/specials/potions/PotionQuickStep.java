@@ -1,7 +1,5 @@
 package mcdelta.tuxweapons.specials.potions;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class PotionQuickStep extends PotionTW
 {

@@ -5,7 +5,6 @@ import mcdelta.tuxweapons.item.ItemGrappHook;
 import mcdelta.tuxweapons.item.ItemHammer;
 import mcdelta.tuxweapons.item.ItemSpear;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.relauncher.Side;

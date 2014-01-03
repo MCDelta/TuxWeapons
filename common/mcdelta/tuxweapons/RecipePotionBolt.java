@@ -21,7 +21,6 @@ public class RecipePotionBolt implements IRecipe
      {
           boolean hasPotion = false;
           boolean hasBolt = false;
-          int bolts = 0;
           
           for (int i = 0; i < inv.getSizeInventory(); i++)
           {
@@ -37,7 +36,6 @@ public class RecipePotionBolt implements IRecipe
                     if (stack.getItem() == ItemTW.bolt)
                     {
                          hasBolt = true;
-                         bolts++;
                     }
                }
           }

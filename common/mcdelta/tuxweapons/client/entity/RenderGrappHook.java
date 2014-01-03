@@ -3,10 +3,8 @@ package mcdelta.tuxweapons.client.entity;
 import mcdelta.core.assets.client.RenderAssets;
 import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.tuxweapons.entity.EntityGrappHook;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -21,11 +19,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly (Side.CLIENT)
 public class RenderGrappHook extends Render
 {
-     private static final ResourceLocation glint = new ResourceLocation("textures/misc/enchanted_item_glint.png");
-     
-     
-     
-     
      public void renderGrappHook (EntityGrappHook grappHook, double x, double y, double z, float par8, float par9)
      {
           ItemStack stack = grappHook.stack;
@@ -107,8 +100,6 @@ public class RenderGrappHook extends Render
                     GL11.glDisable(GL11.GL_TEXTURE_2D);
                     GL11.glDisable(GL11.GL_LIGHTING);
                     GL11.glDisable(GL11.GL_CULL_FACE);
-                    boolean flag = true;
-                    double d19 = 0.025D;
                     tessellator.startDrawing(5);
                     int i;
                     float f2;

@@ -65,7 +65,7 @@ public class ItemHammer extends ItemWeapon
                
                int knockBackLvl = EnchantmentHelper.getEnchantmentLevel(Enchantment.knockback.effectId, stack) + 1;
                
-               List targets = player.worldObj.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getAABBPool().getAABB((double) i1, (double) i2, (double) i3, (double) i4, (double) i5, (double) i6));
+               List<Entity> targets = player.worldObj.getEntitiesWithinAABB(Entity.class, AxisAlignedBB.getAABBPool().getAABB((double) i1, (double) i2, (double) i3, (double) i4, (double) i5, (double) i6));
                
                Vec3 vec3 = world.getWorldVec3Pool().getVecFromPool(x, y, z);
                
@@ -98,7 +98,7 @@ public class ItemHammer extends ItemWeapon
                               {
                                    float damage = toolMaterialDelta.getDamageVsEntity() + 1;
                                    
-                                   boolean flag = entity.attackEntityFrom(new DamageSourceWeapon("tuxweapons:hammerSmash", entity, player, stack), damage);
+                                   entity.attackEntityFrom(new DamageSourceWeapon("tuxweapons:hammerSmash", entity, player, stack), damage);
                               }
                               
                               entity.addVelocity(0.0, 0.2, 0.0);

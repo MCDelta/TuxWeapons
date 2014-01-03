@@ -238,10 +238,10 @@ public class EntityTWThrowable extends Entity implements IProjectile, IEntityAdd
                }
                
                Entity entity = null;
-               List targets = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.addCoord(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
+               List<Entity> targets = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.addCoord(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
                
                double var7 = 0.0D;
-               Iterator iter = targets.iterator();
+               Iterator<Entity> iter = targets.iterator();
                float range;
                
                while (iter.hasNext())

@@ -65,9 +65,9 @@ public class ItemFireChargeCannon extends ItemDeltaBow
      
      
      @Override
-     public Multimap getItemAttributeModifiers ()
+     public Multimap<String, AttributeModifier> getItemAttributeModifiers ()
      {
-          Multimap multimap = super.getItemAttributeModifiers();
+          Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers();
           multimap.removeAll(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName());
           multimap.put(SharedMonsterAttributes.movementSpeed.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", -0.05D, 0));
           

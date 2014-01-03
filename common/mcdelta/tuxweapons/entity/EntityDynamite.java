@@ -3,7 +3,6 @@ package mcdelta.tuxweapons.entity;
 import mcdelta.tuxweapons.config.TWSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;

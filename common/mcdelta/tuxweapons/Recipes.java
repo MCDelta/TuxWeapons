@@ -12,16 +12,10 @@ public class Recipes
 {
      public static void addCraftingRecipes ()
      {
-          ItemStack netherack = new ItemStack(Item.netherrackBrick);
-          ItemStack magmaCore = new ItemStack(ItemTW.magmaCore);
-          ItemStack fireCharge = new ItemStack(Item.fireballCharge);
-          ItemStack blazePowder = new ItemStack(Item.blazePowder);
           ItemStack wood = new ItemStack(Block.planks);
           ItemStack iron = new ItemStack(Item.ingotIron);
           ItemStack string = new ItemStack(Item.silk);
           ItemStack feather = new ItemStack(Item.feather);
-          ItemStack bolt = new ItemStack(ItemTW.bolt);
-          ItemStack spiderEye = new ItemStack(Item.spiderEye);
           ItemStack gunpowder = new ItemStack(Item.gunpowder);
           ItemStack sand = new ItemStack(Block.sand);
           ItemStack redStone = new ItemStack(Item.redstone);

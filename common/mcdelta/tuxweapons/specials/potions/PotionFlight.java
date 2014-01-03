@@ -23,7 +23,6 @@ public class PotionFlight extends PotionTW
           {
                if (entity instanceof EntityPlayer)
                {
-                    EntityPlayer player = (EntityPlayer) entity;
                     GameSettings settings = null;
                     settings = Minecraft.getMinecraft().gameSettings;
                     

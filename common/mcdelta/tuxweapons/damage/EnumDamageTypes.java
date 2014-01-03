@@ -18,8 +18,8 @@ public enum EnumDamageTypes
      GOLDEN (new String[]
      { "enderman" });
      
-     public List<Item>   effc_item   = new ArrayList();
-     public List<String> effc_entity = new ArrayList();
+     public List<Item>   effc_item   = new ArrayList<Item>();
+     public List<String> effc_entity = new ArrayList<String>();
      
      
      static

@@ -1,11 +1,5 @@
 package mcdelta.tuxweapons.specials.potions;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.GameSettings;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraftforge.client.MinecraftForgeClient;
 
 public class PotionConfusion extends PotionTW
 {

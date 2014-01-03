@@ -32,8 +32,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBolt extends ItemTW implements IExtraPasses
 {
-     private int  type;
-     
      @SideOnly (Side.CLIENT)
      private Icon potionIcon;
      
@@ -175,9 +173,9 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      @SideOnly (Side.CLIENT)
      public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean extraInfo)
      {
-          List list1 = Item.potion.getEffects(stack);
-          HashMultimap hashmultimap = HashMultimap.create();
-          Iterator iterator;
+          List<PotionEffect> list1 = Item.potion.getEffects(stack);
+          HashMultimap<Object, Object> hashmultimap = HashMultimap.create();
+          Iterator<PotionEffect> iterator;
           
           if (list1 != null && !list1.isEmpty())
           {
@@ -188,15 +186,15 @@ public class ItemBolt extends ItemTW implements IExtraPasses
                     PotionEffect potioneffect = (PotionEffect) iterator.next();
                     String s = StatCollector.translateToLocal(potioneffect.getEffectName()).trim();
                     Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
-                    Map map = potion.func_111186_k();
+                    Map<Attribute, AttributeModifier> map = potion.func_111186_k();
                     
                     if (map != null && map.size() > 0)
                     {
-                         Iterator iterator1 = map.entrySet().iterator();
+                         Iterator<Entry<Attribute, AttributeModifier>> iterator1 = map.entrySet().iterator();
                          
                          while (iterator1.hasNext())
                          {
-                              Entry entry = (Entry) iterator1.next();
+                              Entry<Attribute, AttributeModifier> entry = (Entry<Attribute, AttributeModifier>) iterator1.next();
                               AttributeModifier attributemodifier = (AttributeModifier) entry.getValue();
                               AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), potion.func_111183_a(potioneffect.getAmplifier(), attributemodifier), attributemodifier.getOperation());
                               hashmultimap.put(((Attribute) entry.getKey()).getAttributeUnlocalizedName(), attributemodifier1);
@@ -233,11 +231,11 @@ public class ItemBolt extends ItemTW implements IExtraPasses
           {
                list.add("");
                list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("potion.effects.whenDrank"));
-               iterator = hashmultimap.entries().iterator();
+               Iterator<Entry<Object, Object>> iterator2 = hashmultimap.entries().iterator();
                
-               while (iterator.hasNext())
+               while (iterator2.hasNext())
                {
-                    Entry entry1 = (Entry) iterator.next();
+                    Entry<Object, Object> entry1 = (Entry<Object, Object>) iterator2.next();
                     AttributeModifier attributemodifier2 = (AttributeModifier) entry1.getValue();
                     double d0 = attributemodifier2.getAmount();
                     double d1;

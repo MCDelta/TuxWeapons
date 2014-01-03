@@ -109,7 +109,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                         }
                                    }
                                    
-                                   if (modification.contains("splash") && !Item.potion.isSplash(stack.getItemDamage()))
+                                   if (modification.contains("splash") && !ItemPotion.isSplash(stack.getItemDamage()))
                                    {
                                         return true;
                                    }
@@ -297,7 +297,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                               {
                                    if (effects == null)
                                    {
-                                        effects = new ArrayList();
+                                        effects = new ArrayList<PotionEffect>();
                                    }
                                    
                                    Potion potion = Potions.itemToPotion.get(input.getItem());
@@ -416,7 +416,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                         //
                                         //
                                         
-                                        if (modification.contains("splash") && !Item.potion.isSplash(stack.getItemDamage()))
+                                        if (modification.contains("splash") && !ItemPotion.isSplash(stack.getItemDamage()))
                                         {
                                              stack.setItemDamage(TWNBTTags.SPLASH_ID);
                                              
@@ -464,10 +464,10 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                         
                                         else
                                         {
-                                             effects = new ArrayList();
+                                             effects = new ArrayList<PotionEffect>();
                                              effects.add(new PotionEffect(Potion.weakness.id, Potions.time / 2));
                                              
-                                             if (!Item.potion.isSplash(stack.getItemDamage()))
+                                             if (!ItemPotion.isSplash(stack.getItemDamage()))
                                              {
                                                   stack.setItemDamage(16);
                                              }

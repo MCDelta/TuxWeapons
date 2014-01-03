@@ -5,20 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 
 public class Potions
 {
-     public static Map<Item, Potion>     itemToPotion    = new HashMap();
-     public static Map<Potion, Item>     potionToItem    = new HashMap();
-     public static Map<Item, String>     modifiers       = new HashMap();
-     public static Map<Integer, Integer> corruption      = new HashMap();
-     public static List<Potion>          nonUpgradable   = new ArrayList();
-     public static List<Potion>          nonInifinite    = new ArrayList();
-     public static List<Potion>          badPotions      = new ArrayList();
-     public static List<Potion>          creativeTab     = new ArrayList();
+     public static Map<Item, Potion>     itemToPotion    = new HashMap<Item, Potion>();
+     public static Map<Potion, Item>     potionToItem    = new HashMap<Potion, Item>();
+     public static Map<Item, String>     modifiers       = new HashMap<Item, String>();
+     public static Map<Integer, Integer> corruption      = new HashMap<Integer, Integer>();
+     public static List<Potion>          nonUpgradable   = new ArrayList<Potion>();
+     public static List<Potion>          nonInifinite    = new ArrayList<Potion>();
+     public static List<Potion>          badPotions      = new ArrayList<Potion>();
+     public static List<Potion>          creativeTab     = new ArrayList<Potion>();
      
      public static int                   timeLvl2        = 9600;
      public static int                   time            = 3600;
