@@ -1,7 +1,7 @@
 package mcdelta.tuxweapons.event;
 
 import mcdelta.core.DeltaCore;
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.config.TWSettings;
 import mcdelta.tuxweapons.item.ItemTW;
 import mcdelta.tuxweapons.specials.enchant.EnchantmentTW;
@@ -148,7 +148,7 @@ public class EventEnchants
                     
                     if (f >= TWSettings.DAMAGE_MODIFIER_STRIKE + strikeLvl - 1)
                     {
-                         TuxWeaponsCore.spawnParticle(3, event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, event.entityLiving, 0xffffff, 1, 20, false);
+                         TuxWeapons.spawnParticle(3, event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, event.entityLiving, 0xffffff, 1, 20, false);
                     }
                }
           }

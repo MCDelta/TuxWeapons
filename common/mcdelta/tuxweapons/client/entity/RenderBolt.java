@@ -1,6 +1,6 @@
 package mcdelta.tuxweapons.client.entity;
 
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.entity.EntityBolt;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderBolt extends Render
 {
-    private ResourceLocation location = new ResourceLocation(TuxWeaponsCore.MOD_ID.toLowerCase(), "textures/models/weapons.png");
+    private ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/weapons.png");
 
     public void renderBolt(EntityBolt bolt, double x, double y, double z, float par8, float par9)
     {

@@ -1,9 +1,6 @@
 package mcdelta.tuxweapons.specials.potions;
 
-import mcdelta.core.DeltaCore;
-import mcdelta.core.EnumMCDMods;
-import mcdelta.core.config.Config;
-import mcdelta.core.config.Settings;
+import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
@@ -32,8 +29,8 @@ public class PotionTW extends Potion
      
      protected PotionTW (String s, boolean bad, int color, int x, int y)
      {
-          super(DeltaCore.config.getPotionID(EnumMCDMods.TUXWEAPONS, s), bad, color);
-          this.setPotionName("potion." + EnumMCDMods.TUXWEAPONS.modid.toLowerCase() + ":" + s);
+          super(TuxWeapons.instance.config().getPotionID(s), bad, color);
+          this.setPotionName("potion." + TuxWeapons.instance.id().toLowerCase() + ":" + s);
           this.setIconIndex(x, y);
      }
      

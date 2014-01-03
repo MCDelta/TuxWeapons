@@ -1,6 +1,6 @@
 package mcdelta.tuxweapons.client.item;
 
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.client.model.ModelFireChargeCannon;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11;
 public class RenderFireChargeCannon implements IItemRenderer
 {
     ModelFireChargeCannon    cannonModel;
-    private ResourceLocation location = new ResourceLocation(TuxWeaponsCore.MOD_ID.toLowerCase(), "textures/models/FireChargeCannon.png");
+    private ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/FireChargeCannon.png");
     private Minecraft        mc;
 
     public RenderFireChargeCannon()

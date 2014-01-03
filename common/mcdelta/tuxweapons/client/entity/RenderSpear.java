@@ -53,8 +53,6 @@ public class RenderSpear extends Render
                     shiny[i] = ((IExtraPasses) stack.getItem()).getShinyFromPass(stack, i + 1);
                }
                
-               TextureManager engine = Minecraft.getMinecraft().getTextureManager();
-               
                GL11.glTranslatef((float) par2, (float) par4, (float) par6);
                
                GL11.glRotatef(spear.prevRotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);
@@ -71,7 +69,7 @@ public class RenderSpear extends Render
                float scale = 1.5F;
                GL11.glScalef(scale, scale, scale);
                
-               RenderAssets.renderItemInWorld(stack, engine, passes, icons, colors, shiny);
+               RenderAssets.renderItemInWorld(stack, passes, icons, colors, shiny);
                
                GL11.glPopMatrix();
           }

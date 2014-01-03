@@ -54,8 +54,6 @@ public class RenderGrappHook extends Render
                     shiny[i] = ((IExtraPasses) stack.getItem()).getShinyFromPass(stack, i + 1);
                }
                
-               TextureManager engine = Minecraft.getMinecraft().getTextureManager();
-               
                GL11.glTranslatef((float) x, (float) y + 0.04F, (float) z);
                
                GL11.glRotatef(grappHook.prevRotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);
@@ -72,7 +70,7 @@ public class RenderGrappHook extends Render
                float scale = 1.5F;
                GL11.glScalef(scale, scale, scale);
                
-               RenderAssets.renderItemInWorld(stack, engine, passes, icons, colors, shiny);
+               RenderAssets.renderItemInWorld(stack, passes, icons, colors, shiny);
                
                GL11.glPopMatrix();
                

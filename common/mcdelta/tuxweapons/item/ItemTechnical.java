@@ -2,7 +2,7 @@ package mcdelta.tuxweapons.item;
 
 import java.util.List;
 
-import mcdelta.core.data.NBTTags;
+import mcdelta.tuxweapons.TWNBTTags;
 import mcdelta.tuxweapons.specials.potions.Potions;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -73,7 +73,7 @@ public class ItemTechnical extends ItemTW
                          
                          if (splash)
                          {
-                              stack.setItemDamage(NBTTags.SPLASH_ID);
+                              stack.setItemDamage(TWNBTTags.SPLASH_ID);
                               effect.duration /= 2;
                          }
                          
@@ -85,7 +85,7 @@ public class ItemTechnical extends ItemTW
                          tags.appendTag(effect.writeCustomPotionEffectToNBT(new NBTTagCompound()));
                          
                          stack.stackTagCompound = new NBTTagCompound();
-                         stack.stackTagCompound.setTag(NBTTags.POTION_EFFECTS, tags);
+                         stack.stackTagCompound.setTag(TWNBTTags.POTION_EFFECTS, tags);
                          
                          list.add(stack);
                     }

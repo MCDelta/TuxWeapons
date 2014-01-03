@@ -3,11 +3,11 @@ package mcdelta.tuxweapons.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.assets.world.Position;
 import mcdelta.core.item.ItemDeltaTool;
 import mcdelta.core.material.ToolMaterial;
+import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -30,7 +30,7 @@ public class ItemWhock extends ItemDeltaTool
 {
      public ItemWhock (ToolMaterial mat)
      {
-          super(EnumMCDMods.TUXWEAPONS, "whock", mat, ItemPickaxe.blocksEffectiveAgainst, 2.0F);
+          super(TuxWeapons.instance, "whock", mat, ItemPickaxe.blocksEffectiveAgainst, 2.0F);
      }
      
      
@@ -244,7 +244,7 @@ public class ItemWhock extends ItemDeltaTool
           itemIcon = doRegister("tuxweapons", toolName + "_1", register);
           itemOverlay = doRegister("tuxweapons", toolName + "_2", register);
           
-          overrideExists = Assets.rescourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          overrideExists = Assets.resourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
           
           if (overrideExists)
           {

@@ -1,19 +1,19 @@
 package mcdelta.tuxweapons.item;
 
-import com.google.common.collect.Multimap;
-
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.item.ItemDeltaBow;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.entity.EntityTWFireball;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import com.google.common.collect.Multimap;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -21,7 +21,7 @@ public class ItemFireChargeCannon extends ItemDeltaBow
 {
      public ItemFireChargeCannon ()
      {
-          super(EnumMCDMods.TUXWEAPONS, "fireChargeCannon", new Item[]
+          super(TuxWeapons.instance, "fireChargeCannon", new Item[]
           { Item.fireballCharge });
           this.setMaxDamage(100);
           this.maxStackSize = 1;

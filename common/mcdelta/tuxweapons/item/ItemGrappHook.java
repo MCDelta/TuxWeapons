@@ -3,13 +3,13 @@ package mcdelta.tuxweapons.item;
 import java.util.List;
 
 import mcdelta.core.DeltaCore;
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.item.IExtraPasses;
-import mcdelta.core.data.NBTTags;
-import mcdelta.core.data.PlayerData;
 import mcdelta.core.item.ItemDelta;
 import mcdelta.core.material.ToolMaterial;
+import mcdelta.tuxweapons.PlayerData;
+import mcdelta.tuxweapons.TWNBTTags;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.entity.EntityGrappHook;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,7 +45,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      public ItemGrappHook (ToolMaterial mat)
      {
-          super(EnumMCDMods.TUXWEAPONS, mat.getName() + "." + "grappHook", false);
+          super(TuxWeapons.instance, mat.getName() + "." + "grappHook", false);
           
           this.toolName = "grappHook";
           this.toolMaterial = mat;
@@ -85,7 +85,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      {
           PlayerData data = new PlayerData(player);
           
-          if (data.tag.getInteger(NBTTags.GRAPP) == -1)
+          if (data.tag.getInteger(TWNBTTags.GRAPP) == -1)
           {
                ArrowNockEvent event = new ArrowNockEvent(player, stack);
                MinecraftForge.EVENT_BUS.post(event);
@@ -101,9 +101,9 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
           
           player.swingItem();
           
-          if (world.getEntityByID(data.tag.getInteger(NBTTags.GRAPP)) instanceof EntityGrappHook)
+          if (world.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP)) instanceof EntityGrappHook)
           {
-               EntityGrappHook grappHook = (EntityGrappHook) world.getEntityByID(data.tag.getInteger(NBTTags.GRAPP));
+               EntityGrappHook grappHook = (EntityGrappHook) world.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP));
                
                if (grappHook != null)
                {
@@ -112,7 +112,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
                          stack.damageItem((int) (Math.sqrt(Math.pow((Math.abs(grappHook.posX - player.posX)), 2) + Math.pow((Math.abs(grappHook.posY - player.posY)), 2) + Math.pow((Math.abs(grappHook.posZ - player.posZ)), 2))) / 2, player);
                     }
                     
-                    data.tag.setInteger(NBTTags.GRAPP, -1);
+                    data.tag.setInteger(TWNBTTags.GRAPP, -1);
                     data.save();
                     
                     grappHook.setDead();
@@ -121,7 +121,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
           
           else
           {
-               data.tag.setInteger(NBTTags.GRAPP, -1);
+               data.tag.setInteger(TWNBTTags.GRAPP, -1);
                data.save();
           }
           
@@ -203,14 +203,14 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public void registerIcons (IconRegister register)
      {
-          this.itemIcon = ItemDelta.doRegister(mod.modid.toLowerCase(), toolName + "_1", register);
-          this.itemOverlay = ItemDelta.doRegister(mod.modid.toLowerCase(), toolName + "_2", register);
+          this.itemIcon = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_1", register);
+          this.itemOverlay = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_2", register);
           
-          overrideExists = Assets.rescourceExists(new ResourceLocation(mod.modid.toLowerCase(), "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          overrideExists = Assets.resourceExists(new ResourceLocation(mod.id().toLowerCase(), "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
           
           if (overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(mod.modid.toLowerCase(), "override/" + toolMaterial.getName().toLowerCase() + "_" + toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(mod.id().toLowerCase(), "override/" + toolMaterial.getName().toLowerCase() + "_" + toolName, register);
           }
      }
      

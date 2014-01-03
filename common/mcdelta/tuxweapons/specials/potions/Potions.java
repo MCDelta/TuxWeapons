@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 

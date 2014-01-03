@@ -3,13 +3,12 @@ package mcdelta.tuxweapons;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.BASHER;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.GOLDEN;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.SLASHER;
-import mcdelta.core.DeltaCore;
 import mcdelta.core.ModDelta;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.particle.EnumParticles;
 import mcdelta.core.network.PacketHandler;
 import mcdelta.tuxweapons.block.BlockTW;
-import mcdelta.tuxweapons.config.TWSettings;
+import mcdelta.tuxweapons.config.TWConfig;
 import mcdelta.tuxweapons.damage.DamageModifier;
 import mcdelta.tuxweapons.entity.EntityBolt;
 import mcdelta.tuxweapons.entity.EntityDynamite;
@@ -48,10 +47,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod (modid = TuxWeaponsCore.MOD_ID, name = "TuxWeapons", useMetadata = true, version = "1.1a")
+@Mod (modid = TuxWeapons.MOD_ID, name = "TuxWeapons", useMetadata = true, version = "1.1a")
 @NetworkMod (clientSideRequired = true, serverSideRequired = false, channels =
-{ TuxWeaponsCore.MOD_ID }, packetHandler = PacketHandler.class)
-public class TuxWeaponsCore implements ModDelta
+{ TuxWeapons.MOD_ID }, packetHandler = PacketHandler.class)
+public class TuxWeapons extends ModDelta
 {
      // TODO
      // - beheading enchant
@@ -60,15 +59,13 @@ public class TuxWeaponsCore implements ModDelta
      // - reimplement ukulele
      // - retexture magma core
      
-     public static final String   MOD_ID         = "TuxWeapons";
+     public static final String   MOD_ID = "TuxWeapons";
      
-     @Instance (TuxWeaponsCore.MOD_ID)
-     public static TuxWeaponsCore instance;
+     @Instance (MOD_ID)
+     public static TuxWeapons instance;
      
      @SidedProxy (clientSide = "mcdelta.tuxweapons.proxy.TWClientProxy", serverSide = "mcdelta.tuxweapons.proxy.TWCommonProxy")
      public static TWCommonProxy  proxy;
-     
-     private String               cfg_tuxweapons = "tuxweapons";
      
      
      
@@ -76,8 +73,12 @@ public class TuxWeaponsCore implements ModDelta
      @EventHandler
      public void preInit (FMLPreInitializationEvent event)
      {
+          init(event);
+          
           PacketHandler.packets[2] = PacketSpawnParticle.class;
           PacketHandler.packets[3] = PacketThrowablePickup.class;
+          
+          this.init(event, new TWConfig());
      }
      
      
@@ -89,9 +90,6 @@ public class TuxWeaponsCore implements ModDelta
           ItemTW.hammers.isEmpty();
           BlockTW.redstoneTmpBlock.getBlockBoundsMinZ();
           EnchantmentTW.drawback.getClass();
-          
-          DeltaCore.config.addConfig(cfg_tuxweapons);
-          TWSettings.initTWConfig(DeltaCore.config.getConfig(cfg_tuxweapons));
           
           MinecraftForge.EVENT_BUS.register(new EventEnchants());
           MinecraftForge.EVENT_BUS.register(new DamageModifier());
@@ -152,14 +150,6 @@ public class TuxWeaponsCore implements ModDelta
           EntityRegistry.registerModEntity(EntityBolt.class, MOD_ID.toLowerCase() + ":" + "bolt", 5, this, 64, 3, true);
           EntityRegistry.registerModEntity(EntityDynamite.class, MOD_ID.toLowerCase() + ":" + "dynamite", 6, this, 64, 3, true);
           EntityRegistry.registerModEntity(EntityEMPGrenade.class, MOD_ID.toLowerCase() + ":" + "empGrenade", 7, this, 64, 3, true);
-     }
-     
-     
-     
-     
-     @Override
-     public void doThings (Stage stage)
-     {
      }
      
      

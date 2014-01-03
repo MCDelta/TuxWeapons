@@ -1,6 +1,6 @@
 package mcdelta.tuxweapons.client.entity;
 
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.client.model.ModelDynamite;
 import mcdelta.tuxweapons.entity.EntityDynamite;
 import net.minecraft.client.renderer.entity.Render;
@@ -18,7 +18,7 @@ public class RenderDynamite extends Render
 {
      
      ModelDynamite            model    = new ModelDynamite();
-     private ResourceLocation location = new ResourceLocation(TuxWeaponsCore.MOD_ID.toLowerCase(), "textures/models/weapons.png");
+     private ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/weapons.png");
      
      
      

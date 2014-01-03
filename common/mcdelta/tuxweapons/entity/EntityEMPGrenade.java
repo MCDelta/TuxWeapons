@@ -1,6 +1,6 @@
 package mcdelta.tuxweapons.entity;
 
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.block.BlockTW;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;

@@ -1,12 +1,12 @@
 package mcdelta.tuxweapons.item;
 
 import mcdelta.core.DeltaCore;
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.core.item.ItemDelta;
 import mcdelta.core.material.ToolMaterial;
 import mcdelta.core.proxy.ClientProxy;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.client.item.RenderShield;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -40,7 +40,7 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      
      public ItemShield (ToolMaterial mat)
      {
-          super(EnumMCDMods.TUXWEAPONS, mat.getName() + "." + "shield", false);
+          super(TuxWeapons.instance, mat.getName() + "." + "shield", false);
           
           this.toolName = "shield";
           this.toolMaterial = mat;
@@ -95,14 +95,14 @@ public class ItemShield extends ItemDelta implements IExtraPasses
      @Override
      public void registerIcons (IconRegister register)
      {
-          this.itemIcon = ItemDelta.doRegister(mod.modid.toLowerCase(), toolName + "_1", register);
-          this.itemOverlay = ItemDelta.doRegister(mod.modid.toLowerCase(), toolName + "_2", register);
+          this.itemIcon = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_1", register);
+          this.itemOverlay = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_2", register);
           
-          overrideExists = Assets.rescourceExists(new ResourceLocation(mod.modid.toLowerCase(), "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          overrideExists = Assets.resourceExists(new ResourceLocation(mod.id().toLowerCase(), "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
           
           if (overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(mod.modid.toLowerCase(), "override/" + toolMaterial.getName().toLowerCase() + "_" + toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(mod.id().toLowerCase(), "override/" + toolMaterial.getName().toLowerCase() + "_" + toolName, register);
           }
      }
      

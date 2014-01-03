@@ -1,7 +1,7 @@
 package mcdelta.tuxweapons.handlers;
 
-import mcdelta.core.data.NBTTags;
-import mcdelta.core.data.PlayerData;
+import mcdelta.tuxweapons.PlayerData;
+import mcdelta.tuxweapons.TWNBTTags;
 import mcdelta.tuxweapons.entity.EntityGrappHook;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.IPlayerTracker;
@@ -9,20 +9,28 @@ import cpw.mods.fml.common.IPlayerTracker;
 public class PlayerTracker implements IPlayerTracker
 {
      
-     @Override
-     public void onPlayerLogin (EntityPlayer player)
+     private void removeGrappHook (EntityPlayer player)
      {
           PlayerData data = new PlayerData(player);
-          if (player.worldObj.getEntityByID(data.tag.getInteger(NBTTags.GRAPP)) instanceof EntityGrappHook)
+          if (player.worldObj.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP)) instanceof EntityGrappHook)
           {
-               EntityGrappHook grappHook = (EntityGrappHook) player.worldObj.getEntityByID(data.tag.getInteger(NBTTags.GRAPP));
+               EntityGrappHook grappHook = (EntityGrappHook) player.worldObj.getEntityByID(data.tag.getInteger(TWNBTTags.GRAPP));
                if (grappHook != null)
                {
                     grappHook.setDead();
                }
-               data.tag.setInteger(NBTTags.GRAPP, -1);
+               data.tag.setInteger(TWNBTTags.GRAPP, -1);
                data.save();
           }
+     }
+     
+     
+     
+     
+     @Override
+     public void onPlayerLogin (EntityPlayer player)
+     {
+          removeGrappHook(player);
      }
      
      
@@ -31,17 +39,7 @@ public class PlayerTracker implements IPlayerTracker
      @Override
      public void onPlayerLogout (EntityPlayer player)
      {
-          PlayerData data = new PlayerData(player);
-          if (player.worldObj.getEntityByID(data.tag.getInteger(NBTTags.GRAPP)) instanceof EntityGrappHook)
-          {
-               EntityGrappHook grappHook = (EntityGrappHook) player.worldObj.getEntityByID(data.tag.getInteger(NBTTags.GRAPP));
-               if (grappHook != null)
-               {
-                    grappHook.setDead();
-               }
-               data.tag.setInteger(NBTTags.GRAPP, -1);
-               data.save();
-          }
+          removeGrappHook(player);
      }
      
      
@@ -50,17 +48,7 @@ public class PlayerTracker implements IPlayerTracker
      @Override
      public void onPlayerChangedDimension (EntityPlayer player)
      {
-          PlayerData data = new PlayerData(player);
-          if (player.worldObj.getEntityByID(data.tag.getInteger(NBTTags.GRAPP)) instanceof EntityGrappHook)
-          {
-               EntityGrappHook grappHook = (EntityGrappHook) player.worldObj.getEntityByID(data.tag.getInteger(NBTTags.GRAPP));
-               if (grappHook != null)
-               {
-                    grappHook.setDead();
-               }
-               data.tag.setInteger(NBTTags.GRAPP, -1);
-               data.save();
-          }
+          removeGrappHook(player);
      }
      
      
@@ -69,16 +57,6 @@ public class PlayerTracker implements IPlayerTracker
      @Override
      public void onPlayerRespawn (EntityPlayer player)
      {
-          PlayerData data = new PlayerData(player);
-          if (player.worldObj.getEntityByID(data.tag.getInteger(NBTTags.GRAPP)) instanceof EntityGrappHook)
-          {
-               EntityGrappHook grappHook = (EntityGrappHook) player.worldObj.getEntityByID(data.tag.getInteger(NBTTags.GRAPP));
-               if (grappHook != null)
-               {
-                    grappHook.setDead();
-               }
-               data.tag.setInteger(NBTTags.GRAPP, -1);
-               data.save();
-          }
+          removeGrappHook(player);
      }
 }

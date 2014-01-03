@@ -1,8 +1,7 @@
 package mcdelta.tuxweapons.specials.enchant;
 
-import mcdelta.core.EnumMCDMods;
-import mcdelta.core.config.Settings;
 import mcdelta.core.special.enchant.EnchantmentDelta;
+import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.enchantment.EnumEnchantmentType;
 
 public class EnchantmentTW extends EnchantmentDelta
@@ -22,7 +21,7 @@ public class EnchantmentTW extends EnchantmentDelta
      
      public EnchantmentTW (String s, int rarity, EnumEnchantmentType enchType)
      {
-          super(EnumMCDMods.TUXWEAPONS, s, rarity, enchType);
+          super(TuxWeapons.instance, s, rarity, enchType);
      }
      
      

@@ -2,14 +2,10 @@ package mcdelta.tuxweapons.item;
 
 import java.util.List;
 
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.assets.Assets;
-import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.core.item.ItemWeapon;
 import mcdelta.core.material.ToolMaterial;
-import mcdelta.core.proxy.ClientProxy;
-import mcdelta.tuxweapons.TuxWeaponsCore;
-import mcdelta.tuxweapons.damage.DamageModifier;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.damage.DamageSourceWeapon;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -29,7 +25,7 @@ public class ItemHammer extends ItemWeapon
      
      public ItemHammer (ToolMaterial mat)
      {
-          super("hammer", EnumMCDMods.TUXWEAPONS, mat, 3.0F);
+          super("hammer", TuxWeapons.instance, mat, 3.0F);
           this.setMaxDamage((int) ((float) mat.getMaxUses() * 0.9F));
      }
      
@@ -123,7 +119,7 @@ public class ItemHammer extends ItemWeapon
                
                if (Assets.isClient())
                {
-                    TuxWeaponsCore.spawnParticle(0, world, x, y - 1, z, 4, id);
+                    TuxWeapons.spawnParticle(0, world, x, y - 1, z, 4, id);
                }
                
                player.worldObj.playSoundEffect(x, y, z, "random.explode", 0.2F, (0.5F + (player.worldObj.rand.nextFloat() - player.worldObj.rand.nextFloat()) * 0.2F) * 0.7F);

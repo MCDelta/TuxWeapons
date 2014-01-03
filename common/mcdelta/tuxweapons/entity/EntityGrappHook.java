@@ -1,8 +1,7 @@
 package mcdelta.tuxweapons.entity;
 
-import mcdelta.core.assets.Assets;
-import mcdelta.core.data.NBTTags;
-import mcdelta.core.data.PlayerData;
+import mcdelta.tuxweapons.PlayerData;
+import mcdelta.tuxweapons.TWNBTTags;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,7 +24,7 @@ public class EntityGrappHook extends EntityTWThrowable
           if (owner instanceof EntityPlayer)
           {
                PlayerData data = new PlayerData((EntityPlayer) owner);
-               data.tag.setInteger(NBTTags.GRAPP, entityId);
+               data.tag.setInteger(TWNBTTags.GRAPP, entityId);
                data.save();
           }
      }
@@ -39,7 +38,7 @@ public class EntityGrappHook extends EntityTWThrowable
           if (owner != null)
           {
                PlayerData data = new PlayerData((EntityPlayer) owner);
-               data.tag.setInteger(NBTTags.GRAPP, -1);
+               data.tag.setInteger(TWNBTTags.GRAPP, -1);
                data.save();
           }
      }

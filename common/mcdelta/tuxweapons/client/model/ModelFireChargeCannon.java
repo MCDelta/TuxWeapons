@@ -1,6 +1,6 @@
 package mcdelta.tuxweapons.client.model;
 
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ModelFireChargeCannon extends ModelBase
 {
-    private ResourceLocation location = new ResourceLocation(TuxWeaponsCore.MOD_ID.toLowerCase(), "textures/models/weapons.png");
+    private ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/weapons.png");
 
     public ModelRenderer     Shape1;
     public ModelRenderer     Shape2;

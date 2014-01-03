@@ -3,9 +3,9 @@ package mcdelta.tuxweapons.item;
 import java.util.HashMap;
 import java.util.Map;
 
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.item.ItemDelta;
 import mcdelta.core.material.ToolMaterial;
+import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.creativetab.CreativeTabs;
 
 public class ItemTW extends ItemDelta
@@ -69,7 +69,7 @@ public class ItemTW extends ItemDelta
      
      public ItemTW (String s, boolean b)
      {
-          super(EnumMCDMods.TUXWEAPONS, s, b);
+          super(TuxWeapons.instance, s, b);
           this.setCreativeTab(CreativeTabs.tabCombat);
      }
      
@@ -78,7 +78,7 @@ public class ItemTW extends ItemDelta
      
      public ItemTW (String s)
      {
-          super(EnumMCDMods.TUXWEAPONS, s);
+          super(TuxWeapons.instance, s);
           this.setCreativeTab(CreativeTabs.tabCombat);
      }
      

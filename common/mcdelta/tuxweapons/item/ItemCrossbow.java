@@ -1,9 +1,8 @@
 package mcdelta.tuxweapons.item;
 
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.item.ItemDeltaBow;
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.entity.EntityBolt;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
@@ -43,7 +42,7 @@ public class ItemCrossbow extends ItemDeltaBow
      
      public ItemCrossbow ()
      {
-          super(EnumMCDMods.TUXWEAPONS, "crossBow", new Item[]
+          super(TuxWeapons.instance, "crossBow", new Item[]
           { ItemTW.bolt });
      }
      
@@ -53,12 +52,12 @@ public class ItemCrossbow extends ItemDeltaBow
      @Override
      public void registerIcons (IconRegister iconRegister)
      {
-          this.itemIcon = iconRegister.registerIcon(TuxWeaponsCore.MOD_ID + ":" + name);
-          this.bowPull_0 = iconRegister.registerIcon(TuxWeaponsCore.MOD_ID + ":" + "crossBow_pull_0");
-          this.bowPull_1 = iconRegister.registerIcon(TuxWeaponsCore.MOD_ID + ":" + "crossBow_pull_1");
-          this.bowPull_2 = iconRegister.registerIcon(TuxWeaponsCore.MOD_ID + ":" + "crossBow_pull_2");
-          this.bowPull_3 = iconRegister.registerIcon(TuxWeaponsCore.MOD_ID + ":" + "crossBow_pull_3");
-          this.bowPull_4 = iconRegister.registerIcon(TuxWeaponsCore.MOD_ID + ":" + "crossBow_pull_4");
+          this.itemIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + name);
+          this.bowPull_0 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_0");
+          this.bowPull_1 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_1");
+          this.bowPull_2 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_2");
+          this.bowPull_3 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_3");
+          this.bowPull_4 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_4");
      }
      
      

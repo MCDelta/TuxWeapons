@@ -3,8 +3,7 @@ package mcdelta.tuxweapons.block.tileentity;
 import java.util.ArrayList;
 import java.util.List;
 
-import mcdelta.core.assets.Assets;
-import mcdelta.core.data.NBTTags;
+import mcdelta.tuxweapons.TWNBTTags;
 import mcdelta.tuxweapons.specials.potions.Potions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -90,7 +89,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                    {
                                         if (!(effects.get(l).duration >= 240000))
                                         {
-                                             if (modification.contains("time") && !stack.stackTagCompound.hasKey(NBTTags.REDSTONE_USED))
+                                             if (modification.contains("time") && !stack.stackTagCompound.hasKey(TWNBTTags.REDSTONE_USED))
                                              {
                                                   if (!Potion.potionTypes[effects.get(l).getPotionID()].isInstant())
                                                   {
@@ -334,7 +333,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                         {
                                              for (int l = 0; l < effects.size(); l++)
                                              {
-                                                  if (modification.contains("time") && !stack.stackTagCompound.hasKey(NBTTags.REDSTONE_USED))
+                                                  if (modification.contains("time") && !stack.stackTagCompound.hasKey(TWNBTTags.REDSTONE_USED))
                                                   {
                                                        double time;
                                                        
@@ -358,7 +357,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                                             effects.add(0, effect);
                                                        }
                                                        
-                                                       stack.stackTagCompound.setBoolean(NBTTags.REDSTONE_USED, true);
+                                                       stack.stackTagCompound.setBoolean(TWNBTTags.REDSTONE_USED, true);
                                                        success = true;
                                                   }
                                                   
@@ -419,7 +418,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                         
                                         if (modification.contains("splash") && !Item.potion.isSplash(stack.getItemDamage()))
                                         {
-                                             stack.setItemDamage(NBTTags.SPLASH_ID);
+                                             stack.setItemDamage(TWNBTTags.SPLASH_ID);
                                              
                                              for (int l = 0; l < effects.size(); l++)
                                              {
@@ -529,7 +528,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                         }
                                    }
                                    
-                                   stack.stackTagCompound.setTag(NBTTags.POTION_EFFECTS, tagList);
+                                   stack.stackTagCompound.setTag(TWNBTTags.POTION_EFFECTS, tagList);
                               }
                               
                               int vanillaResult = this.getPotionResult(stack.getItemDamage(), input);

@@ -3,12 +3,12 @@ package mcdelta.tuxweapons.item;
 import java.util.List;
 
 import mcdelta.core.DeltaCore;
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.core.item.ItemDelta;
 import mcdelta.core.item.ItemDeltaPickaxe;
 import mcdelta.core.material.ToolMaterial;
+import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -39,7 +39,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      
      public ItemWhockCrafter (ToolMaterial mat)
      {
-          super(EnumMCDMods.TUXWEAPONS, mat.getName() + ".whockCrafter", false);
+          super(TuxWeapons.instance, mat.getName() + ".whockCrafter", false);
           
           this.toolName = "whockCrafter";
           this.toolMaterial = mat;
@@ -139,12 +139,12 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      public String getItemDisplayName (ItemStack stack)
      {
           ToolMaterial mat = toolMaterial;
-
+          
           
           String weapon = StatCollector.translateToLocal("tool." + toolName);
           String material = StatCollector.translateToLocal("material." + mat.getName());
           
-          if(stack.getItemDamage() != spawnDamage)
+          if (stack.getItemDamage() != spawnDamage)
           {
                weapon = StatCollector.translateToLocal("tool.whock");
           }
@@ -158,13 +158,13 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      @Override
      public void registerIcons (IconRegister register)
      {
-          this.itemIcon = ItemDelta.doRegister(mod.modid.toLowerCase(), toolName, register);
+          this.itemIcon = ItemDelta.doRegister(mod.id().toLowerCase(), toolName, register);
           
-          overrideExists = Assets.rescourceExists(new ResourceLocation(mod.modid.toLowerCase(), "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          overrideExists = Assets.resourceExists(new ResourceLocation(mod.id().toLowerCase(), "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
           
           if (overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(mod.modid.toLowerCase(), "override/" + toolMaterial.getName().toLowerCase() + "_" + toolName, register);
+               this.overrideIcon = ItemDelta.doRegister(mod.id().toLowerCase(), "override/" + toolMaterial.getName().toLowerCase() + "_" + toolName, register);
           }
      }
      

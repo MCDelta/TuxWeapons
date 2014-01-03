@@ -1,14 +1,12 @@
 package mcdelta.tuxweapons.damage;
 
-import static mcdelta.core.assets.Assets.log;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.BASHER;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.GOLDEN;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.SLASHER;
 
 import java.util.Random;
 
-import mcdelta.core.assets.Assets;
-import mcdelta.tuxweapons.TuxWeaponsCore;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.config.TWSettings;
 import mcdelta.tuxweapons.item.ItemMace;
 import mcdelta.tuxweapons.item.ItemShield;
@@ -52,13 +50,13 @@ public class DamageModifier
                     {
                          if (BASHER.effc_item.contains(stack.getItem()))
                          {
-                              TuxWeaponsCore.spawnParticle(1, world, x, y, z, entity, 0xAB3D3D, 1, 20, false);
+                              TuxWeapons.spawnParticle(1, world, x, y, z, entity, 0xAB3D3D, 1, 20, false);
                               f += i1;
                          }
                          
                          else
                          {
-                              TuxWeaponsCore.spawnParticle(2, world, x, y, z, entity, stack, 2, 2);
+                              TuxWeapons.spawnParticle(2, world, x, y, z, entity, stack, 2, 2);
                               f -= i2;
                          }
                     }
@@ -67,13 +65,13 @@ public class DamageModifier
                     {
                          if (SLASHER.effc_item.contains(stack.getItem()))
                          {
-                              TuxWeaponsCore.spawnParticle(1, world, x, y, z, entity, 0xAB3D3D, 1, 20, false);
+                              TuxWeapons.spawnParticle(1, world, x, y, z, entity, 0xAB3D3D, 1, 20, false);
                               f += i1;
                          }
                          
                          else
                          {
-                              TuxWeaponsCore.spawnParticle(2, world, x, y, z, entity, stack, 2, 2);
+                              TuxWeapons.spawnParticle(2, world, x, y, z, entity, stack, 2, 2);
                               f -= i2;
                          }
                     }
@@ -82,7 +80,7 @@ public class DamageModifier
                     {
                          if (GOLDEN.effc_item.contains(stack.getItem()))
                          {
-                              TuxWeaponsCore.spawnParticle(1, world, x, y, z, entity, 0xAB3D3D, 1, 20, false);
+                              TuxWeapons.spawnParticle(1, world, x, y, z, entity, 0xAB3D3D, 1, 20, false);
                               f += i3;
                          }
                     }
@@ -126,7 +124,7 @@ public class DamageModifier
                     
                     if (f >= TWSettings.DAMAGE_MODIFIER_MACE - 2)
                     {
-                         TuxWeaponsCore.spawnParticle(3, event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, event.entityLiving, 0xffffff, 1, 20, false);
+                         TuxWeapons.spawnParticle(3, event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, event.entityLiving, 0xffffff, 1, 20, false);
                     }
                }
           }

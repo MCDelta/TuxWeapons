@@ -1,7 +1,7 @@
 package mcdelta.tuxweapons.block;
 
-import mcdelta.core.EnumMCDMods;
 import mcdelta.core.block.BlockDelta;
+import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.block.tileentity.TileBrewStand;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -26,7 +26,7 @@ public class BlockTW extends BlockDelta
      
      public BlockTW (String s, Material mat)
      {
-          super(EnumMCDMods.TUXWEAPONS, s, mat);
+          super(TuxWeapons.instance, s, mat);
           
           this.setCreativeTab(CreativeTabs.tabBlock);
      }

@@ -2,8 +2,7 @@ package mcdelta.tuxweapons.block;
 
 import java.util.Random;
 
-import mcdelta.tuxweapons.TuxWeaponsCore;
-import net.minecraft.block.BlockOreStorage;
+import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.AxisAlignedBB;
@@ -156,7 +155,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      @SideOnly (Side.CLIENT)
      public void registerIcons (IconRegister iconRegister)
      {
-          this.blockIcon = iconRegister.registerIcon(TuxWeaponsCore.MOD_ID + ":" + "air");
+          this.blockIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "air");
      }
      
      
