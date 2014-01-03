@@ -47,7 +47,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod (modid = TuxWeapons.MOD_ID, name = "TuxWeapons", useMetadata = true, version = "1.1a")
+@Mod (modid = TuxWeapons.MOD_ID, useMetadata = true)
 @NetworkMod (clientSideRequired = true, serverSideRequired = false, channels =
 { TuxWeapons.MOD_ID }, packetHandler = PacketHandler.class)
 public class TuxWeapons extends ModDelta
