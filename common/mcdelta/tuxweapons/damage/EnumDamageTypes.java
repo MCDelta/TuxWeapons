@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import mcdelta.core.DeltaContent;
-import mcdelta.core.material.ToolMaterial;
+import mcdelta.core.material.ItemMaterial;
+import mcdelta.core.material.MaterialRegistry;
 import mcdelta.tuxweapons.TWContent;
 import net.minecraft.item.Item;
 
@@ -24,7 +25,7 @@ public enum EnumDamageTypes
      
      static
      {
-          for (ToolMaterial mat : ToolMaterial.mats)
+          for (ItemMaterial mat : MaterialRegistry.materials())
           {
                SLASHER.effc_item.add(DeltaContent.swords.get(mat));
                SLASHER.effc_item.add(TWContent.battleaxes.get(mat));

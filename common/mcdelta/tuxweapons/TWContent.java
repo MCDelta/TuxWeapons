@@ -3,9 +3,9 @@ package mcdelta.tuxweapons;
 import java.util.HashMap;
 import java.util.Map;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import mcdelta.core.material.ToolMaterial;
+import mcdelta.core.IContent;
+import mcdelta.core.material.ItemMaterial;
+import mcdelta.core.material.MaterialRegistry;
 import mcdelta.tuxweapons.block.BlockBrewStand;
 import mcdelta.tuxweapons.block.BlockRedstoneTempBlock;
 import mcdelta.tuxweapons.block.tileentity.TileBrewStand;
@@ -39,21 +39,27 @@ import mcdelta.tuxweapons.item.ItemTechnical;
 import mcdelta.tuxweapons.item.ItemWhock;
 import mcdelta.tuxweapons.item.ItemWhockCrafter;
 import mcdelta.tuxweapons.potions.Potions;
+import mcdelta.tuxweapons.recipe.RecipePotionBolt;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
-public class TWContent
+public class TWContent implements IContent
 {
-     public static Map<ToolMaterial, ItemBattleaxe>    battleaxes       = new HashMap<ToolMaterial, ItemBattleaxe>();
-     public static Map<ToolMaterial, ItemHammer>       hammers          = new HashMap<ToolMaterial, ItemHammer>();
-     public static Map<ToolMaterial, ItemSpear>        spears           = new HashMap<ToolMaterial, ItemSpear>();
-     public static Map<ToolMaterial, ItemMace>         maces            = new HashMap<ToolMaterial, ItemMace>();
-     public static Map<ToolMaterial, ItemKnife>        knives           = new HashMap<ToolMaterial, ItemKnife>();
-     public static Map<ToolMaterial, ItemGrappHook>    grappHooks       = new HashMap<ToolMaterial, ItemGrappHook>();
-     public static Map<ToolMaterial, ItemShield>       shields          = new HashMap<ToolMaterial, ItemShield>();
-     public static Map<ToolMaterial, ItemWhock>        whocks           = new HashMap<ToolMaterial, ItemWhock>();
-     public static Map<ToolMaterial, ItemWhockCrafter> whockCrafters    = new HashMap<ToolMaterial, ItemWhockCrafter>();
+     public static Map<ItemMaterial, ItemBattleaxe>    battleaxes       = new HashMap<ItemMaterial, ItemBattleaxe>();
+     public static Map<ItemMaterial, ItemHammer>       hammers          = new HashMap<ItemMaterial, ItemHammer>();
+     public static Map<ItemMaterial, ItemSpear>        spears           = new HashMap<ItemMaterial, ItemSpear>();
+     public static Map<ItemMaterial, ItemMace>         maces            = new HashMap<ItemMaterial, ItemMace>();
+     public static Map<ItemMaterial, ItemKnife>        knives           = new HashMap<ItemMaterial, ItemKnife>();
+     public static Map<ItemMaterial, ItemGrappHook>    grappHooks       = new HashMap<ItemMaterial, ItemGrappHook>();
+     public static Map<ItemMaterial, ItemShield>       shields          = new HashMap<ItemMaterial, ItemShield>();
+     public static Map<ItemMaterial, ItemWhock>        whocks           = new HashMap<ItemMaterial, ItemWhock>();
+     public static Map<ItemMaterial, ItemWhockCrafter> whockCrafters    = new HashMap<ItemMaterial, ItemWhockCrafter>();
      
      public static ItemFireChargeCannon                fireChargeCannon = new ItemFireChargeCannon();
      public static ItemCrossbow                        crossBow         = new ItemCrossbow();
@@ -76,7 +82,8 @@ public class TWContent
      
      
      
-     public static void load ()
+     @Override
+     public void addContent ()
      {
           fireChargeCannon = new ItemFireChargeCannon();
           crossBow = new ItemCrossbow();
@@ -85,39 +92,6 @@ public class TWContent
           empGrenade = new ItemEMPGrenade();
           technical = new ItemTechnical();
           magmaCore = (ItemTW) new ItemTW("magmaCore").setCreativeTab(CreativeTabs.tabMaterials);
-          
-          for (ToolMaterial mat : ToolMaterial.mats)
-          {
-               if (mat.needsWeapons())
-               {
-                    ItemBattleaxe battleaxe = new ItemBattleaxe(mat);
-                    battleaxes.put(mat, battleaxe);
-                    
-                    ItemMace mace = new ItemMace(mat);
-                    maces.put(mat, mace);
-                    
-                    ItemHammer hammer = new ItemHammer(mat);
-                    hammers.put(mat, hammer);
-                    
-                    ItemKnife knife = new ItemKnife(mat);
-                    knives.put(mat, knife);
-                    
-                    ItemSpear spear = new ItemSpear(mat);
-                    spears.put(mat, spear);
-                    
-                    ItemGrappHook grappHook = new ItemGrappHook(mat);
-                    grappHooks.put(mat, grappHook);
-                    
-                    ItemShield shield = new ItemShield(mat);
-                    shields.put(mat, shield);
-                    
-                    ItemWhock whock = new ItemWhock(mat);
-                    whocks.put(mat, whock);
-                    
-                    ItemWhockCrafter whockCrafter = new ItemWhockCrafter(mat);
-                    whockCrafters.put(mat, whockCrafter);
-               }
-          }
           
           redstoneTmpBlock = new BlockRedstoneTempBlock();
           Block.blocksList[117] = null;
@@ -141,5 +115,101 @@ public class TWContent
           EntityRegistry.registerModEntity(EntityEMPGrenade.class, TuxWeapons.MOD_ID.toLowerCase() + ":" + "empGrenade", 7, TuxWeapons.instance, 64, 3, true);
           
           Potions.init();
+     }
+     
+     
+     
+     
+     @Override
+     public void addMaterialBasedContent (ItemMaterial mat)
+     {
+          if (mat.needsWeapons())
+          {
+               ItemBattleaxe battleaxe = new ItemBattleaxe(mat);
+               battleaxes.put(mat, battleaxe);
+               
+               ItemMace mace = new ItemMace(mat);
+               maces.put(mat, mace);
+               
+               ItemHammer hammer = new ItemHammer(mat);
+               hammers.put(mat, hammer);
+               
+               ItemKnife knife = new ItemKnife(mat);
+               knives.put(mat, knife);
+               
+               ItemSpear spear = new ItemSpear(mat);
+               spears.put(mat, spear);
+               
+               ItemGrappHook grappHook = new ItemGrappHook(mat);
+               grappHooks.put(mat, grappHook);
+               
+               ItemShield shield = new ItemShield(mat);
+               shields.put(mat, shield);
+               
+               ItemWhock whock = new ItemWhock(mat);
+               whocks.put(mat, whock);
+               
+               ItemWhockCrafter whockCrafter = new ItemWhockCrafter(mat);
+               whockCrafters.put(mat, whockCrafter);
+          }
+     }
+
+
+
+
+     @Override
+     public void addRecipes ()
+     {
+          ItemStack wood = new ItemStack(Block.planks);
+          ItemStack iron = new ItemStack(Item.ingotIron);
+          ItemStack string = new ItemStack(Item.silk);
+          ItemStack feather = new ItemStack(Item.feather);
+          ItemStack gunpowder = new ItemStack(Item.gunpowder);
+          ItemStack sand = new ItemStack(Block.sand);
+          ItemStack redStone = new ItemStack(Item.redstone);
+          ItemStack clay = new ItemStack(Item.clay);
+          
+          GameRegistry.addRecipe(new ItemStack(TWContent.crossBow), "xxy", "syx", "ysx", 'x', wood, 'y', iron, 's', string);
+          GameRegistry.addRecipe(new ItemStack(TWContent.crossBow), "yxx", "xys", "xsy", 'x', wood, 'y', iron, 's', string);
+          GameRegistry.addRecipe(new ItemStack(TWContent.bolt, 3), " i ", " i ", " f ", 'i', iron, 'f', feather);
+          GameRegistry.addRecipe(new ItemStack(TWContent.dynamite, 2), " gs", " x ", " g ", 'g', gunpowder, 'x', sand, 's', string);
+          GameRegistry.addRecipe(new ItemStack(TWContent.empGrenade, 3), " x ", "xox", " x ", 'x', redStone, 'o', clay);
+          GameRegistry.addRecipe(new RecipePotionBolt());
+          
+          for (ItemMaterial mat : MaterialRegistry.materials())
+          {
+               String material = mat.getOreDictionaryName();
+               
+               if (mat.needsWeapons())
+               {
+                    // Battleaxe
+                    ItemStack battleaxe = new ItemStack(TWContent.battleaxes.get(mat));
+                    GameRegistry.addRecipe(new ShapedOreRecipe(battleaxe, "xxx", "xox", " o ", 'x', material, 'o', "stickWood"));
+                    
+                    // Hammer
+                    ItemStack hammer = new ItemStack(TWContent.hammers.get(mat));
+                    GameRegistry.addRecipe(new ShapedOreRecipe(hammer, "xox", "xox", " o ", 'x', material, 'o', "stickWood"));
+                    
+                    // Knife
+                    ItemStack knife = new ItemStack(TWContent.knives.get(mat), 4);
+                    GameRegistry.addRecipe(new ShapedOreRecipe(knife, " x", "o ", 'x', material, 'o', "stickWood"));
+                    
+                    // Spear
+                    ItemStack spear = new ItemStack(TWContent.spears.get(mat));
+                    GameRegistry.addRecipe(new ShapedOreRecipe(spear, "  x", " o ", "o  ", 'x', material, 'o', "stickWood"));
+                    
+                    // Grappling Hook
+                    ItemStack grappHook = new ItemStack(TWContent.grappHooks.get(mat));
+                    GameRegistry.addRecipe(new ShapedOreRecipe(grappHook, " xx", " ox", "o  ", 'x', material, 'o', "ingotIron"));
+                    
+                    // Shield
+                    ItemStack shield = new ItemStack(TWContent.shields.get(mat));
+                    GameRegistry.addRecipe(new ShapedOreRecipe(shield, "oxo", "xox", "oxo", 'x', material, 'o', "plankWood"));
+                    
+                    // Whock Crafter
+                    ItemStack whockCrafter = new ItemStack(TWContent.whockCrafters.get(mat), 1, mat.getMaxUses() - 1);
+                    GameRegistry.addRecipe(new ShapedOreRecipe(whockCrafter, "xxx", "xox", " x ", 'x', material, 'o', Block.obsidian));
+               }
+          }
      }
 }

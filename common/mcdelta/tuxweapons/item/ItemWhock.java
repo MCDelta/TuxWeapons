@@ -6,7 +6,7 @@ import java.util.List;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.assets.world.Position;
 import mcdelta.core.item.ItemDeltaTool;
-import mcdelta.core.material.ToolMaterial;
+import mcdelta.core.material.ItemMaterial;
 import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -28,7 +28,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemWhock extends ItemDeltaTool
 {
-     public ItemWhock (ToolMaterial mat)
+     public ItemWhock (ItemMaterial mat)
      {
           super(TuxWeapons.instance, "whock", mat, ItemPickaxe.blocksEffectiveAgainst, 2.0F, false);
      }
@@ -208,7 +208,7 @@ public class ItemWhock extends ItemDeltaTool
      
      public boolean canHarvestBlock (Block block)
      {
-          return block == Block.obsidian ? toolMaterial.getHarvestLevel() == 3 : (block != Block.blockDiamond && block != Block.oreDiamond ? (block != Block.oreEmerald && block != Block.blockEmerald ? (block != Block.blockGold && block != Block.oreGold ? (block != Block.blockIron && block != Block.oreIron ? (block != Block.blockLapis && block != Block.oreLapis ? (block != Block.oreRedstone && block != Block.oreRedstoneGlowing ? (block.blockMaterial == Material.rock ? true : (block.blockMaterial == Material.iron ? true : block.blockMaterial == Material.anvil)) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 1) : toolMaterial.getHarvestLevel() >= 1) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 2);
+          return block == Block.obsidian ? itemMaterial.getHarvestLevel() == 3 : (block != Block.blockDiamond && block != Block.oreDiamond ? (block != Block.oreEmerald && block != Block.blockEmerald ? (block != Block.blockGold && block != Block.oreGold ? (block != Block.blockIron && block != Block.oreIron ? (block != Block.blockLapis && block != Block.oreLapis ? (block != Block.oreRedstone && block != Block.oreRedstoneGlowing ? (block.blockMaterial == Material.rock ? true : (block.blockMaterial == Material.iron ? true : block.blockMaterial == Material.anvil)) : itemMaterial.getHarvestLevel() >= 2) : itemMaterial.getHarvestLevel() >= 1) : itemMaterial.getHarvestLevel() >= 1) : itemMaterial.getHarvestLevel() >= 2) : itemMaterial.getHarvestLevel() >= 2) : itemMaterial.getHarvestLevel() >= 2);
      }
      
      
@@ -226,7 +226,7 @@ public class ItemWhock extends ItemDeltaTool
      
      public String getItemDisplayName (ItemStack stack)
      {
-          ToolMaterial mat = toolMaterial;
+          ItemMaterial mat = itemMaterial;
           
           String weapon = StatCollector.translateToLocal("tool." + toolName);
           String material = StatCollector.translateToLocal("material." + mat.getName());
@@ -243,11 +243,11 @@ public class ItemWhock extends ItemDeltaTool
           itemIcon = doRegister("tuxweapons", toolName + "_1", register);
           itemOverlay = doRegister("tuxweapons", toolName + "_2", register);
           
-          overrideExists = Assets.resourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
+          overrideExists = Assets.resourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + itemMaterial.getName().toLowerCase() + "_" + toolName + ".png"));
           
           if (overrideExists)
           {
-               overrideIcon = doRegister("/override/" + toolMaterial.getName().toLowerCase() + "_" + toolName, register);
+               overrideIcon = doRegister("/override/" + itemMaterial.getName().toLowerCase() + "_" + toolName, register);
           }
      }
      
@@ -256,9 +256,9 @@ public class ItemWhock extends ItemDeltaTool
      
      public boolean getIsRepairable (ItemStack repair, ItemStack gem)
      {
-          if (OreDictionary.getOres(toolMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(toolMaterial.getOreDictionaryName()).isEmpty())
+          if (OreDictionary.getOres(itemMaterial.getOreDictionaryName()) != null && !OreDictionary.getOres(itemMaterial.getOreDictionaryName()).isEmpty())
           {
-               return OreDictionary.itemMatches(OreDictionary.getOres(toolMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
+               return OreDictionary.itemMatches(OreDictionary.getOres(itemMaterial.getOreDictionaryName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
           }
           
           return super.getIsRepairable(repair, gem);

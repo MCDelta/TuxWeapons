@@ -3,6 +3,7 @@ package mcdelta.tuxweapons;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.BASHER;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.GOLDEN;
 import static mcdelta.tuxweapons.damage.EnumDamageTypes.SLASHER;
+import mcdelta.core.IContent;
 import mcdelta.core.ModDelta;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.particle.EnumParticles;
@@ -17,7 +18,6 @@ import mcdelta.tuxweapons.handlers.TickHandler;
 import mcdelta.tuxweapons.network.PacketSpawnParticle;
 import mcdelta.tuxweapons.network.PacketThrowablePickup;
 import mcdelta.tuxweapons.proxy.TWCommonProxy;
-import mcdelta.tuxweapons.recipe.Recipes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemSword;
@@ -68,8 +68,6 @@ public class TuxWeapons extends ModDelta
           PacketHandler.packets[3] = PacketThrowablePickup.class;
           
           this.init(event, new TWConfig());
-          
-          TWContent.load();
      }
      
      
@@ -85,8 +83,6 @@ public class TuxWeapons extends ModDelta
           
           TickRegistry.registerTickHandler(new TickHandler(), Side.CLIENT);
           GameRegistry.registerPlayerTracker(new PlayerTracker());
-          
-          Recipes.addCraftingRecipes();
           
           proxy.registerRenderers();
      }
@@ -135,5 +131,15 @@ public class TuxWeapons extends ModDelta
           {
                PacketDispatcher.sendPacketToAllAround(x, y, z, 10, world.provider.dimensionId, Assets.populatePacket(new PacketSpawnParticle(particle, x, y, z)));
           }
+     }
+     
+     private IContent content = new TWContent();
+     
+     
+     
+     
+     public IContent content ()
+     {
+          return content;
      }
 }

@@ -2,7 +2,7 @@ package mcdelta.tuxweapons.item;
 
 import mcdelta.core.assets.Assets;
 import mcdelta.core.item.ItemWeapon;
-import mcdelta.core.material.ToolMaterial;
+import mcdelta.core.material.ItemMaterial;
 import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.entity.EntitySpear;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 public class ItemSpear extends ItemWeapon
 {
      
-     public ItemSpear (ToolMaterial mat)
+     public ItemSpear (ItemMaterial mat)
      {
           super("spear", TuxWeapons.instance, mat, 2.0F);
           this.setMaxDamage((int) ((float) mat.getMaxUses() * 0.9F));

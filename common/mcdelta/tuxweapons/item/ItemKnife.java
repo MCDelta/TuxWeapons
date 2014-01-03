@@ -4,7 +4,8 @@ import mcdelta.core.DeltaCore;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.core.item.ItemDelta;
-import mcdelta.core.material.ToolMaterial;
+import mcdelta.core.material.ItemMaterial;
+import mcdelta.core.material.MaterialRegistry;
 import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.entity.EntityKnife;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -21,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemKnife extends ItemDelta implements IExtraPasses
 {
      private String      toolName;
-     public ToolMaterial toolMaterialDelta;
+     public ItemMaterial toolMaterialDelta;
      
      @SideOnly (Side.CLIENT)
      protected Icon      itemOverlay;
@@ -34,7 +35,7 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      
      
      
-     public ItemKnife (ToolMaterial mat)
+     public ItemKnife (ItemMaterial mat)
      {
           super(TuxWeapons.instance, mat.getName() + "." + "knife", false);
           
@@ -152,7 +153,7 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
           
           if (pass == 2)
           {
-               return DeltaCore.WOOD.getColor();
+               return MaterialRegistry.WOOD.getColor();
           }
           
           return toolMaterialDelta.getColor();
@@ -177,7 +178,7 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      
      public String getItemDisplayName (ItemStack stack)
      {
-          ToolMaterial mat = toolMaterialDelta;
+          ItemMaterial mat = toolMaterialDelta;
           
           String weapon = StatCollector.translateToLocal("tool." + toolName);
           String material = StatCollector.translateToLocal("material." + mat.getName());
