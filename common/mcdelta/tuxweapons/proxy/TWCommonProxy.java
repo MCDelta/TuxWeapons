@@ -1,9 +1,7 @@
 package mcdelta.tuxweapons.proxy;
 
-
 public class TWCommonProxy
 {
-     public void registerRenderers ()
-     {
-     }
+    public void registerRenderers()
+    {}
 }

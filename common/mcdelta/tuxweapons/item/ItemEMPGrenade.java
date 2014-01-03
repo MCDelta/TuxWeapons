@@ -8,24 +8,23 @@ import net.minecraft.world.World;
 
 public class ItemEMPGrenade extends ItemTW
 {
-     public ItemEMPGrenade ()
-     {
-          super("empGrenade");
-     }
-     
-     
-     
-     
-     @Override
-     public ItemStack onItemRightClick (ItemStack stack, World world, EntityPlayer player)
-     {
-          EntityEMPGrenade grenade = new EntityEMPGrenade(world, player);
-          
-          if (Assets.isServer())
-               world.spawnEntityInWorld(grenade);
-          
-          player.inventory.consumeInventoryItem(this.itemID);
-          
-          return stack;
-     }
+    public ItemEMPGrenade()
+    {
+        super("empGrenade");
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    {
+        EntityEMPGrenade grenade = new EntityEMPGrenade(world, player);
+
+        if (Assets.isServer())
+        {
+            world.spawnEntityInWorld(grenade);
+        }
+
+        player.inventory.consumeInventoryItem(itemID);
+
+        return stack;
+    }
 }

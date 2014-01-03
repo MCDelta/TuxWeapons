@@ -17,22 +17,22 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderBolt extends Render
 {
-    private ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/weapons.png");
+    private final ResourceLocation location = new ResourceLocation(TuxWeapons.MOD_ID.toLowerCase(), "textures/models/weapons.png");
 
     public void renderBolt(EntityBolt bolt, double x, double y, double z, float par8, float par9)
     {
-        this.renderManager.renderEngine.bindTexture(location);
+        renderManager.renderEngine.bindTexture(location);
 
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x, (float) y, (float) z);
-        GL11.glRotatef(bolt.prevRotationYaw + (bolt.rotationYaw - bolt.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
-        GL11.glRotatef(bolt.prevRotationPitch + (bolt.rotationPitch - bolt.prevRotationPitch) * par9, 0.0F, 0.0F, 1.0F);
+        GL11.glRotatef((bolt.prevRotationYaw + ((bolt.rotationYaw - bolt.prevRotationYaw) * par9)) - 90.0F, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(bolt.prevRotationPitch + ((bolt.rotationPitch - bolt.prevRotationPitch) * par9), 0.0F, 0.0F, 1.0F);
         Tessellator tessellator = Tessellator.instance;
         byte b0 = 0;
         float f2 = 0.0F;
         float f3 = 0.5F;
-        float f4 = (3 + b0 * 10) / 32.0F;
-        float f5 = (7 + b0 * 10) / 32.0F;
+        float f4 = (3 + (b0 * 10)) / 32.0F;
+        float f5 = (7 + (b0 * 10)) / 32.0F;
         float f10 = 0.1F;
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         float f11 = bolt.boltShake - par9;
@@ -68,7 +68,7 @@ public class RenderBolt extends Render
     @Override
     public void doRender(Entity par1Entity, double x, double y, double z, float par8, float par9)
     {
-        this.renderBolt((EntityBolt) par1Entity, x, y, z, par8, par9);
+        renderBolt((EntityBolt) par1Entity, x, y, z, par8, par9);
     }
 
     @Override
