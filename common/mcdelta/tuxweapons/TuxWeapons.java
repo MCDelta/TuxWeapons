@@ -59,7 +59,7 @@ public class TuxWeapons extends ModDelta
      // - reimplement ukulele
      // - retexture magma core
      
-     public static final String   MOD_ID = "TuxWeapons";
+     public static final String   MOD_ID = "tuxweapons";
      
      @Instance (MOD_ID)
      public static TuxWeapons instance;
