@@ -6,7 +6,7 @@ import java.util.List;
 
 import mcdelta.core.item.ItemDelta;
 import mcdelta.core.material.ToolMaterial;
-import mcdelta.tuxweapons.item.ItemTW;
+import mcdelta.tuxweapons.TWContent;
 import net.minecraft.item.Item;
 
 public enum EnumDamageTypes
@@ -27,12 +27,12 @@ public enum EnumDamageTypes
           for (ToolMaterial mat : ToolMaterial.mats)
           {
                SLASHER.effc_item.add(ItemDelta.swords.get(mat));
-               SLASHER.effc_item.add(ItemTW.battleaxes.get(mat));
-               SLASHER.effc_item.add(ItemTW.spears.get(mat));
+               SLASHER.effc_item.add(TWContent.battleaxes.get(mat));
+               SLASHER.effc_item.add(TWContent.spears.get(mat));
                
                BASHER.effc_item.add(ItemDelta.axes.get(mat));
-               BASHER.effc_item.add(ItemTW.hammers.get(mat));
-               BASHER.effc_item.add(ItemTW.maces.get(mat));
+               BASHER.effc_item.add(TWContent.hammers.get(mat));
+               BASHER.effc_item.add(TWContent.maces.get(mat));
           }
      }
      

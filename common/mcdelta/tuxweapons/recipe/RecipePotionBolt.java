@@ -3,7 +3,7 @@ package mcdelta.tuxweapons.recipe;
 import java.util.ArrayList;
 import java.util.List;
 
-import mcdelta.tuxweapons.item.ItemTW;
+import mcdelta.tuxweapons.TWContent;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,7 +33,7 @@ public class RecipePotionBolt implements IRecipe
                          hasPotion = true;
                     }
                     
-                    if (stack.getItem() == ItemTW.bolt)
+                    if (stack.getItem() == TWContent.bolt)
                     {
                          hasBolt = true;
                     }
@@ -63,7 +63,7 @@ public class RecipePotionBolt implements IRecipe
                          effects.addAll(Item.potion.getEffects(stack));
                     }
                     
-                    if (stack.getItem() == ItemTW.bolt)
+                    if (stack.getItem() == TWContent.bolt)
                     {
                          bolts++;
                     }
@@ -79,7 +79,7 @@ public class RecipePotionBolt implements IRecipe
                tagList.appendTag(newEffect.writeCustomPotionEffectToNBT(new NBTTagCompound()));
           }
           
-          ItemStack stack = new ItemStack(ItemTW.bolt, bolts);
+          ItemStack stack = new ItemStack(TWContent.bolt, bolts);
           
           stack.stackTagCompound = new NBTTagCompound();
           stack.stackTagCompound.setTag("CustomPotionEffects", tagList);

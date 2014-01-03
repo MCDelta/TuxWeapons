@@ -2,6 +2,7 @@ package mcdelta.tuxweapons.proxy;
 
 import mcdelta.core.assets.client.RenderAssets;
 import mcdelta.core.client.entity.RenderThrownItem;
+import mcdelta.tuxweapons.TWContent;
 import mcdelta.tuxweapons.client.entity.RenderBolt;
 import mcdelta.tuxweapons.client.entity.RenderDynamite;
 import mcdelta.tuxweapons.client.entity.RenderGrappHook;
@@ -17,7 +18,6 @@ import mcdelta.tuxweapons.entity.EntityGrappHook;
 import mcdelta.tuxweapons.entity.EntityKnife;
 import mcdelta.tuxweapons.entity.EntitySpear;
 import mcdelta.tuxweapons.entity.EntityTWFireball;
-import mcdelta.tuxweapons.item.ItemTW;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -33,12 +33,12 @@ public class TWClientProxy extends TWCommonProxy
           RenderingRegistry.registerEntityRenderingHandler(EntityTWFireball.class, new RenderThrownItem(Item.fireballCharge));
           RenderingRegistry.registerEntityRenderingHandler(EntityBolt.class, new RenderBolt());
           RenderingRegistry.registerEntityRenderingHandler(EntityDynamite.class, new RenderDynamite());
-          RenderingRegistry.registerEntityRenderingHandler(EntityEMPGrenade.class, new RenderThrownItem(ItemTW.empGrenade));
+          RenderingRegistry.registerEntityRenderingHandler(EntityEMPGrenade.class, new RenderThrownItem(TWContent.empGrenade));
           
-          MinecraftForgeClient.registerItemRenderer(ItemTW.fireChargeCannon.itemID, new RenderFireChargeCannon());
-          MinecraftForgeClient.registerItemRenderer(ItemTW.crossBow.itemID, new RenderCrossbow());
+          MinecraftForgeClient.registerItemRenderer(TWContent.fireChargeCannon.itemID, new RenderFireChargeCannon());
+          MinecraftForgeClient.registerItemRenderer(TWContent.crossBow.itemID, new RenderCrossbow());
           MinecraftForgeClient.registerItemRenderer(Item.potion.itemID, new RenderItemPotion());
           
-          RenderAssets.flipInInventory.addAll(ItemTW.spears.values());
+          RenderAssets.flipInInventory.addAll(TWContent.spears.values());
      }
 }

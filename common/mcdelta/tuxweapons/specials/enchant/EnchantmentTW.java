@@ -5,14 +5,7 @@ import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.enchantment.EnumEnchantmentType;
 
 public class EnchantmentTW extends EnchantmentDelta
-{
-     public static EnchSwift     swift         = new EnchSwift("swift", 2, EnumEnchantmentType.weapon);
-     public static EnchStrike    strike        = new EnchStrike("strike", 3, EnumEnchantmentType.weapon);
-     public static EnchVenom     venom         = new EnchVenom("venom", 5, EnumEnchantmentType.weapon);
-     public static EnchDrawback  drawback      = new EnchDrawback("drawback", 5, EnumEnchantmentType.bow);
-     public static EnchEXP       expIncrease   = new EnchEXP("expIncrease", 4, EnumEnchantmentType.weapon);
-     public static EnchantmentTW hardened      = new EnchantmentTW("hardened", 2, EnumEnchantmentType.armor_torso).setMinMax(15, 30);
-     
+{    
      protected int               enchantLvlMin = 0;
      protected int               enchantLvlMax = 5;
      

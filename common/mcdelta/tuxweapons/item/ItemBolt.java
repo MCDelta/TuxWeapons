@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.item.IExtraPasses;
+import mcdelta.tuxweapons.TWContent;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -118,7 +119,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
                {
                     item = player.inventory.getStackInSlot(i).getItem();
                     
-                    if (item == ItemTW.crossBow)
+                    if (item == TWContent.crossBow)
                     {
                          stack = player.inventory.getStackInSlot(i);
                          

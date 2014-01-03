@@ -1,10 +1,9 @@
 package mcdelta.tuxweapons.event;
 
 import mcdelta.core.DeltaCore;
+import mcdelta.tuxweapons.TWContent;
 import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.config.TWSettings;
-import mcdelta.tuxweapons.item.ItemTW;
-import mcdelta.tuxweapons.specials.enchant.EnchantmentTW;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -41,7 +40,7 @@ public class EventEnchants
                     
                     if (rng < 0.2)
                     {
-                         event.entityLiving.dropItem(ItemTW.magmaCore.itemID, 1);
+                         event.entityLiving.dropItem(TWContent.magmaCore.itemID, 1);
                     }
                }
           }
@@ -64,7 +63,7 @@ public class EventEnchants
                EntityPlayer attacker = (EntityPlayer) event.source.getEntity();
                ItemStack stack = attacker.inventory.getCurrentItem();
                
-               int expLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentTW.expIncrease.effectId, stack);
+               int expLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.expIncrease.effectId, stack);
                
                if (expLvl > 0 && world.getGameRules().getGameRuleBooleanValue("doMobLoot") && living instanceof EntityLiving)
                {
@@ -89,7 +88,7 @@ public class EventEnchants
      {
           if (event.entityLiving instanceof EntityPlayer && event.entityLiving.ticksExisted % 10 == 0)
           {
-               int swiftLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentTW.swift.effectId, ((EntityPlayer) event.entityLiving).getCurrentEquippedItem());
+               int swiftLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.swift.effectId, ((EntityPlayer) event.entityLiving).getCurrentEquippedItem());
                
                if (swiftLvl > 0)
                {
@@ -106,7 +105,7 @@ public class EventEnchants
      {
           EntityLivingBase living = (EntityLivingBase) event.entityLiving;
           
-          if (EnchantmentHelper.getEnchantmentLevel(EnchantmentTW.hardened.effectId, living.getCurrentItemOrArmor(3)) > 0)
+          if (EnchantmentHelper.getEnchantmentLevel(TWContent.hardened.effectId, living.getCurrentItemOrArmor(3)) > 0)
           {
                Multimap<String, AttributeModifier> map = HashMultimap.create();
                map.put(SharedMonsterAttributes.knockbackResistance.getAttributeUnlocalizedName(), new AttributeModifier(living.getPersistentID(), "Enchanted Armor Modifier", 100.0F, 0));
@@ -127,7 +126,7 @@ public class EventEnchants
                EntityPlayer attacker = (EntityPlayer) event.source.getEntity();
                ItemStack stack = attacker.inventory.getCurrentItem();
                
-               int venomLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentTW.venom.effectId, stack);
+               int venomLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.venom.effectId, stack);
                
                if (venomLvl > 0)
                {
@@ -135,7 +134,7 @@ public class EventEnchants
                     living.addPotionEffect(new PotionEffect(Potion.hunger.id, 200 * venomLvl));
                }
                
-               int strikeLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentTW.strike.effectId, stack);
+               int strikeLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.strike.effectId, stack);
                
                if (strikeLvl > 0)
                {
@@ -161,7 +160,7 @@ public class EventEnchants
                EntityPlayer player = event.entityPlayer;
                Item item = player.getCurrentEquippedItem().getItem();
                ItemStack stack = player.getCurrentEquippedItem();
-               int drawbackLvl = EnchantmentHelper.getEnchantmentLevel(EnchantmentTW.drawback.effectId, player.getCurrentEquippedItem());
+               int drawbackLvl = EnchantmentHelper.getEnchantmentLevel(TWContent.drawback.effectId, player.getCurrentEquippedItem());
                
                if (drawbackLvl > 0)
                {
@@ -175,7 +174,7 @@ public class EventEnchants
                          }
                     }
                     
-                    if (item == ItemTW.crossBow)
+                    if (item == TWContent.crossBow)
                     {
                          event.setCanceled(true);
                          
@@ -193,13 +192,13 @@ public class EventEnchants
                          }
                     }
                     
-                    if (item == ItemTW.fireChargeCannon)
+                    if (item == TWContent.fireChargeCannon)
                     {
                          event.setCanceled(true);
                          
                          boolean flag = player.capabilities.isCreativeMode;
                          
-                         for (Item item2 : ItemTW.fireChargeCannon.ammo)
+                         for (Item item2 : TWContent.fireChargeCannon.ammo)
                          {
                               if (player.inventory.hasItem(item2.itemID))
                               {

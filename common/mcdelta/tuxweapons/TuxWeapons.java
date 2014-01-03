@@ -7,28 +7,18 @@ import mcdelta.core.ModDelta;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.particle.EnumParticles;
 import mcdelta.core.network.PacketHandler;
-import mcdelta.tuxweapons.block.BlockTW;
+import mcdelta.core.support.CompatibilityHandler;
 import mcdelta.tuxweapons.config.TWConfig;
 import mcdelta.tuxweapons.damage.DamageModifier;
-import mcdelta.tuxweapons.entity.EntityBolt;
-import mcdelta.tuxweapons.entity.EntityDynamite;
-import mcdelta.tuxweapons.entity.EntityEMPGrenade;
-import mcdelta.tuxweapons.entity.EntityGrappHook;
-import mcdelta.tuxweapons.entity.EntityKnife;
-import mcdelta.tuxweapons.entity.EntitySpear;
-import mcdelta.tuxweapons.entity.EntityTWFireball;
 import mcdelta.tuxweapons.event.EventEnchants;
 import mcdelta.tuxweapons.event.EventFOVModifier;
 import mcdelta.tuxweapons.event.EventItemInfo;
 import mcdelta.tuxweapons.handlers.PlayerTracker;
 import mcdelta.tuxweapons.handlers.TickHandler;
-import mcdelta.tuxweapons.item.ItemTW;
 import mcdelta.tuxweapons.network.PacketSpawnParticle;
 import mcdelta.tuxweapons.network.PacketThrowablePickup;
 import mcdelta.tuxweapons.proxy.TWCommonProxy;
 import mcdelta.tuxweapons.recipe.Recipes;
-import mcdelta.tuxweapons.specials.enchant.EnchantmentTW;
-import mcdelta.tuxweapons.specials.potions.Potions;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemSword;
@@ -43,7 +33,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -60,13 +49,13 @@ public class TuxWeapons extends ModDelta
      // - reimplement ukulele
      // - retexture magma core
      
-     public static final String   MOD_ID = "tuxweapons";
+     public static final String  MOD_ID = "tuxweapons";
      
      @Instance (MOD_ID)
-     public static TuxWeapons instance;
+     public static TuxWeapons    instance;
      
      @SidedProxy (clientSide = "mcdelta.tuxweapons.proxy.TWClientProxy", serverSide = "mcdelta.tuxweapons.proxy.TWCommonProxy")
-     public static TWCommonProxy  proxy;
+     public static TWCommonProxy proxy;
      
      
      
@@ -80,6 +69,11 @@ public class TuxWeapons extends ModDelta
           PacketHandler.packets[3] = PacketThrowablePickup.class;
           
           this.init(event, new TWConfig());
+          
+          String supportPackage = "mcdelta.tuxweapons.support.";
+          CompatibilityHandler.addModHandler("Thaumcraft", supportPackage + "Thaumcraft");
+          
+          TWContent.load();
      }
      
      
@@ -88,10 +82,6 @@ public class TuxWeapons extends ModDelta
      @EventHandler
      public void load (FMLInitializationEvent event)
      {
-          ItemTW.hammers.isEmpty();
-          BlockTW.redstoneTmpBlock.getBlockBoundsMinZ();
-          EnchantmentTW.drawback.getClass();
-          
           MinecraftForge.EVENT_BUS.register(new EventEnchants());
           MinecraftForge.EVENT_BUS.register(new DamageModifier());
           MinecraftForge.EVENT_BUS.register(new EventItemInfo());
@@ -102,8 +92,6 @@ public class TuxWeapons extends ModDelta
           
           Recipes.addCraftingRecipes();
           
-          Potions.init();
-          
           proxy.registerRenderers();
      }
      
@@ -113,8 +101,6 @@ public class TuxWeapons extends ModDelta
      @EventHandler
      public void postInit (FMLPostInitializationEvent event)
      {
-          registerEntities();
-          
           for (Item item : Item.itemsList)
           {
                if (item instanceof ItemSword && !BASHER.effc_item.contains(item) && !SLASHER.effc_item.contains(item))
@@ -137,20 +123,6 @@ public class TuxWeapons extends ModDelta
                     GOLDEN.effc_item.add(item);
                }
           }
-     }
-     
-     
-     
-     
-     private void registerEntities ()
-     {
-          EntityRegistry.registerModEntity(EntitySpear.class, MOD_ID.toLowerCase() + ":" + "spear", 1, this, 64, 3, true);
-          EntityRegistry.registerModEntity(EntityKnife.class, MOD_ID.toLowerCase() + ":" + "knife", 2, this, 64, 3, true);
-          EntityRegistry.registerModEntity(EntityGrappHook.class, MOD_ID.toLowerCase() + ":" + "grappHook", 3, this, 64, 3, true);
-          EntityRegistry.registerModEntity(EntityTWFireball.class, MOD_ID.toLowerCase() + ":" + "fireball", 4, this, 64, 3, true);
-          EntityRegistry.registerModEntity(EntityBolt.class, MOD_ID.toLowerCase() + ":" + "bolt", 5, this, 64, 3, true);
-          EntityRegistry.registerModEntity(EntityDynamite.class, MOD_ID.toLowerCase() + ":" + "dynamite", 6, this, 64, 3, true);
-          EntityRegistry.registerModEntity(EntityEMPGrenade.class, MOD_ID.toLowerCase() + ":" + "empGrenade", 7, this, 64, 3, true);
      }
      
      

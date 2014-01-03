@@ -8,6 +8,7 @@ import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.core.item.ItemDelta;
 import mcdelta.core.item.ItemDeltaPickaxe;
 import mcdelta.core.material.ToolMaterial;
+import mcdelta.tuxweapons.TWContent;
 import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -107,7 +108,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
                     
                     if (stack2 != null && stack2.equals(stack))
                     {
-                         player.inventory.mainInventory[i] = new ItemStack(ItemTW.whocks.get(toolMaterial), 1, stack.getItemDamage());
+                         player.inventory.mainInventory[i] = new ItemStack(TWContent.whocks.get(toolMaterial), 1, stack.getItemDamage());
                          
                          if (stack.hasDisplayName())
                          {
@@ -176,7 +177,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      {
           if (stack.getItemDamage() != spawnDamage)
           {
-               return ItemTW.whocks.get(toolMaterial).getPasses(stack);
+               return TWContent.whocks.get(toolMaterial).getPasses(stack);
           }
           
           return 1;
@@ -190,7 +191,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      {
           if (stack.getItemDamage() != spawnDamage)
           {
-               return ItemTW.whocks.get(toolMaterial).getIconFromPass(stack, pass);
+               return TWContent.whocks.get(toolMaterial).getIconFromPass(stack, pass);
           }
           
           if (overrideExists)
@@ -209,7 +210,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      {
           if (stack.getItemDamage() != spawnDamage)
           {
-               return ItemTW.whocks.get(toolMaterial).getColorFromPass(stack, pass);
+               return TWContent.whocks.get(toolMaterial).getColorFromPass(stack, pass);
           }
           
           if (overrideExists)
@@ -228,7 +229,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      {
           if (stack.getItemDamage() != spawnDamage)
           {
-               return ItemTW.whocks.get(toolMaterial).getShinyFromPass(stack, pass);
+               return TWContent.whocks.get(toolMaterial).getShinyFromPass(stack, pass);
           }
           
           if (toolMaterial.isShinyDefault())

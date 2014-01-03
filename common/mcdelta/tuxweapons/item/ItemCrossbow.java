@@ -2,6 +2,7 @@ package mcdelta.tuxweapons.item;
 
 import mcdelta.core.assets.Assets;
 import mcdelta.core.item.ItemDeltaBow;
+import mcdelta.tuxweapons.TWContent;
 import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.entity.EntityBolt;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -43,7 +44,7 @@ public class ItemCrossbow extends ItemDeltaBow
      public ItemCrossbow ()
      {
           super(TuxWeapons.instance, "crossBow", new Item[]
-          { ItemTW.bolt });
+          { TWContent.bolt });
      }
      
      

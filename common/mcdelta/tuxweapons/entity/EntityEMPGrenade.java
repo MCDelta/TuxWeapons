@@ -1,6 +1,6 @@
 package mcdelta.tuxweapons.entity;
 
-import mcdelta.tuxweapons.block.BlockTW;
+import mcdelta.tuxweapons.TWContent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -62,7 +62,7 @@ public class EntityEMPGrenade extends EntityThrowable
                          ++i;
                }
                
-               int block = BlockTW.redstoneTmpBlock.blockID;
+               int block = TWContent.redstoneTmpBlock.blockID;
                
                if (this.worldObj.isAirBlock(i, j, k))
                {
@@ -105,7 +105,7 @@ public class EntityEMPGrenade extends EntityThrowable
           super.onUpdate();
           ticksInAir++;
           
-          int block = BlockTW.redstoneTmpBlock.blockID;
+          int block = TWContent.redstoneTmpBlock.blockID;
           
           if (this.worldObj.isAirBlock((int) this.posX, (int) this.posY, (int) this.posZ))
           {
