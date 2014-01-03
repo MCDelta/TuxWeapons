@@ -5,7 +5,7 @@ public class TWSettings
 {
      public static String  DESCRIPTION_TUXWEAPONS     = "All extra configuration options concerning the mod TuxWeapons will be found here. Configure the mod to your wishes!";
      
-     public static String  CATEGORY_DAMAGE_MODIFIER   = "Damage Modifier";
+     public static String  CATEGORY_DAMAGE_MODIFIER   = "DamageModifier";
      public static String  COMMENT_DAMAGE_MODIFIER    = "Mess around with the damage modifier settings (weaknesses/resistances)";
      
      public static String  CATEGORY_GENERAL           = "General";
