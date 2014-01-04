@@ -20,7 +20,6 @@ import net.minecraft.network.packet.Packet53BlockChange;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.world.BlockEvent;
@@ -219,20 +218,6 @@ public class ItemWhock extends ItemDeltaTool
      {
           final float strength = super.getStrVsBlock(stack, block, meta);
           return strength / 4F;
-     }
-     
-     
-     
-     
-     @Override
-     public String getItemDisplayName (final ItemStack stack)
-     {
-          final ItemMaterial mat = this.itemMaterial;
-          
-          final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
-          final String material = StatCollector.translateToLocal("material." + mat.name());
-          
-          return material + " " + weapon;
      }
      
      

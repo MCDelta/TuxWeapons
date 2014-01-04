@@ -154,7 +154,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
                weapon = StatCollector.translateToLocal("tool.whock");
           }
           
-          return material + " " + weapon;
+          return mat.getNameColor() + material + " " + weapon;
      }
      
      

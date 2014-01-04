@@ -292,7 +292,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
           final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
           final String material = StatCollector.translateToLocal("material." + mat.name());
           
-          return material + " " + weapon;
+          return mat.getNameColor() + material + " " + weapon;
      }
      
      
