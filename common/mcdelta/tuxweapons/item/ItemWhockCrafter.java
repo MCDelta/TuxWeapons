@@ -12,10 +12,13 @@ import mcdelta.tuxweapons.TWContent;
 import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.Icon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -70,7 +73,10 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      @Override
      public void getSubItems (final int id, final CreativeTabs tab, final List list)
      {
-          list.add(new ItemStack(id, 1, this.spawnDamage));
+          ItemStack stack = new ItemStack(id, 1, this.spawnDamage);
+          if (itemMaterial.toolEnchant() != null)
+               stack.addEnchantment(itemMaterial.toolEnchant(), itemMaterial.toolEnchantLvl());
+          list.add(stack);
      }
      
      
@@ -115,6 +121,19 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
                          if (stack.hasDisplayName())
                          {
                               player.inventory.mainInventory[i].setItemName(stack.getDisplayName());
+                         }
+                         
+                         if (stack.isItemEnchanted())
+                         {
+                              NBTTagList nbttaglist = stack.getEnchantmentTagList();
+                              
+                              if (nbttaglist != null)
+                              {
+                                   for (int i3 = 0; i3 < nbttaglist.tagCount(); i3++)
+                                   {
+                                        player.inventory.mainInventory[i].addEnchantment(Enchantment.enchantmentsList[((NBTTagCompound)nbttaglist.tagAt(i)).getShort("id")], ((NBTTagCompound)nbttaglist.tagAt(i3)).getShort("lvl"));
+                                   }
+                              }
                          }
                          
                          player.inventory.inventoryChanged = true;

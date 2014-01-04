@@ -196,8 +196,8 @@ public class ItemKnife extends ItemDelta implements IExtraPasses
      public void getSubItems (int id, CreativeTabs tab, List list)
      {
           ItemStack stack = new ItemStack(id, 1, 0);
-          if (itemMaterial.enchant() != null)
-               stack.addEnchantment(itemMaterial.enchant(), itemMaterial.enchantLvl());
+          if (itemMaterial.weaponEnchant() != null)
+               stack.addEnchantment(itemMaterial.weaponEnchant(), itemMaterial.weaponEnchantLvl());
           list.add(stack);
      }
 }

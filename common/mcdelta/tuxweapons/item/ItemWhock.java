@@ -3,6 +3,8 @@ package mcdelta.tuxweapons.item;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.assets.world.Position;
 import mcdelta.core.item.ItemDeltaTool;
@@ -11,6 +13,7 @@ import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -249,5 +252,17 @@ public class ItemWhock extends ItemDeltaTool
           }
           
           return super.getIsRepairable(repair, gem);
+     }
+     
+     
+     
+     
+     @SideOnly (Side.CLIENT)
+     public void getSubItems (int id, CreativeTabs tab, List list)
+     {
+          ItemStack stack = new ItemStack(id, 1, 0);
+          if (itemMaterial.toolEnchant() != null)
+               stack.addEnchantment(itemMaterial.toolEnchant(), itemMaterial.toolEnchantLvl());
+          list.add(stack);
      }
 }
