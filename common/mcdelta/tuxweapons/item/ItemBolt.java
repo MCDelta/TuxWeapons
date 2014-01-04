@@ -1,17 +1,12 @@
 package mcdelta.tuxweapons.item;
 
 import java.awt.Color;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.tuxweapons.TWContent;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.EnumAction;
@@ -21,13 +16,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
-import com.google.common.collect.HashMultimap;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -175,95 +165,7 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      @SideOnly (Side.CLIENT)
      public void addInformation (final ItemStack stack, final EntityPlayer player, final List list, final boolean extraInfo)
      {
-          final List<PotionEffect> list1 = Item.potion.getEffects(stack);
-          final HashMultimap<Object, Object> hashmultimap = HashMultimap.create();
-          Iterator<PotionEffect> iterator;
-          
-          if (list1 != null && !list1.isEmpty())
-          {
-               iterator = list1.iterator();
-               
-               while (iterator.hasNext())
-               {
-                    final PotionEffect potioneffect = iterator.next();
-                    String s = StatCollector.translateToLocal(potioneffect.getEffectName()).trim();
-                    final Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
-                    final Map<Attribute, AttributeModifier> map = potion.func_111186_k();
-                    
-                    if (map != null && map.size() > 0)
-                    {
-                         final Iterator<Entry<Attribute, AttributeModifier>> iterator1 = map.entrySet().iterator();
-                         
-                         while (iterator1.hasNext())
-                         {
-                              final Entry<Attribute, AttributeModifier> entry = iterator1.next();
-                              final AttributeModifier attributemodifier = entry.getValue();
-                              final AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), potion.func_111183_a(potioneffect.getAmplifier(), attributemodifier), attributemodifier.getOperation());
-                              hashmultimap.put(entry.getKey().getAttributeUnlocalizedName(), attributemodifier1);
-                         }
-                    }
-                    
-                    if (potioneffect.getAmplifier() > 0)
-                    {
-                         s = s + " " + StatCollector.translateToLocal("potion.potency." + potioneffect.getAmplifier()).trim();
-                    }
-                    
-                    if (potioneffect.getDuration() > 20)
-                    {
-                         s = s + " (" + Potion.getDurationString(potioneffect) + ")";
-                    }
-                    
-                    if (potion.isBadEffect())
-                    {
-                         list.add(EnumChatFormatting.RED + s);
-                    }
-                    else
-                    {
-                         list.add(EnumChatFormatting.GRAY + s);
-                    }
-               }
-          }
-          else
-          {
-               final String s1 = StatCollector.translateToLocal("potion.empty").trim();
-               list.add(EnumChatFormatting.GRAY + s1);
-          }
-          
-          if (!hashmultimap.isEmpty())
-          {
-               list.add("");
-               list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("potion.effects.whenDrank"));
-               final Iterator<Entry<Object, Object>> iterator2 = hashmultimap.entries().iterator();
-               
-               while (iterator2.hasNext())
-               {
-                    final Entry<Object, Object> entry1 = iterator2.next();
-                    final AttributeModifier attributemodifier2 = (AttributeModifier) entry1.getValue();
-                    final double d0 = attributemodifier2.getAmount();
-                    double d1;
-                    
-                    if (attributemodifier2.getOperation() != 1 && attributemodifier2.getOperation() != 2)
-                    {
-                         d1 = attributemodifier2.getAmount();
-                    }
-                    else
-                    {
-                         d1 = attributemodifier2.getAmount() * 100.0D;
-                    }
-                    
-                    if (d0 > 0.0D)
-                    {
-                         list.add(EnumChatFormatting.BLUE + StatCollector.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier2.getOperation(), new Object[]
-                         { ItemStack.field_111284_a.format(d1), StatCollector.translateToLocal("attribute.name." + (String) entry1.getKey()) }));
-                    }
-                    else if (d0 < 0.0D)
-                    {
-                         d1 *= -1.0D;
-                         list.add(EnumChatFormatting.RED + StatCollector.translateToLocalFormatted("attribute.modifier.take." + attributemodifier2.getOperation(), new Object[]
-                         { ItemStack.field_111284_a.format(d1), StatCollector.translateToLocal("attribute.name." + (String) entry1.getKey()) }));
-                    }
-               }
-          }
+          Item.potion.addInformation(stack, player, list, extraInfo);
      }
      
      

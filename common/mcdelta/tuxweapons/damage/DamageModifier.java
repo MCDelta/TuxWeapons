@@ -6,6 +6,7 @@ import static mcdelta.tuxweapons.damage.EnumDamageTypes.SLASHER;
 
 import java.util.Random;
 
+import mcdelta.core.logging.Logger;
 import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.config.TWSettings;
 import mcdelta.tuxweapons.item.ItemMace;
@@ -129,6 +130,6 @@ public class DamageModifier
                }
           }
           
-          //log(event.ammount, EntityList.getEntityString(event.entityLiving) == null ? "nuuuull" : EntityList.getEntityString(event.entityLiving).toLowerCase(), event.source.damageType);
+          Logger.debug(event.ammount, EntityList.getEntityString(event.entityLiving) == null ? "nuuuull" : EntityList.getEntityString(event.entityLiving).toLowerCase(), event.source.damageType);
      }
 }
