@@ -85,12 +85,12 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
      @Override
      public boolean getIsRepairable (final ItemStack stack1, final ItemStack stack2)
      {
-          if (stack2.getItem() instanceof ItemDeltaPickaxe && ((ItemDeltaPickaxe) stack2.getItem()).itemMaterial == this.itemMaterial)
+          if (stack2.getItem() instanceof ItemDeltaPickaxe && ((ItemDeltaPickaxe) stack2.getItem()).itemMaterial.equals(this.itemMaterial))
           {
                return true;
           }
           
-          if (stack2.getItem() instanceof ItemPickaxe && ((ItemPickaxe) stack2.getItem()).getToolMaterialName() == this.itemMaterial.name())
+          if (stack2.getItem() instanceof ItemPickaxe && ((ItemPickaxe) stack2.getItem()).getToolMaterialName().toLowerCase().equals(this.itemMaterial.name().toLowerCase()))
           {
                return true;
           }
@@ -131,7 +131,7 @@ public class ItemWhockCrafter extends ItemDelta implements IExtraPasses
                               {
                                    for (int i3 = 0; i3 < nbttaglist.tagCount(); i3++)
                                    {
-                                        player.inventory.mainInventory[i].addEnchantment(Enchantment.enchantmentsList[((NBTTagCompound)nbttaglist.tagAt(i)).getShort("id")], ((NBTTagCompound)nbttaglist.tagAt(i3)).getShort("lvl"));
+                                        player.inventory.mainInventory[i].addEnchantment(Enchantment.enchantmentsList[((NBTTagCompound)nbttaglist.tagAt(i3)).getShort("id")], ((NBTTagCompound)nbttaglist.tagAt(i3)).getShort("lvl"));
                                    }
                               }
                          }
