@@ -59,13 +59,20 @@ public class TuxWeapons extends ModDelta
      
      
      
+     @Override
+     public void deltaInit (FMLPreInitializationEvent event)
+     {
+          this.init(event, new TWConfig());
+     }
+     
+     
+     
+     
      @EventHandler
      public void preInit (final FMLPreInitializationEvent event)
      {
           PacketHandler.packets[2] = PacketSpawnParticle.class;
           PacketHandler.packets[3] = PacketThrowablePickup.class;
-          
-          this.init(event, new TWConfig());
      }
      
      
@@ -141,4 +148,6 @@ public class TuxWeapons extends ModDelta
      {
           return this.content;
      }
+     
+     
 }
