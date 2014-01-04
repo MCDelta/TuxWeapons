@@ -5,7 +5,6 @@ import java.util.Map;
 
 import mcdelta.core.IContent;
 import mcdelta.core.material.ItemMaterial;
-import mcdelta.core.material.MaterialRegistry;
 import mcdelta.tuxweapons.block.BlockBrewStand;
 import mcdelta.tuxweapons.block.BlockRedstoneTempBlock;
 import mcdelta.tuxweapons.block.tileentity.TileBrewStand;
@@ -175,41 +174,45 @@ public class TWContent implements IContent
           GameRegistry.addRecipe(new ItemStack(TWContent.dynamite, 2), " gs", " x ", " g ", 'g', gunpowder, 'x', sand, 's', string);
           GameRegistry.addRecipe(new ItemStack(TWContent.empGrenade, 3), " x ", "xox", " x ", 'x', redStone, 'o', clay);
           GameRegistry.addRecipe(new RecipePotionBolt());
+     }
+
+
+
+
+     @Override
+     public void addMaterialBasedRecipes (ItemMaterial mat)
+     {
+          final String material = mat.oreName();
           
-          for (final ItemMaterial mat : MaterialRegistry.materials())
+          if (mat.needsWeapons())
           {
-               final String material = mat.oreName();
+               // Battleaxe
+               final ItemStack battleaxe = new ItemStack(TWContent.battleaxes.get(mat));
+               GameRegistry.addRecipe(new ShapedOreRecipe(battleaxe, "xxx", "xox", " o ", 'x', material, 'o', "stickWood"));
                
-               if (mat.needsWeapons())
-               {
-                    // Battleaxe
-                    final ItemStack battleaxe = new ItemStack(TWContent.battleaxes.get(mat));
-                    GameRegistry.addRecipe(new ShapedOreRecipe(battleaxe, "xxx", "xox", " o ", 'x', material, 'o', "stickWood"));
-                    
-                    // Hammer
-                    final ItemStack hammer = new ItemStack(TWContent.hammers.get(mat));
-                    GameRegistry.addRecipe(new ShapedOreRecipe(hammer, "xox", "xox", " o ", 'x', material, 'o', "stickWood"));
-                    
-                    // Knife
-                    final ItemStack knife = new ItemStack(TWContent.knives.get(mat), 4);
-                    GameRegistry.addRecipe(new ShapedOreRecipe(knife, " x", "o ", 'x', material, 'o', "stickWood"));
-                    
-                    // Spear
-                    final ItemStack spear = new ItemStack(TWContent.spears.get(mat));
-                    GameRegistry.addRecipe(new ShapedOreRecipe(spear, "  x", " o ", "o  ", 'x', material, 'o', "stickWood"));
-                    
-                    // Grappling Hook
-                    final ItemStack grappHook = new ItemStack(TWContent.grappHooks.get(mat));
-                    GameRegistry.addRecipe(new ShapedOreRecipe(grappHook, " xx", " ox", "o  ", 'x', material, 'o', "ingotIron"));
-                    
-                    // Shield
-                    final ItemStack shield = new ItemStack(TWContent.shields.get(mat));
-                    GameRegistry.addRecipe(new ShapedOreRecipe(shield, "oxo", "xox", "oxo", 'x', material, 'o', "plankWood"));
-                    
-                    // Whock Crafter
-                    final ItemStack whockCrafter = new ItemStack(TWContent.whockCrafters.get(mat), 1, mat.maxUses() - 1);
-                    GameRegistry.addRecipe(new ShapedOreRecipe(whockCrafter, "xxx", "xox", " x ", 'x', material, 'o', Block.obsidian));
-               }
+               // Hammer
+               final ItemStack hammer = new ItemStack(TWContent.hammers.get(mat));
+               GameRegistry.addRecipe(new ShapedOreRecipe(hammer, "xox", "xox", " o ", 'x', material, 'o', "stickWood"));
+               
+               // Knife
+               final ItemStack knife = new ItemStack(TWContent.knives.get(mat), 4);
+               GameRegistry.addRecipe(new ShapedOreRecipe(knife, " x", "o ", 'x', material, 'o', "stickWood"));
+               
+               // Spear
+               final ItemStack spear = new ItemStack(TWContent.spears.get(mat));
+               GameRegistry.addRecipe(new ShapedOreRecipe(spear, "  x", " o ", "o  ", 'x', material, 'o', "stickWood"));
+               
+               // Grappling Hook
+               final ItemStack grappHook = new ItemStack(TWContent.grappHooks.get(mat));
+               GameRegistry.addRecipe(new ShapedOreRecipe(grappHook, " xx", " ox", "o  ", 'x', material, 'o', "ingotIron"));
+               
+               // Shield
+               final ItemStack shield = new ItemStack(TWContent.shields.get(mat));
+               GameRegistry.addRecipe(new ShapedOreRecipe(shield, "oxo", "xox", "oxo", 'x', material, 'o', "plankWood"));
+               
+               // Whock Crafter
+               final ItemStack whockCrafter = new ItemStack(TWContent.whockCrafters.get(mat), 1, mat.maxUses() - 1);
+               GameRegistry.addRecipe(new ShapedOreRecipe(whockCrafter, "xxx", "xox", " x ", 'x', material, 'o', Block.obsidian));
           }
      }
 }
