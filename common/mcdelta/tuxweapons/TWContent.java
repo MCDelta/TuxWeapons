@@ -188,30 +188,44 @@ public class TWContent implements IContent
           {
                // Battleaxe
                final ItemStack battleaxe = new ItemStack(TWContent.battleaxes.get(mat));
+               if(mat.enchant() != null)
+                    battleaxe.addEnchantment(mat.enchant(), mat.enchantLvl());
                GameRegistry.addRecipe(new ShapedOreRecipe(battleaxe, "xxx", "xox", " o ", 'x', material, 'o', "stickWood"));
                
                // Hammer
                final ItemStack hammer = new ItemStack(TWContent.hammers.get(mat));
+               if(mat.enchant() != null)
+                    hammer.addEnchantment(mat.enchant(), mat.enchantLvl());
                GameRegistry.addRecipe(new ShapedOreRecipe(hammer, "xox", "xox", " o ", 'x', material, 'o', "stickWood"));
                
                // Knife
                final ItemStack knife = new ItemStack(TWContent.knives.get(mat), 4);
+               if(mat.enchant() != null)
+                    knife.addEnchantment(mat.enchant(), mat.enchantLvl());
                GameRegistry.addRecipe(new ShapedOreRecipe(knife, " x", "o ", 'x', material, 'o', "stickWood"));
                
                // Spear
                final ItemStack spear = new ItemStack(TWContent.spears.get(mat));
+               if(mat.enchant() != null)
+                    spear.addEnchantment(mat.enchant(), mat.enchantLvl());
                GameRegistry.addRecipe(new ShapedOreRecipe(spear, "  x", " o ", "o  ", 'x', material, 'o', "stickWood"));
                
                // Grappling Hook
                final ItemStack grappHook = new ItemStack(TWContent.grappHooks.get(mat));
+               if(mat.enchant() != null)
+                    grappHook.addEnchantment(mat.enchant(), mat.enchantLvl());
                GameRegistry.addRecipe(new ShapedOreRecipe(grappHook, " xx", " ox", "o  ", 'x', material, 'o', "ingotIron"));
                
                // Shield
                final ItemStack shield = new ItemStack(TWContent.shields.get(mat));
+               if(mat.enchant() != null)
+                    shield.addEnchantment(mat.enchant(), mat.enchantLvl());
                GameRegistry.addRecipe(new ShapedOreRecipe(shield, "oxo", "xox", "oxo", 'x', material, 'o', "plankWood"));
                
                // Whock Crafter
                final ItemStack whockCrafter = new ItemStack(TWContent.whockCrafters.get(mat), 1, mat.maxUses() - 1);
+               if(mat.enchant() != null)
+                    whockCrafter.addEnchantment(mat.enchant(), mat.enchantLvl());
                GameRegistry.addRecipe(new ShapedOreRecipe(whockCrafter, "xxx", "xox", " x ", 'x', material, 'o', Block.obsidian));
           }
      }

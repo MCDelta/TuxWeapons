@@ -318,7 +318,7 @@ public class EntityTWThrowable extends Entity implements IProjectile, IEntityAdd
                                    
                                    else if (this.stack != null && this.stack.getItem() instanceof ItemKnife)
                                    {
-                                        damageDealt = ((ItemKnife) this.stack.getItem()).toolMaterialDelta.getDamageVsEntity() + 2;
+                                        damageDealt = ((ItemKnife) this.stack.getItem()).itemMaterial.getDamageVsEntity() + 2;
                                    }
                                    
                                    if (damageDealt != 0)

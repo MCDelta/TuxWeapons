@@ -1,5 +1,7 @@
 package mcdelta.tuxweapons.item;
 
+import java.util.List;
+
 import mcdelta.core.DeltaCore;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.item.IExtraPasses;
@@ -218,5 +220,17 @@ public class ItemShield extends ItemDelta implements IExtraPasses
           }
           
           return super.getIsRepairable(repair, gem);
+     }
+     
+     
+     
+     
+     @SideOnly (Side.CLIENT)
+     public void getSubItems (int id, CreativeTabs tab, List list)
+     {
+          ItemStack stack = new ItemStack(id, 1, 0);
+          if (itemMaterial.enchant() != null)
+               stack.addEnchantment(itemMaterial.enchant(), itemMaterial.enchantLvl());
+          list.add(stack);
      }
 }
