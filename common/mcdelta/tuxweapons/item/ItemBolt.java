@@ -1,12 +1,17 @@
 package mcdelta.tuxweapons.item;
 
 import java.awt.Color;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import mcdelta.core.assets.Assets;
 import mcdelta.core.client.item.IExtraPasses;
 import mcdelta.tuxweapons.TWContent;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.EnumAction;
@@ -16,8 +21,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.Icon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
+import com.google.common.collect.HashMultimap;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -165,7 +175,93 @@ public class ItemBolt extends ItemTW implements IExtraPasses
      @SideOnly (Side.CLIENT)
      public void addInformation (final ItemStack stack, final EntityPlayer player, final List list, final boolean extraInfo)
      {
-          Item.potion.addInformation(stack, player, list, extraInfo);
+          List<PotionEffect> list1 = Item.potion.getEffects(stack);
+          HashMultimap<Object, Object> hashmultimap = HashMultimap.create();
+          Iterator<PotionEffect> iter;
+
+          if (list1 != null && !list1.isEmpty())
+          {
+               iter = list1.iterator();
+
+              while (iter.hasNext())
+              {
+                  PotionEffect potioneffect = iter.next();
+                  String s = StatCollector.translateToLocal(potioneffect.getEffectName()).trim();
+                  Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
+                  Map<Object, Object> map = potion.func_111186_k();
+
+                  if (map != null && map.size() > 0)
+                  {
+                      Iterator<Entry<Object, Object>> iterator1 = map.entrySet().iterator();
+
+                      while (iterator1.hasNext())
+                      {
+                          Entry<Object, Object> entry = iterator1.next();
+                          AttributeModifier attributemodifier = (AttributeModifier)entry.getValue();
+                          AttributeModifier attributemodifier1 = new AttributeModifier(attributemodifier.getName(), potion.func_111183_a(potioneffect.getAmplifier(), attributemodifier), attributemodifier.getOperation());
+                          hashmultimap.put(((Attribute)entry.getKey()).getAttributeUnlocalizedName(), attributemodifier1);
+                      }
+                  }
+
+                  if (potioneffect.getAmplifier() > 0)
+                  {
+                      s = s + " " + StatCollector.translateToLocal("potion.potency." + potioneffect.getAmplifier()).trim();
+                  }
+
+                  if (potioneffect.getDuration() > 20)
+                  {
+                      s = s + " (" + Potion.getDurationString(potioneffect) + ")";
+                  }
+
+                  if (potion.isBadEffect())
+                  {
+                      list.add(EnumChatFormatting.RED + s);
+                  }
+                  else
+                  {
+                      list.add(EnumChatFormatting.GRAY + s);
+                  }
+              }
+          }
+          else
+          {
+              String s1 = StatCollector.translateToLocal("potion.empty").trim();
+              list.add(EnumChatFormatting.GRAY + s1);
+          }
+
+          if (!hashmultimap.isEmpty())
+          {
+              list.add("");
+              list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("potion.effects.whenDrank"));
+              Iterator<Entry<Object, Object>> iterator = hashmultimap.entries().iterator();
+
+              while (iterator.hasNext())
+              {
+                  Entry<Object, Object> entry1 = iterator.next();
+                  AttributeModifier attributemodifier2 = (AttributeModifier)entry1.getValue();
+                  double d0 = attributemodifier2.getAmount();
+                  double d1;
+
+                  if (attributemodifier2.getOperation() != 1 && attributemodifier2.getOperation() != 2)
+                  {
+                      d1 = attributemodifier2.getAmount();
+                  }
+                  else
+                  {
+                      d1 = attributemodifier2.getAmount() * 100.0D;
+                  }
+
+                  if (d0 > 0.0D)
+                  {
+                      list.add(EnumChatFormatting.BLUE + StatCollector.translateToLocalFormatted("attribute.modifier.plus." + attributemodifier2.getOperation(), new Object[] {ItemStack.field_111284_a.format(d1), StatCollector.translateToLocal("attribute.name." + (String)entry1.getKey())}));
+                  }
+                  else if (d0 < 0.0D)
+                  {
+                      d1 *= -1.0D;
+                      list.add(EnumChatFormatting.RED + StatCollector.translateToLocalFormatted("attribute.modifier.take." + attributemodifier2.getOperation(), new Object[] {ItemStack.field_111284_a.format(d1), StatCollector.translateToLocal("attribute.name." + (String)entry1.getKey())}));
+                  }
+              }
+          }
      }
      
      
