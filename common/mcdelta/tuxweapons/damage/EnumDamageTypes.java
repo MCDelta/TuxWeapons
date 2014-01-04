@@ -53,4 +53,15 @@ public enum EnumDamageTypes
           this();
           this.effc_entity.addAll(Arrays.asList(arr));
      }
+     
+     
+     
+     
+     public void addEntities (String... strings)
+     {
+          for (String s : strings)
+          {
+               effc_entity.add(s);
+          }
+     }
 }
