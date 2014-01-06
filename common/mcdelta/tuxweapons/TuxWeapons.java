@@ -48,6 +48,7 @@ public class TuxWeapons extends ModDelta
      // - death messages
      // - reimplement ukulele
      // - retexture magma core
+     // - mod support
      
      public static final String  MOD_ID = "tuxweapons";
      

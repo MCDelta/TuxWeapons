@@ -96,7 +96,7 @@ public class ItemHammer extends ItemWeapon
                               
                               if (entity instanceof EntityLivingBase)
                               {
-                                   final float damage = this.toolMaterialDelta.getDamageVsEntity() + 1;
+                                   float damage = itemMaterial.getDamageVsEntity() + 1;
                                    
                                    entity.attackEntityFrom(new DamageSourceWeapon("tuxweapons:hammerSmash", entity, player, stack), damage);
                               }

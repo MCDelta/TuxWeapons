@@ -183,6 +183,7 @@ public class TWContent implements IContent
      public void addMaterialBasedRecipes (ItemMaterial mat)
      {
           final String material = mat.oreName();
+          String stickMaterial = "stickWood";
           
           if (mat.needsWeapons())
           {
@@ -190,25 +191,25 @@ public class TWContent implements IContent
                final ItemStack battleaxe = new ItemStack(TWContent.battleaxes.get(mat));
                if(mat.weaponEnchant() != null)
                     battleaxe.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
-               GameRegistry.addRecipe(new ShapedOreRecipe(battleaxe, "xxx", "xox", " o ", 'x', material, 'o', "stickWood"));
+               GameRegistry.addRecipe(new ShapedOreRecipe(battleaxe, "xxx", "xox", " o ", 'x', material, 'o', stickMaterial));
                
                // Hammer
                final ItemStack hammer = new ItemStack(TWContent.hammers.get(mat));
                if(mat.weaponEnchant() != null)
                     hammer.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
-               GameRegistry.addRecipe(new ShapedOreRecipe(hammer, "xox", "xox", " o ", 'x', material, 'o', "stickWood"));
+               GameRegistry.addRecipe(new ShapedOreRecipe(hammer, "xox", "xox", " o ", 'x', material, 'o', stickMaterial));
                
                // Knife
                final ItemStack knife = new ItemStack(TWContent.knives.get(mat), 4);
                if(mat.weaponEnchant() != null)
                     knife.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
-               GameRegistry.addRecipe(new ShapedOreRecipe(knife, " x", "o ", 'x', material, 'o', "stickWood"));
+               GameRegistry.addRecipe(new ShapedOreRecipe(knife, " x", "o ", 'x', material, 'o', stickMaterial));
                
                // Spear
                final ItemStack spear = new ItemStack(TWContent.spears.get(mat));
                if(mat.weaponEnchant() != null)
                     spear.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
-               GameRegistry.addRecipe(new ShapedOreRecipe(spear, "  x", " o ", "o  ", 'x', material, 'o', "stickWood"));
+               GameRegistry.addRecipe(new ShapedOreRecipe(spear, "  x", " o ", "o  ", 'x', material, 'o', stickMaterial));
                
                // Grappling Hook
                final ItemStack grappHook = new ItemStack(TWContent.grappHooks.get(mat));
