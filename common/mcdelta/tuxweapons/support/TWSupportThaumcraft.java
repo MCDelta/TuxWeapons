@@ -5,8 +5,6 @@ import mcdelta.tuxweapons.damage.EnumDamageTypes;
 
 public class TWSupportThaumcraft implements LimitedModSupport
 {
-     
-     
      @Override
      public String modid ()
      {

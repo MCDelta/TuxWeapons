@@ -19,6 +19,7 @@ import mcdelta.tuxweapons.network.PacketSpawnParticle;
 import mcdelta.tuxweapons.network.PacketThrowablePickup;
 import mcdelta.tuxweapons.proxy.TWCommonProxy;
 import mcdelta.tuxweapons.support.TWSupportThaumcraft;
+import mcdelta.tuxweapons.support.TWSupportTwilightForest;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemSword;
@@ -77,6 +78,7 @@ public class TuxWeapons extends ModDelta
           PacketHandler.packets[3] = PacketThrowablePickup.class;
           
           doLimitedModSupport(new TWSupportThaumcraft());
+          doLimitedModSupport(new TWSupportTwilightForest());
      }
      
      

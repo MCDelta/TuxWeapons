@@ -15,10 +15,10 @@ public class TWSettings
      public static boolean DAMAGE_MODIFIER_ENABLE     = true;
      
      public static String  DAMAGE_MODIFIER_WEAK_KEY   = "amount of damage to add vs weaknessed entities";
-     public static int     DAMAGE_MODIFIER_WEAK       = 4;
+     public static int     DAMAGE_MODIFIER_WEAK       = 2;
      
      public static String  DAMAGE_MODIFIER_RESIST_KEY = "amount of damage to subtract vs resistant entities";
-     public static int     DAMAGE_MODIFIER_RESIST     = 4;
+     public static int     DAMAGE_MODIFIER_RESIST     = 5;
      
      public static String  DAMAGE_MODIFIER_GOLD_KEY   = "amount of damage to add vs entities weaknessed to gold";
      public static int     DAMAGE_MODIFIER_GOLD       = 8;
