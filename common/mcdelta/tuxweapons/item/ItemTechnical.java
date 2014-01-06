@@ -17,7 +17,7 @@ public class ItemTechnical extends ItemTW
      public ItemTechnical ()
      {
           super("technical");
-          this.setCreativeTab(CreativeTabs.tabBrewing);
+          setCreativeTab(CreativeTabs.tabBrewing);
      }
      
      

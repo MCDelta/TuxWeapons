@@ -24,7 +24,7 @@ public class EnchSwift extends EnchantmentTW
      @Override
      public int getMaxEnchantability (final int enchLevel)
      {
-          return this.getMinEnchantability(enchLevel) + 20;
+          return getMinEnchantability(enchLevel) + 20;
      }
      
      

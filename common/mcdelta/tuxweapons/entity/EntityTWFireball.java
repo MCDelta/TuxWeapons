@@ -27,7 +27,7 @@ public class EntityTWFireball extends EntityThrowable
      public EntityTWFireball (final World world, final EntityPlayer player, final int charge)
      {
           super(world, player);
-          this.explosionForce = charge;
+          explosionForce = charge;
      }
      
      
@@ -40,12 +40,12 @@ public class EntityTWFireball extends EntityThrowable
           {
                final byte b0 = 0;
                
-               pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), b0);
+               pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), b0);
           }
           
-          this.worldObj.spawnParticle("hugeexplosion", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+          worldObj.spawnParticle("hugeexplosion", posX, posY, posZ, 0.0D, 0.0D, 0.0D);
           
-          this.explode();
+          explode();
      }
      
      
@@ -64,25 +64,25 @@ public class EntityTWFireball extends EntityThrowable
      public void onUpdate ()
      {
           super.onUpdate();
-          this.ticksInAir++;
+          ticksInAir++;
           
-          if (this.ticksInAir >= 20)
+          if (ticksInAir >= 20)
           {
-               this.explode();
+               explode();
           }
           
-          if (this.inWater)
+          if (inWater)
           {
-               this.explode();
+               explode();
           }
           
           for (int i = 0; i < 2; i++)
           {
-               final double xOffset = this.rand.nextDouble() - 0.5;
-               final double yOffset = this.rand.nextDouble() - 0.5;
-               final double zOffset = this.rand.nextDouble() - 0.5;
+               final double xOffset = rand.nextDouble() - 0.5;
+               final double yOffset = rand.nextDouble() - 0.5;
+               final double zOffset = rand.nextDouble() - 0.5;
                
-               this.worldObj.spawnParticle("flame", this.posX + xOffset, this.posY + yOffset, this.posZ + zOffset, 0, 0, 0);
+               worldObj.spawnParticle("flame", posX + xOffset, posY + yOffset, posZ + zOffset, 0, 0, 0);
           }
      }
      
@@ -91,7 +91,7 @@ public class EntityTWFireball extends EntityThrowable
      
      private void explode ()
      {
-          final float i = this.explosionForce / 12;
+          final float i = explosionForce / 12;
           float explosionRadius;
           boolean onFire = false;
           
@@ -102,7 +102,7 @@ public class EntityTWFireball extends EntityThrowable
           
           else
           {
-               explosionRadius = this.explosionForce / 12;
+               explosionRadius = explosionForce / 12;
           }
           
           if (explosionRadius >= 4)
@@ -118,8 +118,8 @@ public class EntityTWFireball extends EntityThrowable
                grief = false;
           }
           
-          this.worldObj.newExplosion((Entity) null, this.posX, this.posY, this.posZ, explosionRadius, onFire, grief);
+          worldObj.newExplosion((Entity) null, posX, posY, posZ, explosionRadius, onFire, grief);
           
-          this.setDead();
+          setDead();
      }
 }

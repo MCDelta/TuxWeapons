@@ -47,14 +47,14 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      {
           super(TuxWeapons.instance, mat.name() + "." + "grappHook", false);
           
-          this.toolName = "grappHook";
-          this.itemMaterial = mat;
-          this.maxStackSize = 1;
-          this.setCreativeTab(CreativeTabs.tabTools);
+          toolName = "grappHook";
+          itemMaterial = mat;
+          maxStackSize = 1;
+          setCreativeTab(CreativeTabs.tabTools);
           
-          this.setMaxDamage(mat.maxUses());
+          setMaxDamage(mat.maxUses());
           
-          final String weapon = "tool." + this.toolName;
+          final String weapon = "tool." + toolName;
           final String material = "material." + mat.name();
           
           if (!StatCollector.func_94522_b(weapon))
@@ -94,7 +94,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
                     return event.result;
                }
                
-               player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+               player.setItemInUse(stack, getMaxItemUseDuration(stack));
                
                return stack;
           }
@@ -162,7 +162,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public void onPlayerStoppedUsing (final ItemStack stack, final World world, final EntityPlayer player, final int par4)
      {
-          final int duration = this.getMaxItemUseDuration(stack) - par4;
+          final int duration = getMaxItemUseDuration(stack) - par4;
           
           float charge = duration / 30.0F;
           
@@ -204,14 +204,14 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public void registerIcons (final IconRegister register)
      {
-          this.itemIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_1", register);
-          this.itemOverlay = ItemDelta.doRegister(this.mod.id().toLowerCase(), this.toolName + "_2", register);
+          itemIcon = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_1", register);
+          itemOverlay = ItemDelta.doRegister(mod.id().toLowerCase(), toolName + "_2", register);
           
-          this.overrideExists = Assets.resourceExists(new ResourceLocation(this.mod.id().toLowerCase(), "textures/items/override/" + this.itemMaterial.name().toLowerCase() + "_" + this.toolName + ".png"));
+          overrideExists = Assets.resourceExists(new ResourceLocation(mod.id().toLowerCase(), "textures/items/override/" + itemMaterial.name().toLowerCase() + "_" + toolName + ".png"));
           
-          if (this.overrideExists)
+          if (overrideExists)
           {
-               this.overrideIcon = ItemDelta.doRegister(this.mod.id().toLowerCase(), "override/" + this.itemMaterial.name().toLowerCase() + "_" + this.toolName, register);
+               overrideIcon = ItemDelta.doRegister(mod.id().toLowerCase(), "override/" + itemMaterial.name().toLowerCase() + "_" + toolName, register);
           }
      }
      
@@ -221,7 +221,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public int getPasses (final ItemStack stack)
      {
-          if (this.overrideExists)
+          if (overrideExists)
           {
                return 1;
           }
@@ -235,17 +235,17 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public Icon getIconFromPass (final ItemStack stack, final int pass)
      {
-          if (this.overrideExists)
+          if (overrideExists)
           {
-               return this.overrideIcon;
+               return overrideIcon;
           }
           
           if (pass == 2)
           {
-               return this.itemOverlay;
+               return itemOverlay;
           }
           
-          return this.itemIcon;
+          return itemIcon;
      }
      
      
@@ -254,7 +254,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public int getColorFromPass (final ItemStack stack, final int pass)
      {
-          if (this.overrideExists)
+          if (overrideExists)
           {
                return 0xffffff;
           }
@@ -264,7 +264,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
                return 0xc4c3ac;
           }
           
-          return this.itemMaterial.color();
+          return itemMaterial.color();
      }
      
      
@@ -273,7 +273,7 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public boolean getShinyFromPass (final ItemStack stack, final int pass)
      {
-          if (pass == 1 && this.itemMaterial.defaultShiny())
+          if (pass == 1 && itemMaterial.defaultShiny())
           {
                return true;
           }
@@ -287,9 +287,9 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public String getItemDisplayName (final ItemStack stack)
      {
-          final ItemMaterial mat = this.itemMaterial;
+          final ItemMaterial mat = itemMaterial;
           
-          final String weapon = StatCollector.translateToLocal("tool." + this.toolName);
+          final String weapon = StatCollector.translateToLocal("tool." + toolName);
           final String material = StatCollector.translateToLocal("material." + mat.name());
           
           return mat.getNameColor() + material + " " + weapon;
@@ -301,9 +301,9 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      @Override
      public boolean getIsRepairable (final ItemStack repair, final ItemStack gem)
      {
-          if (OreDictionary.getOres(this.itemMaterial.oreName()) != null && !OreDictionary.getOres(this.itemMaterial.oreName()).isEmpty())
+          if (OreDictionary.getOres(itemMaterial.oreName()) != null && !OreDictionary.getOres(itemMaterial.oreName()).isEmpty())
           {
-               return OreDictionary.itemMatches(OreDictionary.getOres(this.itemMaterial.oreName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
+               return OreDictionary.itemMatches(OreDictionary.getOres(itemMaterial.oreName()).get(0), gem, false) ? true : super.getIsRepairable(repair, gem);
           }
           
           return super.getIsRepairable(repair, gem);
@@ -312,12 +312,15 @@ public class ItemGrappHook extends ItemDelta implements IExtraPasses
      
      
      
+     @Override
      @SideOnly (Side.CLIENT)
-     public void getSubItems (int id, CreativeTabs tab, List list)
+     public void getSubItems (final int id, final CreativeTabs tab, final List list)
      {
-          ItemStack stack = new ItemStack(id, 1, 0);
+          final ItemStack stack = new ItemStack(id, 1, 0);
           if (itemMaterial.toolEnchant() != null)
+          {
                stack.addEnchantment(itemMaterial.toolEnchant(), itemMaterial.toolEnchantLvl());
+          }
           list.add(stack);
      }
 }

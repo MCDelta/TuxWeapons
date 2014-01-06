@@ -10,7 +10,7 @@ public class PotionFlight extends PotionTW
      public PotionFlight (final String s, final int color, final int x, final int y)
      {
           super(s, color, x, y);
-          this.setEffectiveness(0.25D);
+          setEffectiveness(0.25D);
      }
      
      

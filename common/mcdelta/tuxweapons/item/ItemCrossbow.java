@@ -53,12 +53,12 @@ public class ItemCrossbow extends ItemDeltaBow
      @Override
      public void registerIcons (final IconRegister iconRegister)
      {
-          this.itemIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + this.name);
-          this.bowPull_0 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_0");
-          this.bowPull_1 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_1");
-          this.bowPull_2 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_2");
-          this.bowPull_3 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_3");
-          this.bowPull_4 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_4");
+          itemIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + name);
+          bowPull_0 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_0");
+          bowPull_1 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_1");
+          bowPull_2 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_2");
+          bowPull_3 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_3");
+          bowPull_4 = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "crossBow_pull_4");
      }
      
      
@@ -77,39 +77,39 @@ public class ItemCrossbow extends ItemDeltaBow
           
           if (player.getItemInUse() == null && tagCompound.getBoolean("Loaded") == false)
           {
-               return this.itemIcon;
+               return itemIcon;
           }
           
           if (player.getItemInUse() == null && tagCompound.getBoolean("Loaded") == true)
           {
-               return this.bowPull_1;
+               return bowPull_1;
           }
           
           final int pulling = stack.getMaxItemUseDuration() - useRemaining;
           
           if (pulling >= 24)
           {
-               return this.bowPull_4;
+               return bowPull_4;
           }
           
           else if (pulling > 19)
           {
-               return this.bowPull_3;
+               return bowPull_3;
           }
           
           else if (pulling > 6)
           {
-               return this.bowPull_2;
+               return bowPull_2;
           }
           
           if (tagCompound.getBoolean("Loaded") == true)
           {
-               return this.bowPull_1;
+               return bowPull_1;
           }
           
           else
           {
-               return this.bowPull_0;
+               return bowPull_0;
           }
      }
      
@@ -119,11 +119,11 @@ public class ItemCrossbow extends ItemDeltaBow
      @Override
      public void onPlayerStoppedUsing (final ItemStack stack, final World world, final EntityPlayer player, final int par4)
      {
-          final int charge = this.getMaxItemUseDuration(stack) - par4;
+          final int charge = getMaxItemUseDuration(stack) - par4;
           
           final boolean infinity = player.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0;
           
-          if (infinity || player.inventory.hasItem(this.itemID))
+          if (infinity || player.inventory.hasItem(itemID))
           {
                float speed;
                
@@ -218,7 +218,7 @@ public class ItemCrossbow extends ItemDeltaBow
                     return event.result;
                }
                
-               player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+               player.setItemInUse(stack, getMaxItemUseDuration(stack));
           }
           
           return stack;

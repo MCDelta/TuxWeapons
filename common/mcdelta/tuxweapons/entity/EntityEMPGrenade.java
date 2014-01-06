@@ -38,7 +38,7 @@ public class EntityEMPGrenade extends EntityThrowable
           {
                final byte b0 = 0;
                
-               pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), b0);
+               pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), b0);
           }
           else
           {
@@ -64,15 +64,15 @@ public class EntityEMPGrenade extends EntityThrowable
                
                final int block = TWContent.redstoneTmpBlock.blockID;
                
-               if (this.worldObj.isAirBlock(i, j, k))
+               if (worldObj.isAirBlock(i, j, k))
                {
-                    if (!this.worldObj.isRemote)
+                    if (!worldObj.isRemote)
                     {
-                         this.worldObj.setBlock(i, j, k, block);
+                         worldObj.setBlock(i, j, k, block);
                     }
-                    if (!this.worldObj.isRemote)
+                    if (!worldObj.isRemote)
                     {
-                         this.worldObj.scheduleBlockUpdate(i, j, k, block, 20);
+                         worldObj.scheduleBlockUpdate(i, j, k, block, 20);
                     }
                }
           }
@@ -85,10 +85,10 @@ public class EntityEMPGrenade extends EntityThrowable
                final double parY = Math.random() * ii - ii / 2;
                final double parZ = Math.random() * ii - ii / 2;
                
-               this.worldObj.spawnParticle("reddust", this.posX + parX, this.posY + parY, this.posZ + parZ, 0.0D, 0.0D, 0.0D);
+               worldObj.spawnParticle("reddust", posX + parX, posY + parY, posZ + parZ, 0.0D, 0.0D, 0.0D);
           }
           
-          this.setDead();
+          setDead();
      }
      
      
@@ -107,37 +107,37 @@ public class EntityEMPGrenade extends EntityThrowable
      public void onUpdate ()
      {
           super.onUpdate();
-          this.ticksInAir++;
+          ticksInAir++;
           
           final int block = TWContent.redstoneTmpBlock.blockID;
           
-          if (this.worldObj.isAirBlock((int) this.posX, (int) this.posY, (int) this.posZ))
+          if (worldObj.isAirBlock((int) posX, (int) posY, (int) posZ))
           {
-               if (!this.worldObj.isRemote)
+               if (!worldObj.isRemote)
                {
-                    this.worldObj.setBlock((int) this.posX, (int) this.posY, (int) this.posZ, block);
+                    worldObj.setBlock((int) posX, (int) posY, (int) posZ, block);
                }
-               if (!this.worldObj.isRemote)
+               if (!worldObj.isRemote)
                {
-                    this.worldObj.scheduleBlockUpdate((int) this.posX, (int) this.posY, (int) this.posZ, block, 10);
+                    worldObj.scheduleBlockUpdate((int) posX, (int) posY, (int) posZ, block, 10);
                }
           }
           
-          if (this.ticksInAir >= 20)
+          if (ticksInAir >= 20)
           {
-               final int x = (int) this.posX;
-               final int j = (int) this.posY;
-               final int k = (int) this.posZ;
+               final int x = (int) posX;
+               final int j = (int) posY;
+               final int k = (int) posZ;
                
-               if (this.worldObj.isAirBlock(x, j, k))
+               if (worldObj.isAirBlock(x, j, k))
                {
-                    if (!this.worldObj.isRemote)
+                    if (!worldObj.isRemote)
                     {
-                         this.worldObj.setBlock(x, j, k, block);
+                         worldObj.setBlock(x, j, k, block);
                     }
-                    if (!this.worldObj.isRemote)
+                    if (!worldObj.isRemote)
                     {
-                         this.worldObj.scheduleBlockUpdate(x, j, k, block, 20);
+                         worldObj.scheduleBlockUpdate(x, j, k, block, 20);
                     }
                }
                
@@ -149,10 +149,10 @@ public class EntityEMPGrenade extends EntityThrowable
                     final double parY = Math.random() * ii - ii / 2;
                     final double parZ = Math.random() * ii - ii / 2;
                     
-                    this.worldObj.spawnParticle("reddust", this.posX + parX, this.posY + parY, this.posZ + parZ, 0.0D, 0.0D, 0.0D);
+                    worldObj.spawnParticle("reddust", posX + parX, posY + parY, posZ + parZ, 0.0D, 0.0D, 0.0D);
                }
                
-               this.setDead();
+               setDead();
           }
      }
 }

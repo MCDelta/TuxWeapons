@@ -9,7 +9,7 @@ public class ItemTW extends ItemDelta
      public ItemTW (final String s, final boolean b)
      {
           super(TuxWeapons.instance, s, b);
-          this.setCreativeTab(CreativeTabs.tabCombat);
+          setCreativeTab(CreativeTabs.tabCombat);
      }
      
      
@@ -18,6 +18,6 @@ public class ItemTW extends ItemDelta
      public ItemTW (final String s)
      {
           super(TuxWeapons.instance, s);
-          this.setCreativeTab(CreativeTabs.tabCombat);
+          setCreativeTab(CreativeTabs.tabCombat);
      }
 }

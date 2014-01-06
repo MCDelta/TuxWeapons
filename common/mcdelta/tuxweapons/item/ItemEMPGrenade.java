@@ -26,7 +26,7 @@ public class ItemEMPGrenade extends ItemTW
                world.spawnEntityInWorld(grenade);
           }
           
-          player.inventory.consumeInventoryItem(this.itemID);
+          player.inventory.consumeInventoryItem(itemID);
           
           return stack;
      }

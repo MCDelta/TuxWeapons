@@ -16,7 +16,7 @@ public class ItemSpear extends ItemWeapon
      public ItemSpear (final ItemMaterial mat)
      {
           super("spear", TuxWeapons.instance, mat, 2.0F);
-          this.setMaxDamage((int) (mat.maxUses() * 0.9F));
+          setMaxDamage((int) (mat.maxUses() * 0.9F));
      }
      
      
@@ -36,7 +36,7 @@ public class ItemSpear extends ItemWeapon
      {
           stack.damageItem(2, player);
           
-          final int duration = this.getMaxItemUseDuration(stack) - par4;
+          final int duration = getMaxItemUseDuration(stack) - par4;
           
           float charge = duration / 30.0F;
           
@@ -76,7 +76,7 @@ public class ItemSpear extends ItemWeapon
      @Override
      public ItemStack onItemRightClick (final ItemStack stack, final World world, final EntityPlayer player)
      {
-          if (player.capabilities.isCreativeMode || player.inventory.hasItem(this.itemID))
+          if (player.capabilities.isCreativeMode || player.inventory.hasItem(itemID))
           {
                return super.onItemRightClick(stack, world, player);
           }

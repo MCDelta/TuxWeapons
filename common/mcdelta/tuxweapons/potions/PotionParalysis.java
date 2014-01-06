@@ -5,7 +5,7 @@ public class PotionParalysis extends PotionTW
      public PotionParalysis (final String s, final int color, final int x, final int y)
      {
           super(s, true, color, x, y);
-          this.setEffectiveness(0.25D);
+          setEffectiveness(0.25D);
      }
      
      

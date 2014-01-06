@@ -31,6 +31,6 @@ public class EntityKnife extends EntityTWThrowable
      public void onUpdate ()
      {
           super.onUpdate();
-          this.spin += 10;
+          spin += 10;
      }
 }

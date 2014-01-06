@@ -23,8 +23,8 @@ public class ItemFireChargeCannon extends ItemDeltaBow
      {
           super(TuxWeapons.instance, "fireChargeCannon", new Item[]
           { Item.fireballCharge });
-          this.setMaxDamage(100);
-          this.maxStackSize = 1;
+          setMaxDamage(100);
+          maxStackSize = 1;
      }
      
      
@@ -34,7 +34,7 @@ public class ItemFireChargeCannon extends ItemDeltaBow
      @SideOnly (Side.CLIENT)
      public void registerIcons (final IconRegister register)
      {
-          this.itemIcon = register.registerIcon("tuxweapons:fireChargeCannon");
+          itemIcon = register.registerIcon("tuxweapons:fireChargeCannon");
      }
      
      
@@ -43,7 +43,7 @@ public class ItemFireChargeCannon extends ItemDeltaBow
      @Override
      public void onPlayerStoppedUsing (final ItemStack stack, final World world, final EntityPlayer player, final int par4)
      {
-          final int charge = this.getMaxItemUseDuration(stack) - par4;
+          final int charge = getMaxItemUseDuration(stack) - par4;
           
           final EntityTWFireball fireBall = new EntityTWFireball(world, player, charge);
           

@@ -19,9 +19,9 @@ public class DamageSourceWeapon extends EntityDamageSource
      {
           super(a, b);
           
-          this.target = b;
-          this.attacker = c;
-          this.stack = d;
+          target = b;
+          attacker = c;
+          stack = d;
      }
      
      
@@ -30,14 +30,14 @@ public class DamageSourceWeapon extends EntityDamageSource
      @Override
      public ChatMessageComponent getDeathMessage (final EntityLivingBase living)
      {
-          final ItemStack stack = this.attacker instanceof EntityLivingBase ? ((EntityLivingBase) this.attacker).getHeldItem() : null;
+          final ItemStack stack = attacker instanceof EntityLivingBase ? ((EntityLivingBase) attacker).getHeldItem() : null;
           
-          final String s = "death.attack." + this.damageType;
+          final String s = "death.attack." + damageType;
           final String s1 = s + ".item";
           
           return stack != null && stack.hasDisplayName() ? ChatMessageComponent.createFromTranslationWithSubstitutions(s1, new Object[]
-          { this.target.getTranslatedEntityName(), this.attacker.getTranslatedEntityName(), stack.getDisplayName() }) : ChatMessageComponent.createFromTranslationWithSubstitutions(s, new Object[]
-          { this.target.getTranslatedEntityName(), this.attacker.getTranslatedEntityName() });
+          { target.getTranslatedEntityName(), attacker.getTranslatedEntityName(), stack.getDisplayName() }) : ChatMessageComponent.createFromTranslationWithSubstitutions(s, new Object[]
+          { target.getTranslatedEntityName(), attacker.getTranslatedEntityName() });
      }
      
      
@@ -46,6 +46,6 @@ public class DamageSourceWeapon extends EntityDamageSource
      @Override
      public Entity getEntity ()
      {
-          return this.attacker;
+          return attacker;
      }
 }

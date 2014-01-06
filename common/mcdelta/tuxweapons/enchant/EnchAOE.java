@@ -24,7 +24,7 @@ public class EnchAOE extends EnchantmentTW
      @Override
      public int getMaxEnchantability (final int enchLevel)
      {
-          return this.getMinEnchantability(enchLevel) + 50;
+          return getMinEnchantability(enchLevel) + 50;
      }
      
      

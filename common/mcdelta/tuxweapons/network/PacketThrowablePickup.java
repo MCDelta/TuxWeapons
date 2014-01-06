@@ -32,8 +32,8 @@ public class PacketThrowablePickup extends PacketDelta
      public PacketThrowablePickup (final int i, final int i2)
      {
           super(3);
-          this.playerId = i;
-          this.throwableId = i2;
+          playerId = i;
+          throwableId = i2;
      }
      
      
@@ -42,8 +42,8 @@ public class PacketThrowablePickup extends PacketDelta
      @Override
      public void writeData (final DataOutputStream data) throws IOException
      {
-          data.writeInt(this.playerId);
-          data.writeInt(this.throwableId);
+          data.writeInt(playerId);
+          data.writeInt(throwableId);
      }
      
      
@@ -52,8 +52,8 @@ public class PacketThrowablePickup extends PacketDelta
      @Override
      public void readData (final DataInputStream data) throws IOException
      {
-          this.playerId = data.readInt();
-          this.throwableId = data.readInt();
+          playerId = data.readInt();
+          throwableId = data.readInt();
      }
      
      
@@ -65,8 +65,8 @@ public class PacketThrowablePickup extends PacketDelta
           final EntityPlayer entity = (EntityPlayer) playerParam;
           final World world = entity.worldObj;
           
-          final EntityPlayer player = (EntityPlayer) world.getEntityByID(this.playerId);
-          final EntityTWThrowable throwable = (EntityTWThrowable) world.getEntityByID(this.throwableId);
+          final EntityPlayer player = (EntityPlayer) world.getEntityByID(playerId);
+          final EntityTWThrowable throwable = (EntityTWThrowable) world.getEntityByID(throwableId);
           
           throwable.doCollide(player);
           

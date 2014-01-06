@@ -14,12 +14,12 @@ public class PlayerData
      public PlayerData (final EntityPlayer player)
      {
           this.player = player;
-          this.tag = player.getEntityData().getCompoundTag("MCDeltaInfo");
+          tag = player.getEntityData().getCompoundTag("MCDeltaInfo");
           
-          if (this.tag == null)
+          if (tag == null)
           {
-               this.tag = new NBTTagCompound();
-               this.save();
+               tag = new NBTTagCompound();
+               save();
           }
      }
      
@@ -28,6 +28,6 @@ public class PlayerData
      
      public void save ()
      {
-          this.player.getEntityData().setCompoundTag("MCDeltaInfo", this.tag);
+          player.getEntityData().setCompoundTag("MCDeltaInfo", tag);
      }
 }

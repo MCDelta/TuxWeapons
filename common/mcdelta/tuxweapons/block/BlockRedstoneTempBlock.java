@@ -19,8 +19,8 @@ public class BlockRedstoneTempBlock extends BlockTW
      public BlockRedstoneTempBlock ()
      {
           super("redstoneTmpBlock", Material.air);
-          this.setCreativeTab(null);
-          this.setTickRandomly(true);
+          setCreativeTab(null);
+          setTickRandomly(true);
      }
      
      
@@ -47,7 +47,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      @Override
      public int isProvidingStrongPower (final IBlockAccess world, final int x, final int y, final int z, final int side)
      {
-          return this.getPowerSupply(world.getBlockMetadata(x, y, z));
+          return getPowerSupply(world.getBlockMetadata(x, y, z));
      }
      
      
@@ -160,7 +160,7 @@ public class BlockRedstoneTempBlock extends BlockTW
      @SideOnly (Side.CLIENT)
      public void registerIcons (final IconRegister iconRegister)
      {
-          this.blockIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "air");
+          blockIcon = iconRegister.registerIcon(TuxWeapons.MOD_ID + ":" + "air");
      }
      
      

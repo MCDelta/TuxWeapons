@@ -22,8 +22,8 @@ public class EnchantmentTW extends EnchantmentDelta
      
      public EnchantmentTW setMinMax (final int i, final int i2)
      {
-          this.enchantLvlMin = i;
-          this.enchantLvlMax = i2;
+          enchantLvlMin = i;
+          enchantLvlMax = i2;
           return this;
      }
      
@@ -33,7 +33,7 @@ public class EnchantmentTW extends EnchantmentDelta
      @Override
      public int getMinEnchantability (final int enchLevel)
      {
-          return this.enchantLvlMin;
+          return enchantLvlMin;
      }
      
      
@@ -42,7 +42,7 @@ public class EnchantmentTW extends EnchantmentDelta
      @Override
      public int getMaxEnchantability (final int enchLevel)
      {
-          return this.enchantLvlMax;
+          return enchantLvlMax;
      }
      
      

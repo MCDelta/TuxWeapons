@@ -40,7 +40,7 @@ public class ItemDynamite extends ItemTW
           
           if (!player.capabilities.isCreativeMode)
           {
-               player.inventory.consumeInventoryItem(this.itemID);
+               player.inventory.consumeInventoryItem(itemID);
           }
           
           return stack;

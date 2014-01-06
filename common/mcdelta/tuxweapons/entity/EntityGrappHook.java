@@ -21,10 +21,10 @@ public class EntityGrappHook extends EntityTWThrowable
      {
           super(world, living, charge, item);
           
-          if (this.owner instanceof EntityPlayer)
+          if (owner instanceof EntityPlayer)
           {
-               final PlayerData data = new PlayerData((EntityPlayer) this.owner);
-               data.tag.setInteger(TWNBTTags.GRAPP, this.entityId);
+               final PlayerData data = new PlayerData((EntityPlayer) owner);
+               data.tag.setInteger(TWNBTTags.GRAPP, entityId);
                data.save();
           }
      }
@@ -35,9 +35,9 @@ public class EntityGrappHook extends EntityTWThrowable
      @Override
      public void doCollide (final EntityPlayer player)
      {
-          if (this.owner != null)
+          if (owner != null)
           {
-               final PlayerData data = new PlayerData((EntityPlayer) this.owner);
+               final PlayerData data = new PlayerData((EntityPlayer) owner);
                data.tag.setInteger(TWNBTTags.GRAPP, -1);
                data.save();
           }

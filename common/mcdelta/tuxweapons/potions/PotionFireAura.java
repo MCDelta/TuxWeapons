@@ -11,7 +11,7 @@ public class PotionFireAura extends PotionTW
      public PotionFireAura (final String s, final int color, final int x, final int y)
      {
           super(s, color, x, y);
-          this.setEffectiveness(0.5D);
+          setEffectiveness(0.5D);
      }
      
      

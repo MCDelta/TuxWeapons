@@ -62,7 +62,7 @@ public class TuxWeapons extends ModDelta
      
      
      @Override
-     public void deltaInit (FMLPreInitializationEvent event)
+     public void deltaInit (final FMLPreInitializationEvent event)
      {
           this.init(event, new TWConfig());
      }
@@ -150,7 +150,7 @@ public class TuxWeapons extends ModDelta
      @Override
      public IContent content ()
      {
-          return this.content;
+          return content;
      }
      
      

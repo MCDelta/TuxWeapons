@@ -74,7 +74,7 @@ public class RenderSpear extends Render
      @Override
      public void doRender (final Entity entity, final double par2, final double par4, final double par6, final float par8, final float par9)
      {
-          this.renderSpear((EntitySpear) entity, par2, par4, par6, par8, par9);
+          renderSpear((EntitySpear) entity, par2, par4, par6, par8, par9);
      }
      
      
@@ -84,6 +84,6 @@ public class RenderSpear extends Render
      protected ResourceLocation getEntityTexture (final Entity entity)
      {
           final EntitySpear spear = (EntitySpear) entity;
-          return this.renderManager.renderEngine.getResourceLocation(spear.stack.getItemSpriteNumber());
+          return renderManager.renderEngine.getResourceLocation(spear.stack.getItemSpriteNumber());
      }
 }

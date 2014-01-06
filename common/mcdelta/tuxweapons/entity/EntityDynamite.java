@@ -24,7 +24,7 @@ public class EntityDynamite extends EntityThrowable
      public EntityDynamite (final World world)
      {
           super(world);
-          this.bounceFactor = 20;
+          bounceFactor = 20;
      }
      
      
@@ -53,10 +53,10 @@ public class EntityDynamite extends EntityThrowable
           {
                final byte b0 = 0;
                
-               pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), b0);
+               pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), b0);
           }
           
-          this.fuse = this.fuse - 10;
+          fuse = fuse - 10;
           
      }
      
@@ -66,52 +66,52 @@ public class EntityDynamite extends EntityThrowable
      @Override
      public void onUpdate ()
      {
-          final double prevVelX = this.motionX;
-          final double prevVelY = this.motionY;
-          final double prevVelZ = this.motionZ;
-          this.prevPosX = this.posX;
-          this.prevPosY = this.posY;
-          this.prevPosZ = this.posZ;
-          this.moveEntity(this.motionX, this.motionY, this.motionZ);
-          ++this.ticksInAir;
+          final double prevVelX = motionX;
+          final double prevVelY = motionY;
+          final double prevVelZ = motionZ;
+          prevPosX = posX;
+          prevPosY = posY;
+          prevPosZ = posZ;
+          moveEntity(motionX, motionY, motionZ);
+          ++ticksInAir;
           
-          if (this.motionX != prevVelX)
+          if (motionX != prevVelX)
           {
-               this.motionX = -this.bounceFactor * prevVelX;
+               motionX = -bounceFactor * prevVelX;
           }
           
-          if (this.motionY != prevVelY)
+          if (motionY != prevVelY)
           {
-               this.motionY = -this.bounceFactor * prevVelY;
+               motionY = -bounceFactor * prevVelY;
           }
           else
           {
-               this.motionY -= 0.04;
+               motionY -= 0.04;
           }
           
-          if (this.motionZ != prevVelZ)
+          if (motionZ != prevVelZ)
           {
-               this.motionZ = -this.bounceFactor * prevVelZ;
+               motionZ = -bounceFactor * prevVelZ;
           }
           
-          this.motionX *= 0.9;
-          this.motionY *= 0.9;
-          this.motionZ *= 0.9;
+          motionX *= 0.9;
+          motionY *= 0.9;
+          motionZ *= 0.9;
           
-          if (this.ticksInAir >= this.fuse)
+          if (ticksInAir >= fuse)
           {
-               if (!this.worldObj.isRemote)
+               if (!worldObj.isRemote)
                {
-                    this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 3, TWSettings.GREIFING);
+                    worldObj.createExplosion(this, posX, posY, posZ, 3, TWSettings.GREIFING);
                }
                
-               this.setDead();
-               this.kill();
+               setDead();
+               kill();
           }
           
-          if (this.worldObj.rand.nextInt(3) == 0)
+          if (worldObj.rand.nextInt(3) == 0)
           {
-               this.worldObj.spawnParticle("cloud", this.posX, this.posY, this.posZ, 0, 0, 0);
+               worldObj.spawnParticle("cloud", posX, posY, posZ, 0, 0, 0);
           }
      }
      

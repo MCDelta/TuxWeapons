@@ -48,9 +48,9 @@ public class RenderDynamite extends Render
           GL11.glPushMatrix();
           GL11.glDisable(GL11.GL_CULL_FACE);
           
-          this.renderManager.renderEngine.bindTexture(this.location);
+          renderManager.renderEngine.bindTexture(location);
           
-          final float f2 = this.func_82400_a(dynamite.prevRotationYaw, dynamite.rotationYaw, par9);
+          final float f2 = func_82400_a(dynamite.prevRotationYaw, dynamite.rotationYaw, par9);
           final float f3 = dynamite.prevRotationPitch + (dynamite.rotationPitch - dynamite.prevRotationPitch) * par9;
           GL11.glTranslatef((float) x, (float) y, (float) z);
           final float f4 = 0.0625F;
@@ -58,7 +58,7 @@ public class RenderDynamite extends Render
           GL11.glScalef(-1.0F, -1.0F, 1.0F);
           GL11.glEnable(GL11.GL_ALPHA_TEST);
           
-          this.model.render(dynamite, 0.0F, 0.0F, 0.0F, f2, f3, f4);
+          model.render(dynamite, 0.0F, 0.0F, 0.0F, f2, f3, f4);
           GL11.glPopMatrix();
      }
      
@@ -68,7 +68,7 @@ public class RenderDynamite extends Render
      @Override
      public void doRender (final Entity par1Entity, final double x, final double y, final double z, final float par8, final float par9)
      {
-          this.renderDynamite((EntityDynamite) par1Entity, x, y, z, par8, par9);
+          renderDynamite((EntityDynamite) par1Entity, x, y, z, par8, par9);
      }
      
      
@@ -77,6 +77,6 @@ public class RenderDynamite extends Render
      @Override
      protected ResourceLocation getEntityTexture (final Entity entity)
      {
-          return this.location;
+          return location;
      }
 }

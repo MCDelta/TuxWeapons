@@ -30,7 +30,7 @@ public class PlayerTracker implements IPlayerTracker
      @Override
      public void onPlayerLogin (final EntityPlayer player)
      {
-          this.removeGrappHook(player);
+          removeGrappHook(player);
      }
      
      
@@ -39,7 +39,7 @@ public class PlayerTracker implements IPlayerTracker
      @Override
      public void onPlayerLogout (final EntityPlayer player)
      {
-          this.removeGrappHook(player);
+          removeGrappHook(player);
      }
      
      
@@ -48,7 +48,7 @@ public class PlayerTracker implements IPlayerTracker
      @Override
      public void onPlayerChangedDimension (final EntityPlayer player)
      {
-          this.removeGrappHook(player);
+          removeGrappHook(player);
      }
      
      
@@ -57,6 +57,6 @@ public class PlayerTracker implements IPlayerTracker
      @Override
      public void onPlayerRespawn (final EntityPlayer player)
      {
-          this.removeGrappHook(player);
+          removeGrappHook(player);
      }
 }

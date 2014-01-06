@@ -26,7 +26,7 @@ public class ItemHammer extends ItemWeapon
      public ItemHammer (final ItemMaterial mat)
      {
           super("hammer", TuxWeapons.instance, mat, 4.0F);
-          this.setMaxDamage((int) (mat.maxUses() * 0.9F));
+          setMaxDamage((int) (mat.maxUses() * 0.9F));
      }
      
      
@@ -35,7 +35,7 @@ public class ItemHammer extends ItemWeapon
      @Override
      public void onPlayerStoppedUsing (final ItemStack stack, final World world, final EntityPlayer player, final int i)
      {
-          final int charge = (this.getMaxItemUseDuration(stack) - i) / 2;
+          final int charge = (getMaxItemUseDuration(stack) - i) / 2;
           final int explosionSize = 6;
           
           if (charge > 1)
@@ -96,7 +96,7 @@ public class ItemHammer extends ItemWeapon
                               
                               if (entity instanceof EntityLivingBase)
                               {
-                                   float damage = itemMaterial.getDamageVsEntity() + 1;
+                                   final float damage = itemMaterial.getDamageVsEntity() + 1;
                                    
                                    entity.attackEntityFrom(new DamageSourceWeapon("tuxweapons:hammerSmash", entity, player, stack), damage);
                               }

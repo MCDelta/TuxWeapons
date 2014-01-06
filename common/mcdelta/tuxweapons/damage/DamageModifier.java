@@ -120,7 +120,7 @@ public class DamageModifier
                
                if (living.getHeldItem() != null && living.getHeldItem().getItem() instanceof ItemMace)
                {
-                    final float f = this.rand.nextInt(TWSettings.DAMAGE_MODIFIER_MACE + 1);
+                    final float f = rand.nextInt(TWSettings.DAMAGE_MODIFIER_MACE + 1);
                     event.ammount += f;
                     
                     if (f >= TWSettings.DAMAGE_MODIFIER_MACE - 2)

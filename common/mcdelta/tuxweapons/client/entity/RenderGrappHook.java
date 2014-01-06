@@ -76,22 +76,22 @@ public class RenderGrappHook extends Render
                {
                     y -= (3.5 - owner.height) * 0.5D;
                     final Tessellator tessellator = Tessellator.instance;
-                    final double d3 = this.leashFunction(hook.prevRotationYaw, hook.rotationYaw, par9 * 0.5F) * 0.01745329238474369D;
-                    final double d4 = this.leashFunction(hook.prevRotationPitch, hook.rotationPitch, par9 * 0.5F) * 0.01745329238474369D;
+                    final double d3 = leashFunction(hook.prevRotationYaw, hook.rotationYaw, par9 * 0.5F) * 0.01745329238474369D;
+                    final double d4 = leashFunction(hook.prevRotationPitch, hook.rotationPitch, par9 * 0.5F) * 0.01745329238474369D;
                     double d5 = Math.cos(d3);
                     double d6 = Math.sin(d3);
                     final double d7 = Math.sin(d4);
                     
                     final double d8 = Math.cos(d4);
-                    final double d9 = this.leashFunction(hook.prevPosX, hook.posX, par9) - d5 * 0.7D - d6 * 0.5D * d8;
-                    final double d10 = this.leashFunction(hook.prevPosY + (hook.getEyeHeight() + 1.7D) * 0.7D, hook.posY + (hook.getEyeHeight() + 1.7D) * 0.7D, par9) - d7 * 0.5D - 0.25D;
-                    final double d11 = this.leashFunction(hook.prevPosZ, hook.posZ, par9) - d6 * 0.7D + d5 * 0.5D * d8;
-                    final double d12 = this.leashFunction(owner.prevRotationYaw, owner.rotationYaw, par9) * 0.01745329238474369D + Math.PI / 2D;
+                    final double d9 = leashFunction(hook.prevPosX, hook.posX, par9) - d5 * 0.7D - d6 * 0.5D * d8;
+                    final double d10 = leashFunction(hook.prevPosY + (hook.getEyeHeight() + 1.7D) * 0.7D, hook.posY + (hook.getEyeHeight() + 1.7D) * 0.7D, par9) - d7 * 0.5D - 0.25D;
+                    final double d11 = leashFunction(hook.prevPosZ, hook.posZ, par9) - d6 * 0.7D + d5 * 0.5D * d8;
+                    final double d12 = leashFunction(owner.prevRotationYaw, owner.rotationYaw, par9) * 0.01745329238474369D + Math.PI / 2D;
                     d5 = Math.cos(d12) * owner.width * 0.4D;
                     d6 = Math.sin(d12) * owner.width * 0.4D;
-                    final double d13 = this.leashFunction(owner.prevPosX, owner.posX, par9) + d5;
-                    final double d14 = this.leashFunction(owner.prevPosY, owner.posY, par9);
-                    final double d15 = this.leashFunction(owner.prevPosZ, owner.posZ, par9) + d6;
+                    final double d13 = leashFunction(owner.prevPosX, owner.posX, par9) + d5;
+                    final double d14 = leashFunction(owner.prevPosY, owner.posY, par9);
+                    final double d15 = leashFunction(owner.prevPosZ, owner.posZ, par9) + d6;
                     x += d5;
                     z += d6;
                     final double d16 = (float) (d9 - d13);
@@ -163,7 +163,7 @@ public class RenderGrappHook extends Render
      @Override
      public void doRender (final Entity entity, final double par2, final double par4, final double par6, final float par8, final float par9)
      {
-          this.renderGrappHook((EntityGrappHook) entity, par2, par4, par6, par8, par9);
+          renderGrappHook((EntityGrappHook) entity, par2, par4, par6, par8, par9);
      }
      
      
@@ -173,6 +173,6 @@ public class RenderGrappHook extends Render
      protected ResourceLocation getEntityTexture (final Entity entity)
      {
           final EntityGrappHook grappHook = (EntityGrappHook) entity;
-          return this.renderManager.renderEngine.getResourceLocation(grappHook.stack.getItemSpriteNumber());
+          return renderManager.renderEngine.getResourceLocation(grappHook.stack.getItemSpriteNumber());
      }
 }

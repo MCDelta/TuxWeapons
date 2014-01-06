@@ -23,7 +23,7 @@ public class RenderFireChargeCannon implements IItemRenderer
      public RenderFireChargeCannon ()
      {
           Minecraft.getMinecraft();
-          this.cannonModel = new ModelFireChargeCannon();
+          cannonModel = new ModelFireChargeCannon();
      }
      
      
@@ -63,7 +63,7 @@ public class RenderFireChargeCannon implements IItemRenderer
           GL11.glPushMatrix();
           
           final TextureManager engine = Minecraft.getMinecraft().getTextureManager();
-          engine.bindTexture(this.location);
+          engine.bindTexture(location);
           
           if (type == ItemRenderType.EQUIPPED)
           {
@@ -92,7 +92,7 @@ public class RenderFireChargeCannon implements IItemRenderer
                }
           }
           
-          this.cannonModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+          cannonModel.render((Entity) data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
           
           GL11.glPopMatrix();
      }

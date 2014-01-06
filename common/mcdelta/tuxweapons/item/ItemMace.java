@@ -10,6 +10,6 @@ public class ItemMace extends ItemWeapon
      public ItemMace (final ItemMaterial mat)
      {
           super("mace", TuxWeapons.instance, mat, 1.0F);
-          this.setMaxDamage((int) (mat.maxUses() * 0.9F));
+          setMaxDamage((int) (mat.maxUses() * 0.9F));
      }
 }

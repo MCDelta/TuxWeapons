@@ -20,7 +20,7 @@ public class PotionCure extends PotionTW
      {
           super.removeAttributesModifiersFromEntity(living, map, i);
           
-          this.performEffect(living, i);
+          performEffect(living, i);
      }
      
      
@@ -38,7 +38,7 @@ public class PotionCure extends PotionTW
      @Override
      public void affectEntity (final EntityLivingBase entity, final EntityLivingBase target, final int i, final double ii)
      {
-          this.performEffect(target, i);
+          performEffect(target, i);
      }
      
      

@@ -30,8 +30,8 @@ public class PotionTW extends Potion
      protected PotionTW (final String s, final boolean bad, final int color, final int x, final int y)
      {
           super(TuxWeapons.instance.config().getPotionID(s), bad, color);
-          this.setPotionName("potion." + TuxWeapons.instance.id().toLowerCase() + ":" + s);
-          this.setIconIndex(x, y);
+          setPotionName("potion." + TuxWeapons.instance.id().toLowerCase() + ":" + s);
+          setIconIndex(x, y);
      }
      
      

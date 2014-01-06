@@ -11,6 +11,6 @@ public class BlockTW extends BlockDelta
      {
           super(TuxWeapons.instance, s, mat);
           
-          this.setCreativeTab(CreativeTabs.tabBlock);
+          setCreativeTab(CreativeTabs.tabBlock);
      }
 }

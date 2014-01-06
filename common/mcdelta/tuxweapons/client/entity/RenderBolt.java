@@ -24,7 +24,7 @@ public class RenderBolt extends Render
      
      public void renderBolt (final EntityBolt bolt, final double x, final double y, final double z, final float par8, final float par9)
      {
-          this.renderManager.renderEngine.bindTexture(this.location);
+          renderManager.renderEngine.bindTexture(location);
           
           GL11.glPushMatrix();
           GL11.glTranslatef((float) x, (float) y, (float) z);
@@ -74,7 +74,7 @@ public class RenderBolt extends Render
      @Override
      public void doRender (final Entity par1Entity, final double x, final double y, final double z, final float par8, final float par9)
      {
-          this.renderBolt((EntityBolt) par1Entity, x, y, z, par8, par9);
+          renderBolt((EntityBolt) par1Entity, x, y, z, par8, par9);
      }
      
      
@@ -83,6 +83,6 @@ public class RenderBolt extends Render
      @Override
      protected ResourceLocation getEntityTexture (final Entity entity)
      {
-          return this.location;
+          return location;
      }
 }
