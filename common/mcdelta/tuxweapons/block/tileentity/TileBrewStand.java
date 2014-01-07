@@ -102,7 +102,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                                   return true;
                                              }
                                              
-                                             if (modification.contains("infinite") && !Potion.potionTypes[effects.get(l).getPotionID()].isInstant() && !Potions.nonInifinite.contains(Potion.potionTypes[effects.get(l).getPotionID()]) && effects.get(l).duration == 24000)
+                                             if (modification.contains("infinite") && !Potion.potionTypes[effects.get(l).getPotionID()].isInstant() && !Potions.nonInifinite.contains(Potion.potionTypes[effects.get(l).getPotionID()]))
                                              {
                                                   return true;
                                              }
@@ -397,7 +397,7 @@ public class TileBrewStand extends TileEntityBrewingStand implements ISidedInven
                                                   //
                                                   //
                                                   
-                                                  if (modification.contains("infinite") && !effects.get(l).getIsPotionDurationMax() && !Potions.nonInifinite.contains(Potion.potionTypes[effects.get(l).getPotionID()]) && !success && !(effects.get(l).duration >= 240000 && effects.get(l).duration == 24000))
+                                                  if (modification.contains("infinite") && !effects.get(l).getIsPotionDurationMax() && !Potions.nonInifinite.contains(Potion.potionTypes[effects.get(l).getPotionID()]) && !success && !(effects.get(l).duration >= 240000))
                                                   {
                                                        infinite = l;
                                                        success = true;
