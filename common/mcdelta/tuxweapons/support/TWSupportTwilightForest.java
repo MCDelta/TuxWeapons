@@ -1,9 +1,9 @@
 package mcdelta.tuxweapons.support;
 
-import mcdelta.core.support.LimitedModSupport;
+import mcdelta.core.support.ILimitedModSupport;
 import mcdelta.tuxweapons.damage.EnumDamageTypes;
 
-public class TWSupportTwilightForest implements LimitedModSupport
+public class TWSupportTwilightForest implements ILimitedModSupport
 {
      @Override
      public String modid ()
