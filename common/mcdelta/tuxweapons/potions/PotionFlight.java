@@ -1,5 +1,6 @@
 package mcdelta.tuxweapons.potions;
 
+import mcdelta.core.assets.Assets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,7 +20,7 @@ public class PotionFlight extends PotionTW
      @Override
      public void performEffect (final EntityLivingBase entity, final int i)
      {
-          if (entity.worldObj.isRemote)
+          if (Assets.isClient())
           {
                if (entity instanceof EntityPlayer)
                {
@@ -33,7 +34,7 @@ public class PotionFlight extends PotionTW
                }
           }
           
-          if (!entity.worldObj.isRemote && !(entity instanceof EntityPlayer))
+          if (Assets.isServer() && !(entity instanceof EntityPlayer))
           {
                entity.addVelocity(0.0F, 0.09F, 0.0F);
                
@@ -43,10 +44,7 @@ public class PotionFlight extends PotionTW
                }
           }
           
-          if (entity.motionY >= -0.0F)
-          {
-               entity.fallDistance = 0;
-          }
+          entity.fallDistance = 0;
      }
      
      
