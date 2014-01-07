@@ -30,6 +30,10 @@ minecraft {
     assetDir = "run/assets"
 }
 
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
 processResources {
     from(sourceSets.main.resources.srcDirs) {
         include '**/*.info'
