@@ -6,6 +6,7 @@ import java.util.List;
 import mcdelta.core.assets.Assets;
 import mcdelta.core.assets.world.Position;
 import mcdelta.core.item.ItemDeltaTool;
+import mcdelta.core.logging.Logger;
 import mcdelta.core.material.ItemMaterial;
 import mcdelta.tuxweapons.TuxWeapons;
 import net.minecraft.block.Block;
@@ -23,6 +24,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
@@ -65,7 +67,9 @@ public class ItemWhock extends ItemDeltaTool
                          {
                               if (living instanceof EntityPlayerMP)
                               {
-                                   if (Block.blocksList[living.worldObj.getBlockId(pos.x, pos.y, pos.z)] != null)
+                                   Block block = Block.blocksList[living.worldObj.getBlockId(pos.x, pos.y, pos.z)];
+                                   
+                                   if (block != null && MinecraftForge.getBlockHarvestLevel(block, world.getBlockMetadata(pos.x, pos.y, pos.z), "pickaxe") <= ((ItemWhock) stack.getItem()).itemMaterial.getHarvestLevel() && block.getBlockHardness(world, pos.x, pos.y, pos.z) >= 0)
                                    {
                                         tryHarvestBlock(world, (EntityPlayerMP) living, pos.x, pos.y, pos.z);
                                    }
@@ -108,6 +112,8 @@ public class ItemWhock extends ItemDeltaTool
                     flag1 = block.canHarvestBlock(player, i1);
                }
                
+               Logger.debug(flag1, block);
+               
                if (itemstack != null)
                {
                     if (itemstack.stackSize == 0)
@@ -116,10 +122,13 @@ public class ItemWhock extends ItemDeltaTool
                     }
                }
                
-               flag = removeBlock(world, player, x, y, z);
-               if (flag && flag1)
+               if (flag1)
                {
-                    Block.blocksList[l].harvestBlock(world, player, x, y, z, i1);
+                    flag = removeBlock(world, player, x, y, z);
+                    if (flag)
+                    {
+                         Block.blocksList[l].harvestBlock(world, player, x, y, z, i1);
+                    }
                }
           }
           
