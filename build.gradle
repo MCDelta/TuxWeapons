@@ -46,6 +46,7 @@ processResources {
 }
 
 jar {
+    archiveName = baseName + "[" + version + "].jar"
     manifest {
         attributes 'MCVersion' : project.minecraft.version
         attributes 'Version' : project.version
