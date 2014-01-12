@@ -55,11 +55,6 @@ public class TickHandler implements ITickHandler
      {
           if (Assets.isClient())
           {
-               if(Minecraft.getMinecraft().theWorld.provider.getSkyRenderer() == null)
-               {
-                    Minecraft.getMinecraft().theWorld.provider.setSkyRenderer(new SkyRenderer());
-               }
-               
                playerClientTick(player, pre);
           }
      }
