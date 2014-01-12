@@ -2,8 +2,11 @@ package mcdelta.tuxweapons.item;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mcdelta.tuxweapons.data.TWNBTTags;
 import mcdelta.tuxweapons.potions.Potions;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,7 +19,7 @@ public class ItemTechnical extends ItemTW
 {
      public ItemTechnical ()
      {
-          super("null");
+          super("technical");
           setCreativeTab(CreativeTabs.tabBrewing);
      }
      
@@ -92,5 +95,15 @@ public class ItemTechnical extends ItemTW
                     }
                }
           }
+     }
+     
+     
+     
+     
+     @Override
+     @SideOnly (Side.CLIENT)
+     public void registerIcons (final IconRegister register)
+     {
+          
      }
 }
