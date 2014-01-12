@@ -7,6 +7,7 @@ import java.util.List;
 
 import mcdelta.tuxweapons.config.TWSettings;
 import mcdelta.tuxweapons.item.ItemMace;
+import mcdelta.tuxweapons.item.ItemSpear;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.Item;
@@ -40,24 +41,26 @@ public class EventItemInfo
                }
           }
           
-          if (damageIndex != -1)
+          if (item instanceof ItemSpear)
           {
-               if (BASHER.effc_item.contains(item))
-               {
-                    toolTip.add(EnumChatFormatting.RED + "Basher" + EnumChatFormatting.RESET);
-               }
+               toolTip.add(EnumChatFormatting.GREEN + "+2 " + StatCollector.translateToLocal("attribute.name.generic.attackDamage.piercing") + EnumChatFormatting.RESET);
+          }
+          
+          if (BASHER.effc_item.contains(item))
+          {
+               toolTip.add(EnumChatFormatting.RED + "Basher" + EnumChatFormatting.RESET);
+          }
+          
+          if (SLASHER.effc_item.contains(item))
+          {
+               toolTip.add(EnumChatFormatting.RED + "Slasher" + EnumChatFormatting.RESET);
+          }
+          
+          if (damageIndex != -1 && item instanceof ItemMace)
+          {
+               final int damage = (int) ((AttributeModifier) stack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName()).toArray()[0]).getAmount();
                
-               if (SLASHER.effc_item.contains(item))
-               {
-                    toolTip.add(EnumChatFormatting.RED + "Slasher" + EnumChatFormatting.RESET);
-               }
-               
-               if (item instanceof ItemMace)
-               {
-                    final int damage = (int) ((AttributeModifier) stack.getAttributeModifiers().get(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName()).toArray()[0]).getAmount();
-                    
-                    toolTip.set(damageIndex, EnumChatFormatting.BLUE + "+" + damage + "-" + (damage + TWSettings.DAMAGE_MODIFIER_MACE) + " " + StatCollector.translateToLocal("attribute.name.generic.attackDamage") + EnumChatFormatting.RESET);
-               }
+               toolTip.set(damageIndex, EnumChatFormatting.BLUE + "+" + damage + "-" + (damage + TWSettings.DAMAGE_MODIFIER_MACE) + " " + StatCollector.translateToLocal("attribute.name.generic.attackDamage") + EnumChatFormatting.RESET);
           }
      }
 }

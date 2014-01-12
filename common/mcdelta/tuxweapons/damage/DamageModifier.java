@@ -11,6 +11,7 @@ import mcdelta.tuxweapons.TuxWeapons;
 import mcdelta.tuxweapons.config.TWSettings;
 import mcdelta.tuxweapons.item.ItemMace;
 import mcdelta.tuxweapons.item.ItemShield;
+import mcdelta.tuxweapons.item.ItemSpear;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -127,6 +128,11 @@ public class DamageModifier
                     {
                          TuxWeapons.spawnParticle(3, event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, event.entityLiving, 0xffffff, 1, 20, false);
                     }
+               }
+               
+               if (living.getHeldItem() != null && living.getHeldItem().getItem() instanceof ItemSpear && !(event.source instanceof DamageSourceWeapon))
+               {
+                    event.entityLiving.attackEntityFrom(new DamageSourceWeapon("tuxweapons:spear", event.entity, living, living.getHeldItem()), 2);
                }
           }
           

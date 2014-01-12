@@ -22,6 +22,8 @@ public class DamageSourceWeapon extends EntityDamageSource
           target = b;
           attacker = c;
           stack = d;
+          
+          setDamageBypassesArmor();
      }
      
      
