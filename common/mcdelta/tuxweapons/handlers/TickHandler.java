@@ -2,6 +2,7 @@ package mcdelta.tuxweapons.handlers;
 
 import java.util.EnumSet;
 
+import mcdelta.core.assets.Assets;
 import mcdelta.tuxweapons.potions.PotionTW;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
@@ -52,8 +53,13 @@ public class TickHandler implements ITickHandler
      
      private void playerTick (final boolean pre, final EntityPlayer player)
      {
-          if (player.worldObj.isRemote)
+          if (Assets.isClient())
           {
+               /**if(Minecraft.getMinecraft().theWorld.provider.getSkyRenderer() == null)
+               {
+                    Minecraft.getMinecraft().theWorld.provider.setSkyRenderer(new SkyRenderer());
+               }*/
+               
                playerClientTick(player, pre);
           }
      }
