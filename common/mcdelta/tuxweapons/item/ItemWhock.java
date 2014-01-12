@@ -5,6 +5,7 @@ import java.util.List;
 
 import mcdelta.core.assets.Assets;
 import mcdelta.core.assets.world.Position;
+import mcdelta.core.item.ItemDelta;
 import mcdelta.core.item.ItemDeltaTool;
 import mcdelta.core.logging.Logger;
 import mcdelta.core.material.ItemMaterial;
@@ -238,14 +239,14 @@ public class ItemWhock extends ItemDeltaTool
      @Override
      public void registerIcons (final IconRegister register)
      {
-          itemIcon = doRegister("tuxweapons", toolName + "_1", register);
-          itemOverlay = doRegister("tuxweapons", toolName + "_2", register);
+          itemIcon = ItemDelta.doRegister("tuxweapons", toolName + "_1", register);
+          itemOverlay = ItemDelta.doRegister("tuxweapons", toolName + "_2", register);
           
           overrideExists = Assets.resourceExists(new ResourceLocation("tuxweapons", "textures/items/override/" + itemMaterial.name().toLowerCase() + "_" + toolName + ".png"));
           
           if (overrideExists)
           {
-               overrideIcon = this.doRegister("/override/" + itemMaterial.name().toLowerCase() + "_" + toolName, register);
+               overrideIcon =  ItemDelta.doRegister(mod.id(), "/override/" + itemMaterial.name().toLowerCase() + "_" + toolName, register);
           }
      }
      
