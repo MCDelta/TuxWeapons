@@ -8,15 +8,15 @@ item.tuxweapons:magmaCore.name=Magma Core
 
 tile.tuxweapons:redstoneTmpBlock.name=EMP Grenade Block
 
-tool.hammer=Hammer
-tool.battleaxe=Battleaxe
-tool.mace=Mace
-tool.spear=Spear
-tool.knife=Knife
-tool.grappHook=Grappling Hook
-tool.shield=Shield
-tool.whock=Whock
-tool.whockCrafter=Whock Crafter
+tool.hammer=%1$s Hammer
+tool.battleaxe=%1$s Battleaxe
+tool.mace=%1$s Mace
+tool.spear=%1$s Spear
+tool.knife=%1$s Knife
+tool.grappHook=%1$s Grappling Hook
+tool.shield=%1$s Shield
+tool.whock=%1$s Whock
+tool.whockCrafter=%1$s Whock Crafter
 
 entity.tuxweapons:spear.name=Spear
 entity.tuxweapons:knife.name=Knife
