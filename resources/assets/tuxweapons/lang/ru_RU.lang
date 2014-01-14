@@ -1,5 +1,3 @@
-# items
-
 item.tuxweapons:fireChargeCannon.name=Пушка(Огненный шар)
 item.tuxweapons:crossBow.name=Арбалет
 item.tuxweapons:bolt.name=Болт
@@ -8,33 +6,21 @@ item.tuxweapons:empGrenade.name=ЭМИ-граната
 item.tuxweapons:technical.name=ПОЧЕМУ У ВАС ЭТО В ИНВЕНТАРЕ!
 item.tuxweapons:magmaCore.name=Магматическое ядро
 
-
-# blocks
-
 tile.tuxweapons:redstoneTmpBlock.name=Блок ЭМИ-гранаты
 
-
-# tools
-
-tool.hammer=молот
-tool.battleaxe=боевой топор
-tool.mace=булава
-tool.spear=копье
-tool.knife=нож
-tool.grappHook=крюк
-tool.shield=щит
-tool.whock=Whock
-tool.whockCrafter=Whock Head
-
-
-# entities
+tool.hammer=Молот %1$s
+tool.battleaxe=Боевой топор %1$s
+tool.mace=Булава %1$s
+tool.spear=Копье %1$s
+tool.knife=Нож %1$s
+tool.grappHook=Крюк %1$s
+tool.shield=Щит %1$s
+tool.whock=Whock %1$s
+tool.whockCrafter=Whock Head %1$s
 
 entity.tuxweapons:spear.name=копье
 entity.tuxweapons:knife.name=нож
 entity.tuxweapons:grappHook.name=крюк
-
-
-# enchants
 
 enchantment.tuxweapons:drawback=Возврат
 enchantment.tuxweapons:expIncrease=Кража опыта
@@ -45,10 +31,6 @@ enchantment.tuxweapons:strike=Удар
 enchantment.tuxweapons:aoe=Дальность
 enchantment.tuxweapons:venom=Яд
 
-
-# potions
-
-## effects 
 potion.tuxweapons:cure=Лечение
 potion.tuxweapons:fireAura=Огненная аура
 potion.tuxweapons:quickStep=Быстрый шаг
@@ -56,7 +38,6 @@ potion.tuxweapons:confusion=Смятение
 potion.tuxweapons:flight=Полёт
 potion.tuxweapons:paralysis=Паралич
 
-## names
 potion.tuxweapons:cure.postfix=Зелье лечения
 potion.tuxweapons:fireAura.postfix=Зелье теплоты
 potion.tuxweapons:quickStep.postfix=Зелье удобства
@@ -64,12 +45,11 @@ potion.tuxweapons:confusion.postfix=Зелье смятения
 potion.tuxweapons:flight.postfix=Зелье неба
 potion.tuxweapons:paralysis.postfix=Зелье парализации
 
-
-# deaths
-
 death.attack.tuxweapons:hammerSmash=%1$s был разбит игроком %2$s
-death.attack.tuxweapons:hammerSmash.item=%1$s был разбит игроком %2$s используя %3$s
+death.attack.tuxweapons:hammerSmash.item=%1$s был разбит игроком %2$s, использовавшим %3$s
 death.attack.tuxweapons:throwable=%1$s был приколот игроком %2$s
-death.attack.tuxweapons:throwable.item=%1$s был приколот игроком %2$s используя %3$s
+death.attack.tuxweapons:throwable.item=%1$s был приколот игроком %2$s, использовавшим %3$s
 death.attack.tuxweapons:bolt=%1$s был застрелен игроком %2$s
-death.attack.tuxweapons:bolt.item=%1$s был застрелен игроком %2$s используя %3$s
+death.attack.tuxweapons:bolt.item=%1$s был застрелен игроком %2$s, использовавшим %3$s
+
+attribute.name.generic.attackDamage.piercing=Пронзительный урон
