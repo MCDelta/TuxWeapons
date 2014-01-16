@@ -15,7 +15,7 @@ buildscript {
 apply plugin: "forge"
 
 group = 'mcdelta.tuxweapons'
-version = '1.1b’
+version = '1.1c'
 archivesBaseName = 'TuxWeapons'
 
 sourceSets {
