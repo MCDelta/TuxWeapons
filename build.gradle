@@ -46,16 +46,17 @@ processResources {
 }
 
 jar {
-    archiveName = baseName + "[" + version + "].jar"
     manifest {
         attributes 'MCVersion' : project.minecraft.version
         attributes 'Version' : project.version
     }
+    archiveName = baseName + "[" + version + "].jar"
 }
 
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
     appendix = 'src'
+    archiveName = baseName + "[" + version + "|" + appendix + "].jar"
 }
 
 artifacts {
