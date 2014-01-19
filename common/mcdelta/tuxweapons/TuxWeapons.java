@@ -6,8 +6,8 @@ import static mcdelta.tuxweapons.damage.EnumDamageTypes.SLASHER;
 import mcdelta.core.IContent;
 import mcdelta.core.ModDelta;
 import mcdelta.core.assets.Assets;
-import mcdelta.core.client.CreativeTabDelta;
 import mcdelta.core.client.particle.EnumParticles;
+import mcdelta.core.material.MaterialRegistry;
 import mcdelta.core.network.PacketHandler;
 import mcdelta.tuxweapons.config.TWConfig;
 import mcdelta.tuxweapons.damage.DamageModifier;
@@ -27,6 +27,7 @@ import mcdelta.tuxweapons.support.TWSupportTwilightForest;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -67,8 +68,6 @@ public class TuxWeapons extends ModDelta
      
      @SideOnly (Side.CLIENT)
      public static CreativeTabs  tabTW;
-
-     public static CreativeTabDelta tab;
      
      
      
@@ -140,6 +139,8 @@ public class TuxWeapons extends ModDelta
                     GOLDEN.effc_item.add(item);
                }
           }
+          
+          TWContent.tab.iconStack = new ItemStack(TWContent.battleaxes.get(MaterialRegistry.DIAMOND));
      }
      
      

@@ -39,6 +39,7 @@ import mcdelta.tuxweapons.item.ItemWhockCrafter;
 import mcdelta.tuxweapons.potions.Potions;
 import mcdelta.tuxweapons.recipe.RecipePotionBolt;
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -76,27 +77,29 @@ public class TWContent implements IContent
      public static EnchEXP                             expIncrease;
      public static EnchantmentTW                       hardened;
      
+     public static CreativeTabDelta                    tab;
+     
      
      
      
      @Override
      public void addContent ()
      {
-          TuxWeapons.tab = new CreativeTabDelta("tab.tuxweapons", battleaxes.get(3));
+          tab = new CreativeTabDelta("tuxweapons");
           
           //fireChargeCannon = new ItemFireChargeCannon();
-          crossBow = new ItemCrossbow();
-          bolt = new ItemBolt();
-          dynamite = new ItemDynamite();
-          empGrenade = new ItemEMPGrenade();
-          technical = new ItemTechnical();
+          crossBow = (ItemCrossbow) new ItemCrossbow().setCreativeTab(tab);
+          bolt = (ItemBolt) new ItemBolt().setCreativeTab(tab);
+          dynamite = (ItemDynamite) new ItemDynamite().setCreativeTab(tab);
+          empGrenade = (ItemEMPGrenade) new ItemEMPGrenade().setCreativeTab(tab);
+          technical = (ItemTechnical) new ItemTechnical().setCreativeTab(CreativeTabs.tabBrewing);
           //magmaCore = (ItemTW) new ItemTW("magmaCore").setCreativeTab(CreativeTabs.tabMaterials);
           
           Block.blocksList[117] = null;
           brewStandMCD = (BlockBrewStand) new BlockBrewStand(117).setHardness(0.5F).setLightValue(0.125F).setUnlocalizedName("brewingStand").setTextureName("brewing_stand");
           GameRegistry.registerBlock(brewStandMCD, "brewStandMCD");
           GameRegistry.registerTileEntity(TileBrewStand.class, "tileBrewStandMCD");
-          redstoneTmpBlock = new BlockRedstoneTempBlock();
+          redstoneTmpBlock = (BlockRedstoneTempBlock) new BlockRedstoneTempBlock().setCreativeTab(null);
           
           swift = new EnchSwift("swift", 2, EnumEnchantmentType.weapon);
           strike = new EnchStrike("strike", 3, EnumEnchantmentType.weapon);
@@ -120,35 +123,35 @@ public class TWContent implements IContent
      
      
      @Override
-     public void addMaterialBasedContent (final ItemMaterial mat)
+     public void addMaterialBasedContent (ItemMaterial mat)
      {
           if (mat.needsWeapons())
           {
-               final ItemBattleaxe battleaxe = new ItemBattleaxe(mat);
+               ItemBattleaxe battleaxe = (ItemBattleaxe) new ItemBattleaxe(mat).setCreativeTab(tab);
                battleaxes.put(mat, battleaxe);
                
-               final ItemMace mace = new ItemMace(mat);
+               ItemMace mace = (ItemMace) new ItemMace(mat).setCreativeTab(tab);
                maces.put(mat, mace);
                
-               final ItemHammer hammer = new ItemHammer(mat);
+               ItemHammer hammer = (ItemHammer) new ItemHammer(mat).setCreativeTab(tab);
                hammers.put(mat, hammer);
                
-               final ItemKnife knife = new ItemKnife(mat);
+               ItemKnife knife = (ItemKnife) new ItemKnife(mat).setCreativeTab(tab);
                knives.put(mat, knife);
                
-               final ItemSpear spear = new ItemSpear(mat);
+               ItemSpear spear = (ItemSpear) new ItemSpear(mat).setCreativeTab(tab);
                spears.put(mat, spear);
                
-               final ItemGrappHook grappHook = new ItemGrappHook(mat);
+               ItemGrappHook grappHook = (ItemGrappHook) new ItemGrappHook(mat).setCreativeTab(tab);
                grappHooks.put(mat, grappHook);
                
-               final ItemShield shield = new ItemShield(mat);
+               ItemShield shield = (ItemShield) new ItemShield(mat).setCreativeTab(tab);
                shields.put(mat, shield);
                
-               final ItemWhock whock = new ItemWhock(mat);
+               ItemWhock whock = (ItemWhock) new ItemWhock(mat).setCreativeTab(tab);
                whocks.put(mat, whock);
                
-               final ItemWhockCrafter whockCrafter = new ItemWhockCrafter(mat);
+               ItemWhockCrafter whockCrafter = (ItemWhockCrafter) new ItemWhockCrafter(mat).setCreativeTab(tab);
                whockCrafters.put(mat, whockCrafter);
           }
      }
@@ -159,14 +162,14 @@ public class TWContent implements IContent
      @Override
      public void addRecipes ()
      {
-          final ItemStack wood = new ItemStack(Block.planks);
-          final ItemStack iron = new ItemStack(Item.ingotIron);
-          final ItemStack string = new ItemStack(Item.silk);
-          final ItemStack feather = new ItemStack(Item.feather);
-          final ItemStack gunpowder = new ItemStack(Item.gunpowder);
-          final ItemStack sand = new ItemStack(Block.sand);
-          final ItemStack redStone = new ItemStack(Item.redstone);
-          final ItemStack clay = new ItemStack(Item.clay);
+          ItemStack wood = new ItemStack(Block.planks);
+          ItemStack iron = new ItemStack(Item.ingotIron);
+          ItemStack string = new ItemStack(Item.silk);
+          ItemStack feather = new ItemStack(Item.feather);
+          ItemStack gunpowder = new ItemStack(Item.gunpowder);
+          ItemStack sand = new ItemStack(Block.sand);
+          ItemStack redStone = new ItemStack(Item.redstone);
+          ItemStack clay = new ItemStack(Item.clay);
           
           GameRegistry.addRecipe(new ItemStack(TWContent.crossBow), "xxy", "syx", "ysx", 'x', wood, 'y', iron, 's', string);
           GameRegistry.addRecipe(new ItemStack(TWContent.crossBow), "yxx", "xys", "xsy", 'x', wood, 'y', iron, 's', string);
@@ -180,9 +183,9 @@ public class TWContent implements IContent
      
      
      @Override
-     public void addMaterialBasedRecipes (final ItemMaterial mat)
+     public void addMaterialBasedRecipes (ItemMaterial mat)
      {
-          final String material = mat.oreName();
+          String material = mat.oreName();
           String stickMaterial = "stickWood";
           
           if (mat.nonStickCrafter() != null)
@@ -193,7 +196,7 @@ public class TWContent implements IContent
           if (mat.needsWeapons())
           {
                // Battleaxe
-               final ItemStack battleaxe = new ItemStack(TWContent.battleaxes.get(mat));
+               ItemStack battleaxe = new ItemStack(TWContent.battleaxes.get(mat));
                if (mat.weaponEnchant() != null)
                {
                     battleaxe.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
@@ -201,7 +204,7 @@ public class TWContent implements IContent
                GameRegistry.addRecipe(new ShapedOreRecipe(battleaxe, "xxx", "xox", " o ", 'x', material, 'o', stickMaterial));
                
                // Hammer
-               final ItemStack hammer = new ItemStack(TWContent.hammers.get(mat));
+               ItemStack hammer = new ItemStack(TWContent.hammers.get(mat));
                if (mat.weaponEnchant() != null)
                {
                     hammer.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
@@ -209,7 +212,7 @@ public class TWContent implements IContent
                GameRegistry.addRecipe(new ShapedOreRecipe(hammer, "xox", "xox", " o ", 'x', material, 'o', stickMaterial));
                
                // Mace
-               final ItemStack mace = new ItemStack(TWContent.maces.get(mat));
+               ItemStack mace = new ItemStack(TWContent.maces.get(mat));
                if (mat.weaponEnchant() != null)
                {
                     mace.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
@@ -217,7 +220,7 @@ public class TWContent implements IContent
                GameRegistry.addRecipe(new ShapedOreRecipe(mace, " xx", " xx", "o  ", 'x', material, 'o', stickMaterial));
                
                // Knife
-               final ItemStack knife = new ItemStack(TWContent.knives.get(mat), 4);
+               ItemStack knife = new ItemStack(TWContent.knives.get(mat), 4);
                if (mat.weaponEnchant() != null)
                {
                     knife.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
@@ -225,7 +228,7 @@ public class TWContent implements IContent
                GameRegistry.addRecipe(new ShapedOreRecipe(knife, " x", "o ", 'x', material, 'o', stickMaterial));
                
                // Spear
-               final ItemStack spear = new ItemStack(TWContent.spears.get(mat));
+               ItemStack spear = new ItemStack(TWContent.spears.get(mat));
                if (mat.weaponEnchant() != null)
                {
                     spear.addEnchantment(mat.weaponEnchant(), mat.weaponEnchantLvl());
@@ -233,7 +236,7 @@ public class TWContent implements IContent
                GameRegistry.addRecipe(new ShapedOreRecipe(spear, "  x", " o ", "o  ", 'x', material, 'o', stickMaterial));
                
                // Grappling Hook
-               final ItemStack grappHook = new ItemStack(TWContent.grappHooks.get(mat));
+               ItemStack grappHook = new ItemStack(TWContent.grappHooks.get(mat));
                if (mat.toolEnchant() != null)
                {
                     grappHook.addEnchantment(mat.toolEnchant(), mat.toolEnchantLvl());
@@ -241,7 +244,7 @@ public class TWContent implements IContent
                GameRegistry.addRecipe(new ShapedOreRecipe(grappHook, " xx", " ox", "o  ", 'x', material, 'o', "ingotIron"));
                
                // Shield
-               final ItemStack shield = new ItemStack(TWContent.shields.get(mat));
+               ItemStack shield = new ItemStack(TWContent.shields.get(mat));
                if (mat.toolEnchant() != null)
                {
                     shield.addEnchantment(mat.toolEnchant(), mat.toolEnchantLvl());
@@ -249,7 +252,7 @@ public class TWContent implements IContent
                GameRegistry.addRecipe(new ShapedOreRecipe(shield, "oxo", "xox", "oxo", 'x', material, 'o', "plankWood"));
                
                // Whock Crafter
-               final ItemStack whockCrafter = new ItemStack(TWContent.whockCrafters.get(mat), 1, mat.maxUses() - 1);
+               ItemStack whockCrafter = new ItemStack(TWContent.whockCrafters.get(mat), 1, mat.maxUses() - 1);
                if (mat.toolEnchant() != null)
                {
                     whockCrafter.addEnchantment(mat.toolEnchant(), mat.toolEnchantLvl());

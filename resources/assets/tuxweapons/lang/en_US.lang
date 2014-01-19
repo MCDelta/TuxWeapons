@@ -1,3 +1,5 @@
+itemGroup.tuxweapons=TuxWeapons
+
 item.tuxweapons:fireChargeCannon.name=Fire Charge Cannon
 item.tuxweapons:crossBow.name=Crossbow
 item.tuxweapons:bolt.name=Bolt
