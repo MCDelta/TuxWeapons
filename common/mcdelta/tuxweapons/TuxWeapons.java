@@ -6,6 +6,7 @@ import static mcdelta.tuxweapons.damage.EnumDamageTypes.SLASHER;
 import mcdelta.core.IContent;
 import mcdelta.core.ModDelta;
 import mcdelta.core.assets.Assets;
+import mcdelta.core.client.CreativeTabDelta;
 import mcdelta.core.client.particle.EnumParticles;
 import mcdelta.core.network.PacketHandler;
 import mcdelta.tuxweapons.config.TWConfig;
@@ -23,6 +24,7 @@ import mcdelta.tuxweapons.support.TWSupportBOP;
 import mcdelta.tuxweapons.support.TWSupportTE;
 import mcdelta.tuxweapons.support.TWSupportThaumcraft;
 import mcdelta.tuxweapons.support.TWSupportTwilightForest;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemSword;
@@ -40,6 +42,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod (modid = TuxWeapons.MOD_ID, useMetadata = true)
 @NetworkMod (clientSideRequired = true, serverSideRequired = false, channels =
@@ -61,6 +64,11 @@ public class TuxWeapons extends ModDelta
      
      @SidedProxy (clientSide = "mcdelta.tuxweapons.proxy.TWClientProxy", serverSide = "mcdelta.tuxweapons.proxy.TWCommonProxy")
      public static TWCommonProxy proxy;
+     
+     @SideOnly (Side.CLIENT)
+     public static CreativeTabs  tabTW;
+
+     public static CreativeTabDelta tab;
      
      
      

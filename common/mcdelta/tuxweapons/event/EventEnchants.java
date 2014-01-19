@@ -10,7 +10,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityXPOrb;
-import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,24 +28,6 @@ import com.google.common.collect.Multimap;
 
 public class EventEnchants
 {
-     @ForgeSubscribe
-     public void entityKilled (final LivingDeathEvent event)
-     {
-          if (event.source.getDamageType().equals("player"))
-          {
-               if (event.entityLiving instanceof EntityMagmaCube)
-               {
-                    final double rng = DeltaCore.rand.nextDouble();
-                    
-                    if (rng < 0.2)
-                    {
-                         event.entityLiving.dropItem(TWContent.magmaCore.itemID, 1);
-                    }
-               }
-          }
-     }
-     
-     
      
      
      @ForgeSubscribe
@@ -192,7 +173,7 @@ public class EventEnchants
                          }
                     }
                     
-                    if (item == TWContent.fireChargeCannon)
+                    /**if (item == TWContent.fireChargeCannon)
                     {
                          event.setCanceled(true);
                          
@@ -210,7 +191,7 @@ public class EventEnchants
                          {
                               player.setItemInUse(stack, item.getMaxItemUseDuration(stack) - drawbackLvl * 3);
                          }
-                    }
+                    }*/
                }
           }
      }

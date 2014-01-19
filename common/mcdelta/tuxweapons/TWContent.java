@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import mcdelta.core.IContent;
+import mcdelta.core.client.CreativeTabDelta;
 import mcdelta.core.material.ItemMaterial;
 import mcdelta.tuxweapons.block.BlockBrewStand;
 import mcdelta.tuxweapons.block.BlockRedstoneTempBlock;
@@ -26,21 +27,18 @@ import mcdelta.tuxweapons.item.ItemBolt;
 import mcdelta.tuxweapons.item.ItemCrossbow;
 import mcdelta.tuxweapons.item.ItemDynamite;
 import mcdelta.tuxweapons.item.ItemEMPGrenade;
-import mcdelta.tuxweapons.item.ItemFireChargeCannon;
 import mcdelta.tuxweapons.item.ItemGrappHook;
 import mcdelta.tuxweapons.item.ItemHammer;
 import mcdelta.tuxweapons.item.ItemKnife;
 import mcdelta.tuxweapons.item.ItemMace;
 import mcdelta.tuxweapons.item.ItemShield;
 import mcdelta.tuxweapons.item.ItemSpear;
-import mcdelta.tuxweapons.item.ItemTW;
 import mcdelta.tuxweapons.item.ItemTechnical;
 import mcdelta.tuxweapons.item.ItemWhock;
 import mcdelta.tuxweapons.item.ItemWhockCrafter;
 import mcdelta.tuxweapons.potions.Potions;
 import mcdelta.tuxweapons.recipe.RecipePotionBolt;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -60,13 +58,13 @@ public class TWContent implements IContent
      public static Map<ItemMaterial, ItemWhock>        whocks        = new HashMap<ItemMaterial, ItemWhock>();
      public static Map<ItemMaterial, ItemWhockCrafter> whockCrafters = new HashMap<ItemMaterial, ItemWhockCrafter>();
      
-     public static ItemFireChargeCannon                fireChargeCannon;
+     //public static ItemFireChargeCannon                fireChargeCannon;
      public static ItemCrossbow                        crossBow;
      public static ItemBolt                            bolt;
      public static ItemDynamite                        dynamite;
      public static ItemEMPGrenade                      empGrenade;
      public static ItemTechnical                       technical;
-     public static ItemTW                              magmaCore;
+     //public static ItemTW                              magmaCore;
      
      public static BlockRedstoneTempBlock              redstoneTmpBlock;
      public static BlockBrewStand                      brewStandMCD;
@@ -84,13 +82,15 @@ public class TWContent implements IContent
      @Override
      public void addContent ()
      {
-          fireChargeCannon = new ItemFireChargeCannon();
+          TuxWeapons.tab = new CreativeTabDelta("tab.tuxweapons", battleaxes.get(3));
+          
+          //fireChargeCannon = new ItemFireChargeCannon();
           crossBow = new ItemCrossbow();
           bolt = new ItemBolt();
           dynamite = new ItemDynamite();
           empGrenade = new ItemEMPGrenade();
           technical = new ItemTechnical();
-          magmaCore = (ItemTW) new ItemTW("magmaCore").setCreativeTab(CreativeTabs.tabMaterials);
+          //magmaCore = (ItemTW) new ItemTW("magmaCore").setCreativeTab(CreativeTabs.tabMaterials);
           
           Block.blocksList[117] = null;
           brewStandMCD = (BlockBrewStand) new BlockBrewStand(117).setHardness(0.5F).setLightValue(0.125F).setUnlocalizedName("brewingStand").setTextureName("brewing_stand");

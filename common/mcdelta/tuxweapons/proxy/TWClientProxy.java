@@ -9,7 +9,6 @@ import mcdelta.tuxweapons.client.entity.RenderGrappHook;
 import mcdelta.tuxweapons.client.entity.RenderKnife;
 import mcdelta.tuxweapons.client.entity.RenderSpear;
 import mcdelta.tuxweapons.client.item.RenderCrossbow;
-import mcdelta.tuxweapons.client.item.RenderFireChargeCannon;
 import mcdelta.tuxweapons.client.item.RenderItemPotion;
 import mcdelta.tuxweapons.entity.EntityBolt;
 import mcdelta.tuxweapons.entity.EntityDynamite;
@@ -35,7 +34,7 @@ public class TWClientProxy extends TWCommonProxy
           RenderingRegistry.registerEntityRenderingHandler(EntityDynamite.class, new RenderDynamite());
           RenderingRegistry.registerEntityRenderingHandler(EntityEMPGrenade.class, new RenderThrownItem(TWContent.empGrenade));
           
-          MinecraftForgeClient.registerItemRenderer(TWContent.fireChargeCannon.itemID, new RenderFireChargeCannon());
+          //MinecraftForgeClient.registerItemRenderer(TWContent.fireChargeCannon.itemID, new RenderFireChargeCannon());
           MinecraftForgeClient.registerItemRenderer(TWContent.crossBow.itemID, new RenderCrossbow());
           MinecraftForgeClient.registerItemRenderer(Item.potion.itemID, new RenderItemPotion());
           
